@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Draw();
+        Draw();
+        Draw();
+        Draw();
+        Draw();
     }
 
     public void Draw()
