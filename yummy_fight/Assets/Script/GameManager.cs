@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject cardPrefab;
-    [SerializeField] Transform playerHand;
+    [SerializeField] CardController cardPrefab;
+    [SerializeField] Transform playerHand, playerField, enemyField;
 
     void Start()
     {
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
+        StartGame();
+    }
+
+    void StartGame()
+    {
+        CardController card = Instantiate(cardPrefab, playerHand);
+        card.Init(1);
+        CardController card2 = Instantiate(cardPrefab, playerHand);
+        card2.Init(2);
+        CardController card3 = Instantiate(cardPrefab, playerHand);
+        card3.Init(2);
+        CardController card4 = Instantiate(cardPrefab, playerHand);
+        card4.Init(1);
     }
 
     public void Draw()
