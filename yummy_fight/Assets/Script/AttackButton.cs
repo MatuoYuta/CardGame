@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackButton : MonoBehaviour
+/*public class AttackButton : MonoBehaviour
 {
     // UŒ‚‘ÎÛ
     public GameObject target;
@@ -58,4 +58,4 @@ public class AttackButton : MonoBehaviour
             Debug.LogError("UŒ‚‘ÎÛ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
         }
     }
-}
+}*/
