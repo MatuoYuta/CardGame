@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Transform cardParent;
+    public Transform before;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public void OnBeginDrag(PointerEventData eventData) // ドラッグを始めるときに行う処理
     {
         cardParent = transform.parent;
-        transform.SetParent(cardParent.parent, false);
+        transform.SetParent(cardParent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
     }
 
@@ -27,7 +28,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData) // カードを離したときに行う処理
     {
-        transform.SetParent(cardParent, false);
+        transform.SetParent(cardParent);
         GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         Debug.Log(this.transform.localScale);
     }
