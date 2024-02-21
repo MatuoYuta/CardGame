@@ -62,7 +62,17 @@ public class CoinToss : MonoBehaviour
 
     void PlayHeadsAnimation()
     {
-        coinAnimator.Play(headsAnimation.name);
+        // Animator コンポーネントがアタッチされているかを確認
+        Animator coinAnimator = GetComponent<Animator>();
+        if (coinAnimator != null)
+        {
+            // アタッチされていればアニメーションを再生する
+            coinAnimator.Play(headsAnimation.name);
+        }
+        else
+        {
+            Debug.LogError("Animator is not attached to the 'Coin tos' game object!");
+        }
     }
 
     void PlayTailsAnimation()
