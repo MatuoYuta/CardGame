@@ -25,6 +25,7 @@ public class GameDirecter : MonoBehaviour
     void Start()
     {
         phase = Phase.INIT;
+        Movable = false;
     }
     void Update()
     {
@@ -70,19 +71,22 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("StandbyPhase");
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nStandby";
         Movable = true;
-        currentPlayer.Move();
     }
 
     void MainPhase()
     {
+        Debug.Log("MainPhase");
+        Movable = false;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nMain";
     }
     void BattlePhase()
     {
+        Debug.Log("BattlePhase");
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nBattle";
     }
     void EndPhase()
     {
+        Debug.Log("EndPhase");
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nEnd";
         if (currentPlayer == playerList[0])
         {
@@ -93,5 +97,20 @@ public class GameDirecter : MonoBehaviour
             currentPlayer = playerList[0];
         }
         phase = Phase.DRAW;
+    }
+    public void NextPhase()
+    {
+        switch (phase)
+        {
+            case Phase.STANDBY://スタンバイ（移動）フェーズ
+                phase = Phase.MAIN;
+                break;
+            case Phase.MAIN://メインフェーズ
+                phase = Phase.BATTLE;
+                break;
+            case Phase.BATTLE://バトルフェーズ
+                phase = Phase.END;
+                break;
+        }
     }
 }
