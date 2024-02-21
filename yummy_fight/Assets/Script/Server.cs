@@ -62,7 +62,7 @@ public class Server : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom() //ルームに入ったら呼ばれる
     {
         //Debug.Log(PhotonNetwork.NickName+ "joined to"+ PhotonNetwork.CurrentRoom.Name);
-        PhotonNetwork.LoadLevel("GameScene"); //シーンをロード
+        PhotonNetwork.LoadLevel("SampleScene"); //シーンをロード
     }
 
     void CreateAndJoinRoom()
