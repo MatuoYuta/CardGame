@@ -7,7 +7,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 {
     public Transform cardParent;
     private Vector2 prevPos;
-    private Transform before_parent;
+    public Transform before_parent;
     public GameManager manage_script;
     public bool kitchen, field, change;
     GameDirecter directer_script;
@@ -26,7 +26,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         CardController[] playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
         CardController[] playerkitchenCardList = manage_script.playerKitchen.GetComponentsInChildren<CardController>();
 
-        if (playerkitchenCardList.Length < 5 )//調理場のカードが５枚未満の時に置けるようにする
+        if (playerkitchenCardList.Length < 5 || directer_script.Summonable)//調理場のカードが５枚未満の時に置けるようにする
         {
             kitchen = true;
         }
@@ -35,7 +35,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             kitchen = false;
         }
 
-        if (playerFieldCardList.Length < 3)//フィールドのカードが３枚未満の時に置けるようにする
+        if (playerFieldCardList.Length < 3 && cardParent == GameObject.Find("Player_kitchen").transform)//フィールドのカードが３枚未満の時に置けるようにする
         {
             field = true;
         }
@@ -76,12 +76,16 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData) // カードを離したときに行う処理
     {
         change = true;
-        if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform)//調理場のカードが５枚未満の時に置けるようにする
+        if ((kitchen && cardParent == GameObject.Find("Player_kitchen").transform) )//調理場にカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         }       
-        else if (field && cardParent == GameObject.Find("Player_field").transform)//フィールドのカードが３枚未満の時に置けるようにする
+        else if(kitchen && before_parent == GameObject.Find("Player_hand"))
+        {
+            
+        }
+        else if (field && cardParent == GameObject.Find("Player_field").transform )//フィールドにカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
@@ -89,6 +93,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         else
         {
             this.transform.position = prevPos;
+            cardParent = before_parent;
             transform.SetParent(before_parent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         };

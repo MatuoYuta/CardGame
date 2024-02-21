@@ -8,6 +8,7 @@ public class GameDirecter : MonoBehaviour
 
     public Player[] playerList;//プレイヤーのリスト
     public bool Movable;
+    public bool Summonable;
     public GameObject phase_text;
     
     public enum Phase//フェーズ管理用列挙型変数
@@ -76,12 +77,14 @@ public class GameDirecter : MonoBehaviour
     void MainPhase()
     {
         Debug.Log("MainPhase");
-        Movable = false;
+        Summonable = true;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nMain";
     }
     void BattlePhase()
     {
         Debug.Log("BattlePhase");
+        Movable = false;
+        Summonable = false;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nBattle";
     }
     void EndPhase()
