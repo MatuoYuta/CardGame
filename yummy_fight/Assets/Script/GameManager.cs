@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         // デッキの一番上のカードを抜き取り、手札に加える
         int cardID = deck[0];
         deck.RemoveAt(0);
+        Debug.Log("ドロー！");
         CreateCard(cardID, hand);
     }
 
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPlayerTurn)
         {
-            PlayerTurn();
+           //PlayerTurn();
         }
         else
         {

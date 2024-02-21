@@ -643,7 +643,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 200, y: 600}
-  m_Spacing: {x: 100, y: 0}
+  m_Spacing: {x: -50, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &519420028
@@ -1013,8 +1013,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1152,6 +1152,7 @@ GameObject:
   - component: {fileID: 697818451}
   - component: {fileID: 697818450}
   - component: {fileID: 697818449}
+  - component: {fileID: 697818452}
   m_Layer: 5
   m_Name: PHASE_button
   m_TagString: Untagged
@@ -1223,7 +1224,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 697818450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 697818452}
+        m_TargetAssemblyTypeName: Button, Assembly-CSharp
+        m_MethodName: Push
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &697818450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,6 +1275,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697818447}
   m_CullTransparentMesh: 1
+--- !u!114 &697818452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697818447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518aee66daa22e64eb91045aa6159662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directer_script: {fileID: 0}
 --- !u!1 &922713663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,7 +1796,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 200, y: 600}
-  m_Spacing: {x: 100, y: 0}
+  m_Spacing: {x: -50, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1506926257
@@ -1982,7 +2008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList:
   - {fileID: 605496844}
-  - {fileID: 0}
+  - {fileID: 605496844}
   Movable: 0
   phase_text: {fileID: 644895988}
 --- !u!4 &1632766651

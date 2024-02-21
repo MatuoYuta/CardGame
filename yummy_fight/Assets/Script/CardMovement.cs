@@ -9,7 +9,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     private Vector2 prevPos;
     private Transform before_parent;
     public GameManager manage_script;
-    public bool kitchen, field;
+    public bool kitchen, field, change;
     GameDirecter directer_script;
 
     void Start()
@@ -17,6 +17,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         cardParent = GameObject.Find("Player_hand").transform;
+        change = true;
         Debug.Log(this.transform.localScale);
     }
 
@@ -42,18 +43,29 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             field = false;
         }
+
+        if(directer_script.Movable && change)
+        {
+            Debug.Log("動けます");
+            GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
+            change = false;
+        }
+
+        if(!directer_script.Movable)
+        {
+            Debug.Log("動けません");
+            change = true;
+            GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData) // ドラッグを始めるときに行う処理
     {
-        if(directer_script.Movable)
-        {
-            before_parent = transform.parent.gameObject.transform;
-            prevPos = this.transform.position;
-            cardParent = transform.parent;
-            transform.SetParent(cardParent.parent);
-            GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
-        }
+        before_parent = transform.parent.gameObject.transform;
+        prevPos = this.transform.position;
+        cardParent = transform.parent;
+        transform.SetParent(cardParent.parent);
+        GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
     }
 
     public void OnDrag(PointerEventData eventData) // ドラッグした時に起こす処理
@@ -63,6 +75,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData) // カードを離したときに行う処理
     {
+        change = true;
         if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform)//調理場のカードが５枚未満の時に置けるようにする
         {
             transform.SetParent(cardParent);
@@ -78,6 +91,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             this.transform.position = prevPos;
             transform.SetParent(before_parent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
-        }
+        };
     }
 }
