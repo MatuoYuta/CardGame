@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    public Text statusText;
+    public TMP_Text statusText;
     public GameObject LoginPanel;
     public TMP_InputField playerNameInput;
 

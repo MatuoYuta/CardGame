@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece53f92bf235ad4882dfba37b9cc282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusText: {fileID: 0}
+  statusText: {fileID: 286462071}
   LoginPanel: {fileID: 1116170777}
   playerNameInput: {fileID: 612843312}
   ConnectingPanel: {fileID: 374040751}
