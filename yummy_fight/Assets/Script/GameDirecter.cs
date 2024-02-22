@@ -7,10 +7,15 @@ public class GameDirecter : MonoBehaviour
 {
 
     public Player[] playerList;//プレイヤーのリスト
-    public bool Movable;
-    public bool Summonable;
-    public GameObject phase_text;
-    
+    public bool Movable;//動けるか(スタンバイフェーズ)
+    public bool Summonable;//召喚できるか(メインフェーズ)
+    public GameObject phase_text;//どのフェーズかを表示する
+
+    public GameManager manage_script;
+
+    public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
+    public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
+
     public enum Phase//フェーズ管理用列挙型変数
     {
         INIT,
@@ -27,9 +32,14 @@ public class GameDirecter : MonoBehaviour
     {
         phase = Phase.INIT;
         Movable = false;
+        manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     void Update()
     {
+        //カードのリスト格納
+        playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
+        playerkitchenCardList = manage_script.playerKitchen.GetComponentsInChildren<CardController>();
+
         switch (phase)
         {
             case Phase.INIT://初期フェーズ

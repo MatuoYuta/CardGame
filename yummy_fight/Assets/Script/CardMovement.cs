@@ -12,9 +12,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public bool kitchen, field, change;
     GameDirecter directer_script;
 
-    public CardController[] playerFieldCardList;
-    public CardController[] playerkitchenCardList;
-
     void Start()
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -27,10 +24,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     void Update()
     {
-        playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
-        playerkitchenCardList = manage_script.playerKitchen.GetComponentsInChildren<CardController>();
 
-        if (playerkitchenCardList.Length < 5 || directer_script.Summonable)//調理場のカードが５枚未満の時に置けるようにする
+        if (directer_script.playerkitchenCardList.Length < 5 )//調理場のカードが５枚未満の時に置けるようにする
         {
             kitchen = true;
         }
@@ -39,7 +34,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             kitchen = false;
         }
 
-        if (playerFieldCardList.Length < 3 && cardParent == GameObject.Find("Player_kitchen").transform)//フィールドのカードが３枚未満の時に置けるようにする
+        if (directer_script.playerFieldCardList.Length < 3 && cardParent == GameObject.Find("Player_kitchen").transform)//フィールドのカードが３枚未満の時に置けるようにする
         {
             field = true;
         }
