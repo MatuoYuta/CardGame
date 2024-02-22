@@ -6,7 +6,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 
-public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
+public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
 {
     public TMP_Text statusText;
     public GameObject LoginPanel;
@@ -19,9 +19,13 @@ public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+
+    }
+    void Start()
+    {
         LoginPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
         LobbyPanel.SetActive(false);
@@ -78,7 +82,7 @@ public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         if (playerCount != MaxPlayerPerRoom)
         {
-            statusText.text = "ëŒêÌëäéËÇë“Ç¡ÇƒÇ¢Ç‹Ç∑ÅB";
+            statusText.text = "waiting player...";
         }
         else
         {
