@@ -87,7 +87,7 @@ public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
         //PhotonNetwork.LoadLevel("SampleScene"); //シーンをロード
     }
 
-    public  void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         if (PhotonNetwork.IsMasterClient)
         {
