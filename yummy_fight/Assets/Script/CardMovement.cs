@@ -19,6 +19,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         cardParent = GameObject.Find("Player_hand").transform;
         change = true;
         Debug.Log(this.transform.localScale);
+        transform.eulerAngles = new Vector3(0, 0, 0); // X²‚ğ’†S‚É45‹‰ñ“]AY²Z²‚Í‰Šú’l
     }
 
     void Update()
