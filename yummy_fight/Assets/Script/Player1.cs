@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player1: MonoBehaviour
 {
     public Transform playerHand;
     public GameManager manage_script;

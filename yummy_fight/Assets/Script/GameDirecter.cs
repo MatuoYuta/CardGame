@@ -6,7 +6,7 @@ using TMPro;
 public class GameDirecter : MonoBehaviour
 {
 
-    public Player[] playerList;//プレイヤーのリスト
+    public Player1[] playerList;//プレイヤーのリスト
     public bool Movable;//動けるか(スタンバイフェーズ)
     public bool Summonable;//召喚できるか(メインフェーズ)
     public GameObject phase_text;//どのフェーズかを表示する
@@ -27,7 +27,7 @@ public class GameDirecter : MonoBehaviour
     };
 
     Phase phase;
-    Player currentPlayer;
+    Player1 currentPlayer;
     void Start()
     {
         phase = Phase.INIT;
