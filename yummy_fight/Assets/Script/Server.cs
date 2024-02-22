@@ -4,14 +4,19 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.UI;
 
-public class Server : MonoBehaviourPunCallbacks
+public class Server : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
+    public Text statusText;
     public GameObject LoginPanel;
     public TMP_InputField playerNameInput;
 
     public GameObject ConnectingPanel;
     public GameObject LobbyPanel;
+
+    private const int MaxPlayerPerRoom = 2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +27,15 @@ public class Server : MonoBehaviourPunCallbacks
         LobbyPanel.SetActive(false);
     }
 
+    private void OnGUI()
+    {
+        GUILayout.Label(PhotonNetwork.NetworkClientState.ToString());
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ConnectToPhotonServer() //LoginButtonで呼ぶ
@@ -50,22 +60,46 @@ public class Server : MonoBehaviourPunCallbacks
     }
     public override void OnConnectedToMaster()
     {
+        Debug.Log("マスターに接続しました");
         LobbyPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        CreateAndJoinRoom(); //ルームがなければ自ら作って入る
+        Debug.Log("ルームを作成します。");
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = MaxPlayerPerRoom });
     }
 
     public override void OnJoinedRoom() //ルームに入ったら呼ばれる
     {
-        Debug.Log(PhotonNetwork.NickName+ "joined to"+ PhotonNetwork.CurrentRoom.Name);
-        PhotonNetwork.LoadLevel("SampleScene"); //シーンをロード
+        Debug.Log(PhotonNetwork.NickName + "joined to" + PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("ルームに参加しました");
+        int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        if (playerCount != MaxPlayerPerRoom)
+        {
+            statusText.text = "対戦相手を待っています。";
+        }
+        else
+        {
+            statusText.text = "対戦相手が揃いました。バトルシーンに移動します。";
+        }
+        //PhotonNetwork.LoadLevel("SampleScene"); //シーンをロード
     }
 
-    void CreateAndJoinRoom()
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayerPerRoom)
+            {
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                statusText.text = "対戦相手が揃いました。バトルシーンに移動します。";
+                PhotonNetwork.LoadLevel("SampleScene");
+            }
+        }
+    }
+    /*void CreateAndJoinRoom()
     {
         //自動で作られるルームの設定
         string roomName = "Room" + Random.Range(0, 10000); //ルーム名
@@ -74,5 +108,5 @@ public class Server : MonoBehaviourPunCallbacks
         roomOptions.IsVisible = true;
         roomOptions.MaxPlayers = 2;　//ルームの定員
         PhotonNetwork.CreateRoom(roomName, roomOptions);
-    }
+    }*/
 }
