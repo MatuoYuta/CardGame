@@ -26,6 +26,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
     }
     void Start()
     {
+        statusText.enabled = false;
         LoginPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
         LobbyPanel.SetActive(false);
@@ -82,6 +83,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
         if (playerCount != MaxPlayerPerRoom)
         {
+            statusText.enabled = true;
             statusText.text = "waiting player...";
         }
         else
