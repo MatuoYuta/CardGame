@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 2297784113995328219}
   - component: {fileID: 6496161346600437326}
   - component: {fileID: 6168663365688114536}
-  - component: {fileID: 9209921343577049672}
+  - component: {fileID: 8054114734342243716}
   m_Layer: 5
   m_Name: Card
   m_TagString: Card
@@ -361,8 +361,6 @@ MonoBehaviour:
   kitchen: 0
   field: 0
   change: 0
-  playerFieldCardList: []
-  playerkitchenCardList: []
 --- !u!225 &2663392173092283380
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -463,7 +461,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9209921343577049672
+--- !u!114 &8054114734342243716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,10 +470,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2663392173092283378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abf175b83bc5624a9074a4af9e03210, type: 3}
+  m_Script: {fileID: 11500000, guid: d7e81e8ff17dd7b468d46f6d326e26de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 260734234132616774}
+  buttonToToggle: {fileID: 260734234132616774}
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0
