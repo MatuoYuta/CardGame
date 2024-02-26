@@ -9,6 +9,7 @@ public class GameDirecter : MonoBehaviour
     public Player1[] playerList;//プレイヤーのリスト
     public bool Movable;//動けるか(スタンバイフェーズ)
     public bool Summonable;//召喚できるか(メインフェーズ)
+    public bool Attackable;//攻撃できるか（バトルフェーズ）
     public GameObject phase_text;//どのフェーズかを表示する
 
     public GameManager manage_script;
@@ -95,11 +96,13 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("BattlePhase");
         Movable = false;
         Summonable = false;
+        Attackable = true;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nBattle";
     }
     void EndPhase()
     {
         Debug.Log("EndPhase");
+        Attackable = false;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nEnd";
         if (currentPlayer == playerList[0])
         {

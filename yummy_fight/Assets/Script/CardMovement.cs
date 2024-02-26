@@ -54,7 +54,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             Debug.Log("動けません");
             change = true;
-            GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
+            //GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
         }
     }
 
@@ -76,19 +76,19 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     {
         change = true;
         //スタンバイフェーズの移動(フィールドからキッチン)
-        if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform && before_parent == GameObject.Find("Player_field").transform && !directer_script.Summonable)//調理場にカードを置く処理
+        if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform && before_parent == GameObject.Find("Player_field").transform && !directer_script.Summonable && !directer_script.Attackable)//調理場にカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         }
         //スタンバイフェーズの移動(キッチンからフィールド)
-        else if (field && cardParent == GameObject.Find("Player_field").transform && before_parent == GameObject.Find("Player_kitchen").transform && !directer_script.Summonable)//フィールドにカードを置く処理
+        else if (field && cardParent == GameObject.Find("Player_field").transform && before_parent == GameObject.Find("Player_kitchen").transform && !directer_script.Summonable && !directer_script.Attackable)//フィールドにカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         }
         //メインフェーズの召喚(手札からキッチン)
-        else if(kitchen && cardParent == GameObject.Find("Player_kitchen").transform &&  before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable)
+        else if(kitchen && cardParent == GameObject.Find("Player_kitchen").transform &&  before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable && !directer_script.Attackable)
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする

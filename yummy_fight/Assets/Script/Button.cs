@@ -9,7 +9,6 @@ public class Button : MonoBehaviour
     private GameDirecter _directer;
     void Start()
     {
-        _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
     }
 
     // Update is called once per frame
