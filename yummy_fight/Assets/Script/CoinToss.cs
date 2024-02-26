@@ -26,6 +26,7 @@ public class CoinToss : MonoBehaviour
 
         // ƒRƒCƒ“‚ª’â~‚µ‚½‚çŒ‹‰Ê‚ğ•\¦
         if (isTossed && coinRigidbody.IsSleeping())
+
         {
             DetermineFirstTurn();
         }

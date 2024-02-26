@@ -100,6 +100,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
             if (PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayerPerRoom)
             {
                 PhotonNetwork.CurrentRoom.IsOpen = false;
+
                 statusText.text = "対戦相手が揃いました。バトルシーンに移動します。";
                 PhotonNetwork.LoadLevel("SampleScene");
             }
