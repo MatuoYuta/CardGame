@@ -11,15 +11,21 @@ public class CoinToss : MonoBehaviour
     public AnimationClip headsAnimation;
     public AnimationClip tailsAnimation;
 
+    private bool CoinCheckO;
+    private bool CoinCheckU;
+
     void Start()
     {
         coinRigidbody = GetComponent<Rigidbody>();
         coinAnimator = GetComponent<Animator>();
+        CoinCheckO = false;
+        CoinCheckU = false;
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isTossed)
+        if (Input.GetKeyDown(KeyCode.Space) /*&& !isTossed*/)
         {
             TossCoin();
         }
@@ -48,12 +54,14 @@ public class CoinToss : MonoBehaviour
         if (Vector3.Dot(upDirection, Vector3.up) > 0.5f)
         {
             Debug.Log("Player 1が先攻！");
+            CoinCheckO = true;
             PlayHeadsAnimation();
             // 先攻のプレイヤーに関連する処理をここに追加
         }
         else
         {
             Debug.Log("Player 2が先攻！");
+            CoinCheckU = true;
             PlayTailsAnimation();
             // 後攻のプレイヤーに関連する処理をここに追加
         }
