@@ -14,6 +14,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
 
     public GameObject ConnectingPanel;
     public GameObject LobbyPanel;
+    public GameObject Coin;
 
     private const int MaxPlayerPerRoom = 2;
 
@@ -30,6 +31,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
         LoginPanel.SetActive(true);
         ConnectingPanel.SetActive(false);
         LobbyPanel.SetActive(false);
+        Coin.SetActive(false);
     }
 
     private void OnGUI()
@@ -89,6 +91,7 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
         else
         {
             statusText.text = "対戦相手が揃いました。バトルシーンに移動します。";
+            Coin.SetActive(true);
         }
         //PhotonNetwork.LoadLevel("SampleScene"); //シーンをロード
     }
@@ -102,7 +105,8 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
                 PhotonNetwork.CurrentRoom.IsOpen = false;
 
                 statusText.text = "対戦相手が揃いました。バトルシーンに移動します。";
-                PhotonNetwork.LoadLevel("SampleScene");
+                Coin.SetActive(true);
+                //PhotonNetwork.LoadLevel("SampleScene");
             }
         }
     }
