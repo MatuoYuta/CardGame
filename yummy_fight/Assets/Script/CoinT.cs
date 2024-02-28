@@ -5,7 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-public class CoinT : MonoBehaviour
+public class CoinT : MonoBehaviourPunCallbacks
 {
     private Animator CoinAnim;
 

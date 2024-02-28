@@ -797,6 +797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PirateCoin (Silver) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 53972012717379157, guid: 0f50703abc621e54f948ddc5bb146f25, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 861436500743902447, guid: 0f50703abc621e54f948ddc5bb146f25, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1888,6 +1892,7 @@ MonoBehaviour:
   ConnectingPanel: {fileID: 374040751}
   LobbyPanel: {fileID: 999833128}
   Coin: {fileID: 493232471}
+  Canvas: {fileID: 1841163285}
 --- !u!4 &2099687662
 Transform:
   m_ObjectHideFlags: 0
