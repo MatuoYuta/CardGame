@@ -7,6 +7,7 @@ using UnityEngine;
 public class CardEntity : ScriptableObject
 {
     public int cardID;
+    public string name;
     public int power;
     public Sprite icon;
 }
