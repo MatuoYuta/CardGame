@@ -16,6 +16,7 @@ public class GameDirecter : MonoBehaviour
 
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
+    public CardController[] EnemyFieldCardList;//調理場のカードを格納するリスト
 
     public enum Phase//フェーズ管理用列挙型変数
     {
@@ -40,6 +41,7 @@ public class GameDirecter : MonoBehaviour
         //カードのリスト格納
         playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
         playerkitchenCardList = manage_script.playerKitchen.GetComponentsInChildren<CardController>();
+        EnemyFieldCardList = manage_script.enemyField.GetComponentsInChildren<CardController>();
 
         switch (phase)
         {
