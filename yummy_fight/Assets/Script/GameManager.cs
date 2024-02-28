@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
         // ‰ŠúèD‚ğ”z‚é
         SetStartHand();
 
+        CreateCard(2, enemyField);
+        CreateCard(2, enemyField);
+        CreateCard(2, enemyField);
         // ƒ^[ƒ“‚ÌŒˆ’è
         TurnCalc();
     }
