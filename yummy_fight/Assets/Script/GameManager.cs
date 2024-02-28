@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Transform playerHand, playerField,playerKitchen, enemyField;
 
     bool isPlayerTurn = true; //
-    List<int> deck = new List<int>() { 1, 2, 3, 1, 1, 2, 2, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3 };  //
+    List<int> deck = new List<int>() { 1, 2, 101, 1, 1, 2, 2, 101, 101, 1, 2, 101, 1, 2, 101, 1, 2, 101 };  //
 
     void Start()
     {

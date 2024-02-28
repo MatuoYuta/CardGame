@@ -275,6 +275,8 @@ GameObject:
   - component: {fileID: 6496161346600437326}
   - component: {fileID: 6168663365688114536}
   - component: {fileID: 8054114734342243716}
+  - component: {fileID: 1779966776055812013}
+  - component: {fileID: 1730855086783156771}
   m_Layer: 5
   m_Name: Card
   m_TagString: Card
@@ -459,6 +461,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonToToggle: {fileID: 260734234132616774}
+--- !u!114 &1779966776055812013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663392173092283378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47222c3ea455c7847a565cbf2da308db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directer_script: {fileID: 0}
+--- !u!114 &1730855086783156771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663392173092283378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66adad247a603b641a83255b36abc31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0
