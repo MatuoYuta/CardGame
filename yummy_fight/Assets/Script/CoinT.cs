@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+
 
 public class CoinT : MonoBehaviour
 {
@@ -28,5 +31,11 @@ public class CoinT : MonoBehaviour
             Debug.Log(Coin);
             CoinAnim.SetInteger("CoinCheck",Coin);
         }
+    }
+
+    public void OnAnimationEnd()
+    {
+        PhotonNetwork.LoadLevel("SampleScene");
+
     }
 }

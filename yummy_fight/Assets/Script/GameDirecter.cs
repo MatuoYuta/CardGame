@@ -58,7 +58,6 @@ public class GameDirecter : MonoBehaviour
             case Phase.MAIN://スタンバイ（移動）フェーズ
                 MainPhase();
                 break;
-
             case Phase.BATTLE://バトルフェーズ
                 BattlePhase();
                 break;
@@ -100,6 +99,12 @@ public class GameDirecter : MonoBehaviour
         Summonable = false;
         Attackable = true;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nBattle";
+
+        // BATTLEフェーズに入ったのでクリックを許可する
+        foreach (var objClickExample in FindObjectsOfType<ObjectClickExample>())
+        {
+            objClickExample.EnterBattlePhase();
+        }
     }
     void EndPhase()
     {
@@ -115,6 +120,12 @@ public class GameDirecter : MonoBehaviour
             currentPlayer = playerList[0];
         }
         phase = Phase.DRAW;
+
+        // BATTLEフェーズから出たのでクリックを禁止する
+        foreach (var objClickExample in FindObjectsOfType<ObjectClickExample>())
+        {
+            objClickExample.ExitBattlePhase();
+        }
     }
     public void NextPhase()
     {

@@ -1169,6 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518aee66daa22e64eb91045aa6159662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _directer: {fileID: 1632766650}
 --- !u!1 &922713663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +1939,7 @@ MonoBehaviour:
   - {fileID: 950393402}
   Movable: 0
   Summonable: 0
+  Attackable: 0
   phase_text: {fileID: 644895988}
   manage_script: {fileID: 0}
   playerFieldCardList: []

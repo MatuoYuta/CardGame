@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3788057285860880856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -272,7 +272,6 @@ GameObject:
   - component: {fileID: 2663392173092283380}
   - component: {fileID: 5536703850652366214}
   - component: {fileID: 1474079739549371617}
-  - component: {fileID: 2297784113995328219}
   - component: {fileID: 6496161346600437326}
   - component: {fileID: 6168663365688114536}
   - component: {fileID: 8054114734342243716}
@@ -400,20 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerText: {fileID: 2663392171763320353}
   iconImage: {fileID: 2663392173092283382}
---- !u!114 &2297784113995328219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2663392173092283378}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b86cc22acca704b92924e444214c2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackButton: {fileID: 260734234132616774}
-  cardSelected: 0
 --- !u!61 &6496161346600437326
 BoxCollider2D:
   m_ObjectHideFlags: 0
