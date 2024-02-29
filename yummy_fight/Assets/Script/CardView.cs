@@ -8,6 +8,7 @@ public class CardView : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI powerText;
     [SerializeField] Image iconImage;
+    public int cardID;
 
     public void Show(CardModel cardModel) // cardModel‚Ìƒf[ƒ^æ“¾‚Æ”½‰f
     {

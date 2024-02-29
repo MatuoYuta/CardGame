@@ -5,15 +5,16 @@ using UnityEngine;
 public class EX_Card_Ability : MonoBehaviour
 {
    public  GameDirecter directer_script;
-    public bool baga;
     // Start is called before the first frame update
     void Start()
     {
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
-        switch (this.GetComponent<CardModel>().cardID)
+        Debug.Log(this.GetComponent<CardView>().cardID);
+        switch (this.GetComponent<CardView>().cardID)
         {
             case 101:
-                Bagamute();
+                Debug.Log("ÉoÉKÉÄÅ[Ég");
+                StartCoroutine("Bagamute");
                 break;
         }
     }
@@ -24,14 +25,15 @@ public class EX_Card_Ability : MonoBehaviour
         
     }
 
-    public void Bagamute()
+    IEnumerator Bagamute()
     {
-        if(baga)
+        yield return new WaitForSeconds(1);
+
+        Debug.Log(directer_script.EnemyFieldCardList.Length);
+        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
         {
-            for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
-            {
-                Destroy(directer_script.EnemyFieldCardList[i].gameObject);
-            }
+            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
+            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
         }
 
     }

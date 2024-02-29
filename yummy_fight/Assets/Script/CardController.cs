@@ -14,7 +14,13 @@ public class CardController : MonoBehaviour
 
     public void Init(int cardID) // カードを生成した時に呼ばれる関数
     {
+        Debug.Log(cardID);
+        view.cardID = cardID;
         model = new CardModel(cardID); // カードデータを生成
         view.Show(model); // 表示
+    }
+    public void Destroy_me()
+    {
+        Destroy(this.gameObject);
     }
 }
