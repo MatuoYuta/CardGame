@@ -9,7 +9,6 @@ public class EX_Card_Ability : MonoBehaviour
     void Start()
     {
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
-        Debug.Log(this.GetComponent<CardView>().cardID);
         switch (this.GetComponent<CardView>().cardID)
         {
             case 101:
@@ -35,6 +34,6 @@ public class EX_Card_Ability : MonoBehaviour
             Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
             directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
         }
-
     }
+
 }
