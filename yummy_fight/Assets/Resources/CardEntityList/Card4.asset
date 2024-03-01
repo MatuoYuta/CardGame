@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aaff997974f4f848b421499023db8b9, type: 3}
-  m_Name: Card2
+  m_Name: Card4
   m_EditorClassIdentifier: 
-  cardID: 2
-  name: patty
-  power: 4000
-  icon: {fileID: 21300000, guid: 9d0eece9238866642bdf8166a89088bd, type: 3}
+  cardID: 4
+  name: pickles
+  power: 500
+  icon: {fileID: 21300000, guid: 04a4c0c58f805eb41a382e0d8e76e0ea, type: 3}

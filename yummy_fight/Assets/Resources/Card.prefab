@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7060807238253010074}
   - component: {fileID: 4947732793215764030}
   - component: {fileID: 6228399326905354603}
+  - component: {fileID: 3787136910087655512}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -121,7 +122,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4947732793215764030}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3787136910087655512}
+        m_TargetAssemblyTypeName: AttackButton, Assembly-CSharp
+        m_MethodName: OnAttackButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3787136910087655512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260734234132616774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff86de4a0d53c0542af9a6b7f7d04ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardObject: {fileID: 2663392173092283378}
 --- !u!1 &2663392171763320415
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +175,7 @@ RectTransform:
   m_GameObject: {fileID: 2663392171763320415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25245616, y: 0.25245616, z: 0.25245616}
+  m_LocalScale: {x: 0.69267476, y: 0.6937579, z: 0.8525333}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2663392173092283379}
@@ -157,7 +183,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.4, y: -44.8}
+  m_AnchoredPosition: {x: -14, y: -268}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2663392171763320354
@@ -197,8 +223,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -401,6 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerText: {fileID: 2663392171763320353}
   iconImage: {fileID: 2663392173092283382}
+  cardID: 0
 --- !u!61 &6496161346600437326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -486,6 +513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66adad247a603b641a83255b36abc31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manage: {fileID: 0}
+  move_scr: {fileID: 0}
+  Use_Avility: 0
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0
