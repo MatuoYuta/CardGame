@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4625514544475427841}
   - component: {fileID: 2494168261906827052}
   - component: {fileID: 323494552901875782}
+  - component: {fileID: 1208821309879388513}
   m_Layer: 5
   m_Name: card
   m_TagString: Untagged
@@ -104,10 +105,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardParent: {fileID: 0}
+  before_parent: {fileID: 0}
   manage_script: {fileID: 0}
   kitchen: 0
   field: 0
   change: 0
+--- !u!114 &1208821309879388513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139074648262544999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a3961edcd95194280def14e7d71605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPanel: {fileID: 0}
 --- !u!1 &6094950917968250133
 GameObject:
   m_ObjectHideFlags: 0
