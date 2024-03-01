@@ -39,6 +39,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
             // 拡大表示するオブジェクトがクリックされた場合
             if (currentObjectInstance == null)
             {
+                Debug.Log("拡大");
                 currentObjectInstance = Instantiate(clickedObject, targetPanel); // クリックされたオブジェクトのコピーを作成
                 currentObjectInstance.transform.SetParent(targetPanel); // 拡大表示するパネルの子にする
                 currentObjectInstance.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // パネルの中央に配置
@@ -46,6 +47,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
             }
             else
             {
+                Debug.Log("削除");
                 Destroy(currentObjectInstance); // すでに表示されている場合は削除
                 currentObjectInstance = null;
             }
@@ -55,6 +57,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
             // 拡大表示するオブジェクト以外がクリックされた場合
             if (currentObjectInstance != null)
             {
+                Debug.Log("削除２");
                 Destroy(currentObjectInstance); 
                 currentObjectInstance = null;
             }
