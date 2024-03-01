@@ -28,7 +28,7 @@ public class CoinT : MonoBehaviourPunCallbacks
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Coin = Random.Range(0, 2);
-            Debug.Log(Coin);
+            Debug.Log(Coin + "‚Å‚·");
             CoinAnim.SetInteger("CoinCheck",Coin);
         }
     }
