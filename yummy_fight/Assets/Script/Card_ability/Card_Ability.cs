@@ -12,7 +12,6 @@ public class Card_Ability : MonoBehaviour
     {
         manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         move_scr = this.gameObject.GetComponent<CardMovement>();
-        Use_Avility = false;
     }
 
     // Update is called once per frame
@@ -25,13 +24,18 @@ public class Card_Ability : MonoBehaviour
                 switch (this.GetComponent<CardView>().cardID)
                 {
                     case 1:
-                        Debug.Log("バンズ");
-                        Buns();
+                        if(!manage.Buns)
+                        {
+                            Buns();
+                        }
                         break;
                     case 2:
-                        Debug.Log("パティ");
-                        Patty();
+                        if (!manage.Patty)
+                        {
+                            Patty();
+                        }
                         break;
+                    
                 }
             }
             else
@@ -46,11 +50,14 @@ public class Card_Ability : MonoBehaviour
     {
         SearchCard(manage.playerHand, 2);//パティサーチ
         Use_Avility = true;
+        manage.Buns = true;
+        
     }
     public void Patty()
     {
         SearchCard(manage.playerHand, 1);//バンズをサーチ
         Use_Avility = true;
+        manage.Buns = true;
     }
 
 
