@@ -14,8 +14,10 @@ public class GameDirecter : MonoBehaviour
 
     public GameManager manage_script;
 
+    public CardController[] playerHandCardList;//プレイヤーの手札を格納するリスト
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
+    public CardController[] enemyHandCardList;//敵の手札を格納するリスト
     public CardController[] EnemyKitchenCardList;//敵の調理場のカードを格納するリスト
     public CardController[] EnemyFieldCardList;//敵のフィールドのカードを格納するリスト
 
@@ -40,9 +42,14 @@ public class GameDirecter : MonoBehaviour
     void Update()
     {
         //カードのリスト格納
+        playerHandCardList = manage_script.playerHand.GetComponentsInChildren<CardController>();
         playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
         playerkitchenCardList = manage_script.playerKitchen.GetComponentsInChildren<CardController>();
+
+        enemyHandCardList = manage_script.enemyHand.GetComponentsInChildren<CardController>();
         EnemyFieldCardList = manage_script.enemyField.GetComponentsInChildren<CardController>();
+        EnemyKitchenCardList = manage_script.enemyKitchen.GetComponentsInChildren<CardController>();
+
 
         switch (phase)
         {
