@@ -11,7 +11,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         // kakudai ƒpƒlƒ‹‚ğŒŸõ‚µ‚ÄQÆ‚·‚é
-        GameObject kakudaiPanel = GameObject.Find("kakudai");
+        GameObject kakudaiPanel = GameObject.Find("Kakudai");
         if (kakudaiPanel != null)
         {
             targetPanel = kakudaiPanel.GetComponent<RectTransform>();
