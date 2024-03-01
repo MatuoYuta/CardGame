@@ -6,13 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
-    [SerializeField] public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen;
+    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen;
+    public GameObject select_panel;
 
     //“¯–¼ƒ^[ƒ“‚P§ŒÀ—p•Ï”
     public bool Buns, Patty;
 
     bool isPlayerTurn = true; //
-    public List<int> deck = new List<int>() { 1, 1, 101, 1, 1, 2, 2, 101, 101, 1, 2, 101, 1, 2, 101, 1, 2, 101 };  //
+    public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //
 
     void Start()
     {
