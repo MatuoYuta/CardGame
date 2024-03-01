@@ -16,7 +16,8 @@ public class GameDirecter : MonoBehaviour
 
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
-    public CardController[] EnemyFieldCardList;//調理場のカードを格納するリスト
+    public CardController[] EnemyKitchenCardList;//敵の調理場のカードを格納するリスト
+    public CardController[] EnemyFieldCardList;//敵のフィールドのカードを格納するリスト
 
     public enum Phase//フェーズ管理用列挙型変数
     {
