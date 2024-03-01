@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
 {
     public string targetTag = "Card"; // 拡大表示するオブジェクトのタグ
-    public RectTransform targetPanel; // 拡大表示するパネル
-    public GameObject currentObjectInstance; // 現在表示されているオブジェクトのインスタンス
+    private RectTransform targetPanel; // 拡大表示するパネル
+    private GameObject currentObjectInstance; // 現在表示されているオブジェクトのインスタンス
 
     void Start()
     {
@@ -39,10 +39,10 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
             // 拡大表示するオブジェクトがクリックされた場合
             if (currentObjectInstance == null)
             {
-                currentObjectInstance = clickedObject;
+                currentObjectInstance = Instantiate(clickedObject, targetPanel); // クリックされたオブジェクトのコピーを作成
                 currentObjectInstance.transform.SetParent(targetPanel); // 拡大表示するパネルの子にする
                 currentObjectInstance.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // パネルの中央に配置
-                currentObjectInstance.GetComponent<RectTransform>().localScale = Vector3.one * 1.5f; // 1.5倍のサイズに拡大
+                currentObjectInstance.GetComponent<RectTransform>().localScale = Vector3.one * 2f; // 2倍のサイズに拡大
             }
             else
             {
@@ -55,7 +55,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
             // 拡大表示するオブジェクト以外がクリックされた場合
             if (currentObjectInstance != null)
             {
-                Destroy(currentObjectInstance); // 拡大表示を解除
+                Destroy(currentObjectInstance); 
                 currentObjectInstance = null;
             }
         }
