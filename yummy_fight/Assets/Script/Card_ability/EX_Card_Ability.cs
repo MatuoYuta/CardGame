@@ -15,6 +15,15 @@ public class EX_Card_Ability : MonoBehaviour
                 Debug.Log("ÉoÉKÉÄÅ[Ég");
                 StartCoroutine("Bagamute");
                 break;
+            case 102:
+                StartCoroutine("Egumahu");
+                break;
+            case 103:
+                StartCoroutine("Torebaga");
+                break;
+            case 104:
+                StartCoroutine("Chibaga");
+                break;
         }
     }
 
@@ -24,7 +33,48 @@ public class EX_Card_Ability : MonoBehaviour
         
     }
 
+    void Select_Card()
+    {
+
+    }
+
     IEnumerator Bagamute()
+    {
+        yield return new WaitForSeconds(1);
+
+        Debug.Log(directer_script.EnemyFieldCardList.Length);
+        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
+        {
+            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
+            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
+        }
+    }
+
+    IEnumerator Egumahu()
+    {
+        yield return new WaitForSeconds(1);
+
+        Debug.Log(directer_script.EnemyFieldCardList.Length);
+        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
+        {
+            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
+            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
+        }
+    }
+
+    IEnumerator Torebaga()
+    {
+        yield return new WaitForSeconds(1);
+
+        Debug.Log(directer_script.EnemyFieldCardList.Length);
+        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
+        {
+            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
+            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
+        }
+    }
+
+    IEnumerator Chibaga()
     {
         yield return new WaitForSeconds(1);
 

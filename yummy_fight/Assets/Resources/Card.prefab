@@ -514,8 +514,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manage: {fileID: 0}
-  move_scr: {fileID: 0}
+  move_scr: {fileID: 2663392173092283381}
+  directer: {fileID: 0}
+  search: {fileID: 0}
   Use_Avility: 0
+  Search_Card: []
+  scroll: {fileID: 0}
 --- !u!114 &1899299876239268584
 MonoBehaviour:
   m_ObjectHideFlags: 0
