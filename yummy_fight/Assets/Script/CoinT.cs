@@ -25,7 +25,7 @@ public class CoinT : MonoBehaviourPunCallbacks
 
     void CoinToss()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)Å@&& PhotonNetwork.IsMasterClient)
         {
             Coin = Random.Range(0, 2);
             Debug.Log(Coin + "Ç≈Ç∑");
