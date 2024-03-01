@@ -61,6 +61,8 @@ public class Card_Ability : MonoBehaviour
     }
 
 
+
+
     public void SearchCard(Transform hand, int Cardid)
     {
         int cnt = 0;

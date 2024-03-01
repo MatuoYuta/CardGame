@@ -42,7 +42,7 @@ public class kakudaihyouji : MonoBehaviour, IPointerClickHandler
                 currentObjectInstance = clickedObject;
                 currentObjectInstance.transform.SetParent(targetPanel); // 拡大表示するパネルの子にする
                 currentObjectInstance.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; // パネルの中央に配置
-                currentObjectInstance.GetComponent<RectTransform>().localScale = Vector3.one * 2f; // 2倍のサイズに拡大
+                currentObjectInstance.GetComponent<RectTransform>().localScale = Vector3.one * 1.5f; // 1.5倍のサイズに拡大
             }
             else
             {
