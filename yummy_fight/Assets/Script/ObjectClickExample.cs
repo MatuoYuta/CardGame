@@ -46,5 +46,12 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
     public void ExitBattlePhase()
     {
         canClick = false; // クリックを禁止する
+
+        // ボタンが表示されている場合は非表示にする
+        if (buttonToToggle != null && buttonToToggle.activeSelf)
+        {
+            buttonToToggle.SetActive(false);
+            print($"BATTLEフェーズから出たので、ボタンを非表示にしました。");
+        }
     }
 }
