@@ -11,23 +11,26 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
     // クリックされたときに呼び出されるメソッド
     public void OnPointerClick(PointerEventData eventData)
     {
-        // BATTLEフェーズの時だけクリックを許可
         if (canClick)
         {
-            // ボタンがnullでなければ、表示/非表示を切り替える
-            if (buttonToToggle != null)
+            // クリックされたオブジェクトがPlayer_field上にあるcardオブジェクトであるかチェック
+            if (transform.IsChildOf(GameObject.Find("Player_field").transform) && transform.CompareTag("Card"))
             {
-                // ボタンの表示状態を反転させる
-                buttonToToggle.SetActive(!buttonToToggle.activeSelf);
+                // ボタンがnullでなければ、表示/非表示を切り替える
+                if (buttonToToggle != null)
+                {
+                    // ボタンの表示状態を反転させる
+                    buttonToToggle.SetActive(!buttonToToggle.activeSelf);
 
-                // 表示/非表示を切り替えたことをコンソールに表示
-                if (buttonToToggle.activeSelf)
-                {
-                    print($"オブジェクト {name} がクリックされたよ！ボタンが表示されました。");
-                }
-                else
-                {
-                    print($"オブジェクト {name} がクリックされたよ！ボタンが非表示になりました。");
+                    // 表示/非表示を切り替えたことをコンソールに表示
+                    if (buttonToToggle.activeSelf)
+                    {
+                        print($"オブジェクト {name} がクリックされたよ！ボタンが表示されました。");
+                    }
+                    else
+                    {
+                        print($"オブジェクト {name} がクリックされたよ！ボタンが非表示になりました。");
+                    }
                 }
             }
         }
@@ -45,4 +48,3 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
         canClick = false; // クリックを禁止する
     }
 }
-
