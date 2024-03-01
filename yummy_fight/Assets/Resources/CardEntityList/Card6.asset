@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aaff997974f4f848b421499023db8b9, type: 3}
   m_Name: Card6
   m_EditorClassIdentifier: 
-  cardID: 0
-  name: 
-  power: 0
-  icon: {fileID: 0}
+  cardID: 6
+  name: lettuce
+  power: 1000
+  icon: {fileID: 21300000, guid: a5415b0ccdb20a54986edeeeacafdc54, type: 3}

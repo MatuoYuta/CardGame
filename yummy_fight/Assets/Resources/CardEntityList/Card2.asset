@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardID: 2
   name: patty
-  power: 10000
+  power: 4000
   icon: {fileID: 21300000, guid: 9d0eece9238866642bdf8166a89088bd, type: 3}
