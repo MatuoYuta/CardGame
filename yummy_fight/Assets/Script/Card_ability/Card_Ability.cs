@@ -74,6 +74,11 @@ public class Card_Ability : MonoBehaviour
 
     public void SearchCard(Transform hand, int Cardid)
     {
+       for(int i = 0;i<directer.SearchImageList.Length;i++)
+        {
+            Destroy(directer.SearchImageList[i].gameObject);
+        }
+
         for(int i = 0;i<manage.deck.Count;i++)
         {
             if(manage.deck[i] == Cardid)

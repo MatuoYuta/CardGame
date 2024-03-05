@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
-    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen;
+    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
 
     //“¯–¼ƒ^[ƒ“‚P§ŒÀ—p•Ï”
