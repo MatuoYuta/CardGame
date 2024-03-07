@@ -12,6 +12,8 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public bool kitchen, field, change;
     GameDirecter directer_script;
 
+    public bool select;
+
     void Start()
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -20,6 +22,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         change = true;
         Debug.Log(this.transform.localScale);
         transform.eulerAngles = new Vector3(0, 0, 0); // X²‚ğ’†S‚É45‹‰ñ“]AY²Z²‚Í‰Šú’l
+        select = false;
     }
 
     void Update()
