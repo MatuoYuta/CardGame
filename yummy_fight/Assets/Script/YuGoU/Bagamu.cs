@@ -56,4 +56,9 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
             popup.SetActive(true);
         }
     }
+
+    public void OnClick()
+    {
+        Debug.Log("wawawa------");
+    }
 }
