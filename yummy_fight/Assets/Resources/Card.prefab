@@ -442,7 +442,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -521,10 +521,10 @@ MonoBehaviour:
   move_scr: {fileID: 2663392173092283381}
   directer: {fileID: 0}
   Use_Avility: 0
-  Selected: 0
   search_script: {fileID: 0}
   scroll_view: {fileID: 0}
   Search_Card: []
+  panel_anim: {fileID: 0}
 --- !u!114 &1899299876239268584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Outline: {fileID: 8726664338366818125}
   selected: 0
-  before_outline: {fileID: 0}
+  directer: {fileID: 0}
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0
