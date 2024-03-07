@@ -29,10 +29,12 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         for(int i=0;i<directer.playerkitchenCardList.Length;i++)
         {
+
             if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
             {
                 for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                 {
+
                     if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
                     {
                         gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -47,7 +49,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         if (click)
         {
-            Debug.Log("‚Î‚¨‚Š‚’‚Í‚®‚¨‚ˆ‚ª‚¶‚¦");
+            
         }
     }
 }
