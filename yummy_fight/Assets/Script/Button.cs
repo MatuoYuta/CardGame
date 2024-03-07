@@ -21,4 +21,9 @@ public class Button : MonoBehaviour
     {
         _directer.NextPhase();
     }
+
+    public void Select()
+    {
+
+    }
 }

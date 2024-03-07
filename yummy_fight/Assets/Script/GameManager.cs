@@ -6,9 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
-    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen;
+    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
-    GameObject clickedGameObject;
 
     //同名ターン１制限用変数
     public bool Buns, Patty;
@@ -19,25 +18,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartGame();
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            clickedGameObject = null;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-
-            if (hit2d)
-            {
-                clickedGameObject = hit2d.transform.gameObject;
-            }
-
-            Debug.Log(clickedGameObject);
-        }
     }
 
     void StartGame() // 初期値の設定 
