@@ -6,13 +6,6 @@ using UnityEngine.UI;
 public class AttackButton : MonoBehaviour
 {
     public GameObject cardObject; // 横向きにするCardオブジェクト
-    public Button attackButton; // 攻撃ボタン
-
-    void Start()
-    {
-        // ボタンを非表示にする
-        attackButton.gameObject.SetActive(false);
-    }
 
     public void OnAttackButtonClick()
     {
