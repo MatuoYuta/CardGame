@@ -8,6 +8,7 @@ public class Card_Ability : MonoBehaviour
     public CardMovement move_scr;
     public GameDirecter directer;
     public bool Use_Avility;
+    public bool Selected;
 
     public SearchArea search_script;
     public GameObject scroll_view;
@@ -20,7 +21,6 @@ public class Card_Ability : MonoBehaviour
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         scroll_view = GameObject.Find("Select_Area");
         move_scr = this.gameObject.GetComponent<CardMovement>();
-
     }
 
     // Update is called once per frame
@@ -79,7 +79,9 @@ public class Card_Ability : MonoBehaviour
             Destroy(directer.SearchImageList[i].gameObject);
         }
 
-        for(int i = 0;i<manage.deck.Count;i++)
+        scroll_view.SetActive(true);
+
+        for (int i = 0;i<manage.deck.Count;i++)
         {
             if(manage.deck[i] == Cardid)
             {
