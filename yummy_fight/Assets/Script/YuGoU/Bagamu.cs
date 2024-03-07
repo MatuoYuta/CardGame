@@ -12,6 +12,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public GameManager manage_script;
     public GameDirecter directer;
     public GameObject popup;
+    public Transform playerField;
 
     bool click;
     // Start is called before the first frame update
@@ -60,5 +61,6 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public void OnClick()
     {
         Debug.Log("wawawa------");
+        manage_script.CreateCard(105, playerField);
     }
 }
