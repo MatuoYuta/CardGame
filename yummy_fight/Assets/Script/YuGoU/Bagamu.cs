@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Bagamu : MonoBehaviour
+public class Bagamu : MonoBehaviour, IPointerClickHandler
 {
 
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
 
     public GameManager manage_script;
     public GameDirecter directer;
+
+    bool click;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +31,23 @@ public class Bagamu : MonoBehaviour
         {
             if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
             {
-
+                for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                {
+                    if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                    {
+                        gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                        click = true;
+                    }
+                }
             }
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (click)
+        {
+            Debug.Log("ばおｊｒはぐおｈがじえ");
         }
     }
 }
