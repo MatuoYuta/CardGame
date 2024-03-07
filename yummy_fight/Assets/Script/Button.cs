@@ -7,6 +7,8 @@ public class Button : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private GameDirecter _directer;
+    internal object onClick;
+
     void Start()
     {
     }
