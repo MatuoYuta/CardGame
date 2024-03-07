@@ -14,8 +14,11 @@ public class Bagamu : MonoBehaviour
     void Start()
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
-        directer = GameObject.Find("GameDirecgter").GetComponent<GameDirecter>();
+        directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        Debug.Log("F‚ª•Ï‚í‚è‚Ü‚·");
         gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        Debug.Log("F‚ª•Ï‚í‚è‚Ü‚µ‚½");
+
     }
 
     // Update is called once per frame
