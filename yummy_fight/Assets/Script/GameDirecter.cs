@@ -99,6 +99,21 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("StandbyPhase");
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nStandby";
         Movable = true;
+
+        // StandbyPhaseに入ったときにカードの向きをリセット
+        ResetCardRotation(playerFieldCardList);
+    }
+
+    // Player_fieldにあるカードの向きをリセットする関数
+    void ResetCardRotation(CardController[] cards)
+    {
+        foreach (var card in cards)
+        {
+            if (card != null)
+            {
+                card.transform.rotation = Quaternion.identity;
+            }
+        }
     }
 
     void MainPhase()
