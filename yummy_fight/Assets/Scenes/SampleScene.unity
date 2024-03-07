@@ -2255,6 +2255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _directer: {fileID: 1632766650}
+  _manager: {fileID: 0}
+  hand: {fileID: 0}
+  panel_anim: {fileID: 0}
 --- !u!1 &783762860
 GameObject:
   m_ObjectHideFlags: 0

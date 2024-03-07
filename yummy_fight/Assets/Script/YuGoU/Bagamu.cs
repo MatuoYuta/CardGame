@@ -62,5 +62,6 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("wawawa------");
         manage_script.CreateCard(105, playerField);
+
     }
 }
