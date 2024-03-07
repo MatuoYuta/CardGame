@@ -15,6 +15,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public Transform playerField;
 
     bool click;
+    int r, b;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +36,11 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
         {
             if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
             {
-
                 for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                 {
                     if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
                     {
-
+                        
                         gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                         click = true;
                         
@@ -55,6 +55,8 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
         if (click)
         {
             popup.SetActive(true);
+
+            click = false;
         }
     }
 
@@ -62,6 +64,25 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("wawawa------");
         manage_script.CreateCard(105, playerField);
-
+        for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
+        {
+            if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
+            {
+                Destroy(directer.playerkitchenCardList[i].gameObject);
+                Debug.Log("ëfçﬁçÌèú");
+                for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                {
+                    if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                    {
+                        Destroy(directer.playerkitchenCardList[a].gameObject);
+                        gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+                        Debug.Log("ëfçﬁçÌèú2");
+                        click = false;
+                        Debug.Log(click);
+                    }
+                }
+            }
+        }
+      
     }
 }
