@@ -14,6 +14,8 @@ public class GameDirecter : MonoBehaviour
     public GameObject phase_text;//どのフェーズかを表示する
 
     public GameManager manage_script;
+    public GameObject before_outline;
+    public GameObject before_outline_object;
 
     public CardController[] playerHandCardList;//プレイヤーの手札を格納するリスト
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
