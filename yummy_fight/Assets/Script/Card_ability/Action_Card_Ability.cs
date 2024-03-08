@@ -15,6 +15,7 @@ public class Action_Card_Ability : MonoBehaviour
     public CardController[] Search_Card;
     public Animator panel_anim;
 
+    private int cnt = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,12 @@ public class Action_Card_Ability : MonoBehaviour
                             Foodraw();
                         }
                         break;
+                    case 202:
+                        if(!manage.Plan)
+                        {
+                            Plan();
+                        }
+                        break;
                 }
             }
         }
@@ -52,5 +59,29 @@ public class Action_Card_Ability : MonoBehaviour
         manage.DrawCard(hand.transform);
         Use_Avility = true;
         manage.Foodraw = true;
+    }
+
+    public void Plan()
+    {
+        for (int i = 0; i < directer.SearchImageList.Length; i++)
+        {
+            Destroy(directer.SearchImageList[i].gameObject);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            search_script.CreatePrefab_plan(i);
+            cnt++;
+        }
+
+        if (cnt != 0)
+        {
+            panel_anim.SetTrigger("Up");
+            scroll_view.SetActive(true);
+            cnt = 0;
+        }
+
+        Use_Avility = true;
+        manage.Plan = true;
     }
 }

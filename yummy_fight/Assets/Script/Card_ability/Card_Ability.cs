@@ -130,6 +130,7 @@ public class Card_Ability : MonoBehaviour
         {
             panel_anim.SetTrigger("Up");
             scroll_view.SetActive(true);
+            cnt = 0;
         }
     }
 }
