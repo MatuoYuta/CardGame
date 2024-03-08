@@ -32,22 +32,26 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        for(int i=0;i<directer.playerkitchenCardList.Length;i++)
+        if (directer.playerkitchenCardList[(directer.playerkitchenCardList.Length - 1)] != null)
         {
-            if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
+            for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
             {
-                for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
                 {
-                    if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                    for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                     {
-                        
-                        gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                        click = true;
-                        
+                        if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                        {
+
+                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                            click = true;
+
+                        }
                     }
                 }
             }
         }
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -79,6 +83,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                         Debug.Log("ëfçﬁçÌèú2");
                         click = false;
                         Debug.Log(click);
+                        popup.SetActive(false);
                     }
                 }
             }
