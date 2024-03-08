@@ -5,17 +5,24 @@ using UnityEngine;
 
 public class HandCardsInfoSync : MonoBehaviourPun
 {
-    // 変数名をリクエストに合わせて修正
-    private GameDirecter gameDirecter; // スペルの修正
+    private GameDirecter gameDirecter; // 変数名をリクエストに合わせて修正
 
     void Start()
     {
-        // GameObjectの変数名とコメントを一貫性のために修正
-        GameObject gameDirecterObject = GameObject.Find("GameDirecterObject"); // スペルを修正
+        GameObject gameDirecterObject = GameObject.Find("GameDirecter"); // GameObject.Findの引数を"GameDirecter"に変更
         if (gameDirecterObject != null)
         {
-            // GameObjectからGameDirecterコンポーネントを取得
-            gameDirecter = gameDirecterObject.GetComponent<GameDirecter>(); // スペルと変数名を修正
+            gameDirecter = gameDirecterObject.GetComponent<GameDirecter>(); // GameObjectからGameDirecterコンポーネントを取得
+
+            // GameDirecterコンポーネントを取得できた場合にデバッグログを出力
+            if (gameDirecter != null)
+            {
+                Debug.Log("うおおおおおおおおおお");
+            }
+            else
+            {
+                Debug.LogError("GameDirecter component not found on the object.");
+            }
         }
         else
         {
@@ -23,11 +30,9 @@ public class HandCardsInfoSync : MonoBehaviourPun
         }
     }
 
-    // 手札枚数を同期するためのメソッド
     public void SyncHandCardsCount()
     {
-        // GameDirecterからプレイヤー手札リストを取得
-        int count = gameDirecter.playerHandCardList.Length; // 正しい変数名を使用して修正
+        int count = gameDirecter.playerHandCardList.Length; // GameDirecterからプレイヤー手札リストを取得
         photonView.RPC("UpdateOpponentHandCardsCount", RpcTarget.Others, count);
     }
 
