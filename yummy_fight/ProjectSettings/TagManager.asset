@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Card
   - Image
+  - kakudai
   layers:
   - Default
   - TransparentFX
