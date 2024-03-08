@@ -45,11 +45,17 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
 
                             gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                             click = true;
+                            Debug.Log("êFÇ™ïœÇÌÇÁÇÒÇô");
 
                         }
                     }
                 }
             }
+        }
+        else
+        {
+            gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            click = false;
         }
 
     }
@@ -79,7 +85,6 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                     if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
                     {
                         Destroy(directer.playerkitchenCardList[a].gameObject);
-                        gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
                         Debug.Log("ëfçﬁçÌèú2");
                         click = false;
                         Debug.Log(click);
