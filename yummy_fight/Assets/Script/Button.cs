@@ -13,6 +13,7 @@ public class Button : MonoBehaviour
     internal object onClick;
 
     public Animator panel_anim;
+    internal bool interactable;
 
     void Start()
     {
