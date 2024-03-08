@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject select_panel;
 
     //“¯–¼ƒ^[ƒ“‚P§ŒÀ—p•Ï”
-    public bool Buns, Patty,Muffin,Pickles;
+    public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop;
 
     bool isPlayerTurn = true; //
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //
