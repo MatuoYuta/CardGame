@@ -12,6 +12,8 @@ public class Button : MonoBehaviour
     public GameObject hand;
     internal object onClick;
 
+    public int search_id;
+    private int cnt;
     public Animator panel_anim;
     internal bool interactable;
 
@@ -42,42 +44,64 @@ public class Button : MonoBehaviour
                 {
                     case "Buns(Clone)":
                         Debug.Log("バンズサーチ");
-                        _manager.CreateCard(1, hand.transform);
+                        search_id = 1;
+                        _manager.CreateCard(search_id, hand.transform);
                         break;
                     case "Cheese(Clone)":
                         Debug.Log("チーズサーチ");
-                        _manager.CreateCard(5, hand.transform);
+                        search_id = 5;
+                        _manager.CreateCard(search_id, hand.transform);
                         break;
                     case "Egg(Clone)":
                         Debug.Log("エッグサーチ");
-                        _manager.CreateCard(7, hand.transform);
+                        search_id = 7;
+                        _manager.CreateCard(search_id, hand.transform);
                         break;
                     case "Lettuce(Clone)":
                         Debug.Log("レタスサーチ");
-                        _manager.CreateCard(6, hand.transform);
+                        search_id = 6;
+                        _manager.CreateCard(search_id, hand.transform); 
                         break;
                     case "Muffin(Clone)":
                         Debug.Log("マフィンサーチ");
-                        _manager.CreateCard(3, hand.transform);
+                        search_id = 3;
+                        _manager.CreateCard(search_id, hand.transform); 
                         break;
                     case "Patty(Clone)":
                         Debug.Log("パティサーチ");
-                        _manager.CreateCard(2, hand.transform);
+                        search_id = 2;
+                        _manager.CreateCard(search_id, hand.transform); 
                         break;
                     case "Pickles(Clone)":
                         Debug.Log("ピクルスサーチ");
-                        _manager.CreateCard(4, hand.transform);
+                        search_id = 4;
+                        _manager.CreateCard(search_id, hand.transform); 
                         break;
                     case "Tomato(Clone)":
                         Debug.Log("トマトサーチ");
-                        _manager.CreateCard(8, hand.transform);
+                        search_id = 8;
+                        _manager.CreateCard(search_id, hand.transform); 
                         break;
                 }
+                while (cnt == 0)
+                {
+                    for (int n = 0; n < _manager.deck.Count; n++)
+                    {
+                        if (_manager.deck[n] == search_id)
+                        {
+                            _manager.deck.RemoveAt(n);
+                            cnt++;
+                            break;
+                        }
+                    }
+                }
+
+                cnt = 0;
+                panel_anim.SetTrigger("Down");
                 for (int t = 0; t < _directer.SearchImageList.Length; t++)
                 {
                     Destroy(_directer.SearchImageList[t].gameObject);
                 }
-                panel_anim.SetTrigger("Down");
             }
         }
     }

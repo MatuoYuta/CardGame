@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 1730855086783156771}
   - component: {fileID: 1899299876239268584}
   - component: {fileID: -9188519922151179092}
+  - component: {fileID: 1352933032644135599}
   m_Layer: 5
   m_Name: Card
   m_TagString: Card
@@ -322,7 +323,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 2, z: 1.3}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2663392171763320352}
   - {fileID: 3788057285860880856}
@@ -532,7 +533,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2663392173092283378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71a3961edcd95194280def14e7d71605, type: 3}
   m_Name: 
@@ -553,6 +554,18 @@ MonoBehaviour:
   Outline: {fileID: 8726664338366818125}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &1352933032644135599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663392173092283378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0
