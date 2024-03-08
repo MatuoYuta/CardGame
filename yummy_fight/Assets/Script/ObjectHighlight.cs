@@ -39,6 +39,7 @@ public class ObjectHighlight : MonoBehaviour, IPointerClickHandler
                 }
                 Outline.SetActive(true);
                 selected = true;
+
                 directer.before_outline = Outline;
                 directer.before_outline_object = clickedObject;
             }

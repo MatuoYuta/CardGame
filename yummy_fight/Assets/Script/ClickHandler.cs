@@ -6,12 +6,13 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
 {
     private RectTransform targetPanel; // 拡大表示する画像が表示されるパネル
     private GameObject currentCard; // 現在表示されているカードのインスタンス
+    private GameObject kakudaiPanel;
     private const float ScaleFactor = 3f; // 画像の拡大倍率
 
     void Start()
     {
         // Kakudai パネルを検索して参照する
-        GameObject kakudaiPanel = GameObject.Find("Kakudai");
+        kakudaiPanel = GameObject.Find("Kakudai");
         if (kakudaiPanel != null)
         {
             targetPanel = kakudaiPanel.GetComponent<RectTransform>();
@@ -36,6 +37,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
         // クリックされた場所にオブジェクトがあるかチェック
         if (eventData.pointerCurrentRaycast.gameObject != null)
         {
+            Debug.Log(eventData.pointerCurrentRaycast.gameObject);
             // クリックされたオブジェクトがCardタグを持っているかチェック
             if (eventData.pointerCurrentRaycast.gameObject.CompareTag("Card"))
             {
@@ -47,18 +49,9 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
                     // 既存のCardPreviewが存在する場合は削除する
                     DestroyCurrentCardPreview();
 
-                    // 拡大表示する画像のPrefabを生成
-                    currentCard = new GameObject("CardPreview");
-                    currentCard.transform.SetParent(targetPanel, false);
-                    currentCard.tag = "kakudai";
+                    kakudaiPanel.GetComponent<Image>().sprite = cardImage.sprite;
+                    kakudaiPanel.GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
-                    // 生成されたPrefabにクリックされたオブジェクトの画像を設定
-                    Image targetImage = currentCard.AddComponent<Image>();
-                    targetImage.sprite = cardImage.sprite;
-
-                    // 画像の大きさを3倍にする
-                    RectTransform rectTransform = currentCard.GetComponent<RectTransform>();
-                    rectTransform.sizeDelta = new Vector2(cardImage.rectTransform.sizeDelta.x * 9f, cardImage.rectTransform.sizeDelta.y * 1.8f);
                 }
                 Debug.Log("処理終了");
             }
@@ -80,13 +73,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
     // 現在のカードプレビューを削除するメソッド
     private void DestroyCurrentCardPreview()
     {
-        GameObject[] kakudaiObjects = GameObject.FindGameObjectsWithTag("kakudai");
-
-        foreach (GameObject obj in kakudaiObjects)
-        {
-            Destroy(obj);
-            Debug.Log("削除処理");
-        }
+        kakudaiPanel.GetComponent<Image>().color = new Color(255,255,255,0);
 
         currentCard = null;
     }

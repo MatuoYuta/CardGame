@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: -7444433500551411873}
   - component: {fileID: -7694449486513213791}
   - component: {fileID: -3233217193617785494}
+  - component: {fileID: 1605294371800516533}
   m_Layer: 5
   m_Name: Muffin
   m_TagString: Card
@@ -218,3 +219,15 @@ MonoBehaviour:
   Outline: {fileID: 0}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &1605294371800516533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572780137462162900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

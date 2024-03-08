@@ -101,6 +101,12 @@ public class Card_Ability : MonoBehaviour
         manage.Pickles = true;
     }
 
+    public void Foodraw()
+    {
+        manage.DrawCard(manage.playerField);
+        manage.DrawCard(manage.playerField);
+    }
+
 
 
 

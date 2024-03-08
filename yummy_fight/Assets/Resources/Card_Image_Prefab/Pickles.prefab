@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: -1362777869070447943}
   - component: {fileID: -5526023956963289609}
   - component: {fileID: -3469960441160814697}
+  - component: {fileID: -4347614391911209332}
   m_Layer: 5
   m_Name: Pickles
   m_TagString: Card
@@ -218,3 +219,15 @@ MonoBehaviour:
   Outline: {fileID: 0}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &-4347614391911209332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498085727856387117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

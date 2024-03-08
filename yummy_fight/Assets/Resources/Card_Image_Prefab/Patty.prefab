@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2800150426826072860}
   - component: {fileID: -3962090428237982234}
   - component: {fileID: 3365933057280881299}
+  - component: {fileID: -6764044866386745549}
   m_Layer: 5
   m_Name: Patty
   m_TagString: Card
@@ -142,6 +143,18 @@ MonoBehaviour:
   Outline: {fileID: 0}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &-6764044866386745549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2468585823718632521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9016868546404642657
 GameObject:
   m_ObjectHideFlags: 0

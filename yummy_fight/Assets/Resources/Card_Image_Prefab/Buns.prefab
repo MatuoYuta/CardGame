@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6445271490231836705}
   - component: {fileID: 3073828957703955281}
   - component: {fileID: 4659100582249390367}
+  - component: {fileID: 2618286257921716677}
   m_Layer: 5
   m_Name: Buns
   m_TagString: Card
@@ -142,6 +143,18 @@ MonoBehaviour:
   Outline: {fileID: 0}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &2618286257921716677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212584990028187291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3178202717972522874
 GameObject:
   m_ObjectHideFlags: 0

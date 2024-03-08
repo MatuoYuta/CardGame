@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: -2071985005568947085}
   - component: {fileID: -2894435319575696391}
   - component: {fileID: 1570710594472527058}
+  - component: {fileID: -7889075131572720928}
   m_Layer: 5
   m_Name: Tomato
   m_TagString: Card
@@ -218,3 +219,15 @@ MonoBehaviour:
   Outline: {fileID: 0}
   selected: 0
   directer: {fileID: 0}
+--- !u!114 &-7889075131572720928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061000368390287725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
