@@ -13,6 +13,7 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
     public GameDirecter directer;
     public GameObject popup;
     public Transform playerField;
+    public yugouhantei yug;
 
     bool click = true;
     bool aiue;
@@ -22,6 +23,7 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        //yug = GameObject.Find("YugouButton").GetComponent<yugouhantei>();
         //popup = GameObject.Find("popup").GetComponent<GameObject>();
         popup.SetActive(false);
         gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
@@ -30,7 +32,7 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        if (directer.playerkitchenCardList[(directer.playerkitchenCardList.Length - 1)] != null)
+        if (directer.playerkitchenCardList[0] != null)
         {
             gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
@@ -39,12 +41,18 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
                 {
                     for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                     {
-                        if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                        if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 5)
                         {
+                            for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
+                            {
+                                if(directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3)
+                                {
+                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                    click = true;
+                                    aiue = true;
+                                }
+                            }
 
-                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                            click = true;
-                            aiue = true;
 
                         }
                     }
@@ -68,12 +76,13 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
             if (aiue == true)
             {
                 popup.SetActive(true);
+                yug.yugou = 104;
             }
 
         }
     }
 
-    public void OnClick()
+    /*public void OnClick()
     {
         Debug.Log("wawawa------");
         manage_script.CreateCard(105, playerField);
@@ -95,6 +104,6 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
             }
         }
 
-    }
+    }*/
 }
 
