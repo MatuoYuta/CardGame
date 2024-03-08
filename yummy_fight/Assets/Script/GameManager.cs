@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject select_panel;
 
     //同名ターン１制限用変数
-    public bool Buns, Patty;
+    public bool Buns, Patty,Muffin,Pickles;
 
     bool isPlayerTurn = true; //
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //
@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
     {
         isPlayerTurn = !isPlayerTurn; // ターンを逆にする
         TurnCalc(); // ターンを相手に回す
+        Buns = false;
+        Patty = false;
+        Muffin = false;
+        Pickles = false;
     }
 
     void PlayerTurn()
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Enemyのターン");
 
-        CreateCard(1, enemyField); // カードを召喚
+        //CreateCard(1, enemyField); // カードを召喚
 
         ChangeTurn(); // ターンエンドする
     }

@@ -13,6 +13,8 @@ public class Card_Ability : MonoBehaviour
     public GameObject scroll_view;
     public CardController[] Search_Card;
     public Animator panel_anim;
+
+    private int cnt = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,18 @@ public class Card_Ability : MonoBehaviour
                             Patty();
                         }
                         break;
+                    case 3:
+                        if (!manage.Muffin)
+                        {
+                            Muffin();
+                        }
+                        break;
+                    case 4:
+                        if(!manage.Pickles)
+                        {
+                            Pickles();
+                        }
+                        break;
                 }
             }
             else
@@ -65,9 +79,26 @@ public class Card_Ability : MonoBehaviour
     public void Patty()
     {
         SearchCard(manage.playerHand, 1);//バンズをサーチ
-        SearchCard(manage.playerHand, 3);//バンズをサーチ
+        SearchCard(manage.playerHand, 3);//マフィンをサーチ
         Use_Avility = true;
         manage.Patty = true;
+    }
+
+    public void Muffin()
+    {
+        SearchCard(manage.playerHand, 2);//パティサーチ
+        Use_Avility = true;
+        manage.Muffin = true;
+    }
+
+    public void Pickles()
+    {
+        SearchCard(manage.playerHand, 5);
+        SearchCard(manage.playerHand, 6);
+        SearchCard(manage.playerHand, 7);
+        SearchCard(manage.playerHand, 8);
+        Use_Avility = true;
+        manage.Pickles = true;
     }
 
 
@@ -80,15 +111,19 @@ public class Card_Ability : MonoBehaviour
             Destroy(directer.SearchImageList[i].gameObject);
         }
 
-        panel_anim.SetTrigger("Up");
-        scroll_view.SetActive(true);
-
         for (int i = 0;i<manage.deck.Count;i++)
         {
             if(manage.deck[i] == Cardid)
             {
                 search_script.CreatePrefab(Cardid);
+                cnt++;
             }
+        }
+
+        if(cnt != 0)
+        {
+            panel_anim.SetTrigger("Up");
+            scroll_view.SetActive(true);
         }
     }
 }
