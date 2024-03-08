@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class chibagrw : MonoBehaviour, IPointerClickHandler
+public class haahhhbaer : MonoBehaviour, IPointerClickHandler
 {
 
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
@@ -25,6 +25,7 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
         //popup = GameObject.Find("popup").GetComponent<GameObject>();
         popup.SetActive(false);
         gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+
     }
 
     // Update is called once per frame
@@ -97,4 +98,3 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
 
     }
 }
-
