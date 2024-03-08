@@ -82,6 +82,21 @@ public class Button : MonoBehaviour
                         search_id = 8;
                         _manager.CreateCard(search_id, hand.transform); 
                         break;
+                    case "Foodraw(Clone)":
+                        Debug.Log("フードローサーチ");
+                        search_id = 201;
+                        _manager.CreateCard(search_id, hand.transform);
+                        break;
+                    case "Plan(Clone)":
+                        Debug.Log("料理計画サーチ");
+                        search_id = 202;
+                        _manager.CreateCard(search_id, hand.transform);
+                        break;
+                    case "hasiyasume(Clone)":
+                        Debug.Log("箸休めサーチ");
+                        search_id = 203;
+                        _manager.CreateCard(search_id, hand.transform);
+                        break;
                 }
                 while (cnt == 0)
                 {

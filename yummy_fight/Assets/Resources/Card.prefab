@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 1899299876239268584}
   - component: {fileID: -9188519922151179092}
   - component: {fileID: 1352933032644135599}
+  - component: {fileID: 1830813667404738968}
   m_Layer: 5
   m_Name: Card
   m_TagString: Card
@@ -392,6 +393,7 @@ MonoBehaviour:
   kitchen: 0
   field: 0
   change: 0
+  action: 0
   select: 0
 --- !u!225 &2663392173092283380
 CanvasGroup:
@@ -566,6 +568,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1830813667404738968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663392173092283378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8735b7973f0c187458eb61bec4412a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manage: {fileID: 0}
+  move_scr: {fileID: 0}
+  directer: {fileID: 0}
+  Use_Avility: 0
+  search_script: {fileID: 0}
+  scroll_view: {fileID: 0}
+  hand: {fileID: 0}
+  Search_Card: []
+  panel_anim: {fileID: 0}
 --- !u!1 &4385820725793275301
 GameObject:
   m_ObjectHideFlags: 0

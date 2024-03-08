@@ -9,7 +9,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     private Vector2 prevPos;
     public Transform before_parent;
     public GameManager manage_script;
-    public bool kitchen, field, change;
+    public bool kitchen, field, change, action;
     GameDirecter directer_script;
 
     public bool select;
@@ -59,6 +59,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             change = true;
             //GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
         }
+
+        if(this.gameObject.GetComponent<CardView>().cardID > 200)
+        {
+            action = true;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData) // ドラッグを始めるときに行う処理
@@ -79,22 +84,27 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     {
         change = true;
         //スタンバイフェーズの移動(フィールドからキッチン)
-        if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform && before_parent == GameObject.Find("Player_field").transform && !directer_script.Summonable && !directer_script.Attackable)//調理場にカードを置く処理
+        if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform && before_parent == GameObject.Find("Player_field").transform && !directer_script.Summonable && !directer_script.Attackable && !action)//調理場にカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         }
         //スタンバイフェーズの移動(キッチンからフィールド)
-        else if (field && cardParent == GameObject.Find("Player_field").transform && before_parent == GameObject.Find("Player_kitchen").transform && !directer_script.Summonable && !directer_script.Attackable)//フィールドにカードを置く処理
+        else if (field && cardParent == GameObject.Find("Player_field").transform && before_parent == GameObject.Find("Player_kitchen").transform && !directer_script.Summonable && !directer_script.Attackable && !action)//フィールドにカードを置く処理
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         }
         //メインフェーズの召喚(手札からキッチン)
-        else if(kitchen && cardParent == GameObject.Find("Player_kitchen").transform &&  before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable && !directer_script.Attackable)
+        else if (kitchen && cardParent == GameObject.Find("Player_kitchen").transform && before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable && !directer_script.Attackable && !action)
         {
             transform.SetParent(cardParent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
+        }
+        else if (action && cardParent == GameObject.Find("Action_Space").transform && before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable)
+        {
+            transform.SetParent(cardParent);
+            StartCoroutine("Destroy");
         }
 
         else
@@ -104,5 +114,11 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             transform.SetParent(before_parent);
             GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycastsをオンにする
         };
+    }
+
+    IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
     }
 }
