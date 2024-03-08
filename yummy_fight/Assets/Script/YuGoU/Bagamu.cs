@@ -15,6 +15,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public Transform playerField;
 
     bool click = true;
+    bool aiue;
     int r, b;
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
 
                             gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                             click = true;
-                            Debug.Log("êFÇ™ïœÇÌÇÁÇÒÇô");
+                            aiue = true;
 
                         }
                     }
@@ -57,6 +58,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
         {
             gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             click = true;
+            aiue = false;
         }
 
     }
@@ -65,9 +67,12 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         if (click)
         {
-            popup.SetActive(true);
 
-            click = false;
+            if (aiue == true)
+            {
+                popup.SetActive(true);
+            }
+
         }
     }
 
