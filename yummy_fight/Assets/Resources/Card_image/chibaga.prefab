@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3268863965813373873}
   - component: {fileID: 5153980519424173286}
   - component: {fileID: 8081325375864239066}
+  - component: {fileID: 1420668950}
+  - component: {fileID: 3115347198719406195}
   m_Layer: 5
   m_Name: chibaga
   m_TagString: Card
@@ -76,3 +78,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1420668950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556143026866548775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3115347198719406195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2556143026866548775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973f2b5b63f0fc145bb8197c0a0024ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerkitchenCardList: []
+  manage_script: {fileID: 0}
+  directer: {fileID: 0}
+  popup: {fileID: 0}
+  playerField: {fileID: 0}
+  yug: {fileID: 0}

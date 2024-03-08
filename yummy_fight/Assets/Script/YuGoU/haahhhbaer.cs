@@ -13,6 +13,7 @@ public class haahhhbaer : MonoBehaviour, IPointerClickHandler
     public GameDirecter directer;
     public GameObject popup;
     public Transform playerField;
+    public yugouhantei yug;
 
     bool click = true;
     bool aiue;
@@ -22,16 +23,19 @@ public class haahhhbaer : MonoBehaviour, IPointerClickHandler
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        //yug = GameObject.Find("YugouButton").GetComponent<yugouhantei>();
         //popup = GameObject.Find("popup").GetComponent<GameObject>();
         popup.SetActive(false);
+        Debug.Log("êFÇ™ïœÇÌÇÈÇÊ");
         gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        Debug.Log("êFÇ™ïœÇÌÇ¡ÇΩÇÊ");
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (directer.playerkitchenCardList[(directer.playerkitchenCardList.Length - 1)] != null)
+        if (directer.playerkitchenCardList[0] != null)
         {
             gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
@@ -69,12 +73,13 @@ public class haahhhbaer : MonoBehaviour, IPointerClickHandler
             if (aiue == true)
             {
                 popup.SetActive(true);
+                yug.yugou = 105;
             }
 
         }
     }
 
-    public void OnClick()
+    /*public void OnClick()
     {
         Debug.Log("wawawa------");
         manage_script.CreateCard(105, playerField);
@@ -96,5 +101,5 @@ public class haahhhbaer : MonoBehaviour, IPointerClickHandler
             }
         }
 
-    }
+    }*/
 }

@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 4460582244790559511}
   - component: {fileID: 8893430696850733104}
   - component: {fileID: 8424965664473290611}
+  - component: {fileID: 1192250462}
+  - component: {fileID: 1192250465}
   m_Layer: 5
   m_Name: torebaga
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,3 +78,33 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1192250462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7536334355173994516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1192250465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7536334355173994516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46e0cb4e7fd3e54083a06fdf4513d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerkitchenCardList: []
+  manage_script: {fileID: 0}
+  directer: {fileID: 0}
+  popup: {fileID: 0}
+  playerField: {fileID: 0}
+  yug: {fileID: 0}
