@@ -1262,7 +1262,19 @@ MonoBehaviour:
   _directer: {fileID: 1632766650}
   _manager: {fileID: 2077252319}
   hand: {fileID: 0}
+  search_id: 0
   panel_anim: {fileID: 1599501473}
+--- !u!114 &468467500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5469841927652741078, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
+  m_PrefabInstance: {fileID: 7977571629467762853}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64143e4809728144eaffa6b442a6e343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &494920251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 494920254}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 468467500}
+        m_TargetAssemblyTypeName: Bagamu, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &494920254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,6 +2310,7 @@ MonoBehaviour:
   _directer: {fileID: 1632766650}
   _manager: {fileID: 0}
   hand: {fileID: 0}
+  search_id: 0
   panel_anim: {fileID: 0}
 --- !u!1 &783762860
 GameObject:
@@ -4554,6 +4579,8 @@ MonoBehaviour:
   select_panel: {fileID: 1599501468}
   Buns: 0
   Patty: 0
+  Muffin: 0
+  Pickles: 0
   deck: 010000000200000003000000040000000500000006000000070000000800000001000000020000000300000004000000050000000600000007000000080000000100000002000000
 --- !u!4 &2077252320
 Transform:
@@ -4886,10 +4913,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 548300497}
     m_Modifications:
     - target: {fileID: 275867501, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 275867501, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1712175148}
@@ -4981,6 +5004,10 @@ PrefabInstance:
       propertyPath: popup
       value: 
       objectReference: {fileID: 1712175148}
+    - target: {fileID: 5469841927652741078, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
+      propertyPath: playerField
+      value: 
+      objectReference: {fileID: 2079498461}
     - target: {fileID: 7432272492873400593, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
       propertyPath: m_Name
       value: bagamute

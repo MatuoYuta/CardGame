@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Bagamu : MonoBehaviour, IPointerClickHandler
+public class chibagrw : MonoBehaviour, IPointerClickHandler
 {
-
     public CardController[] playerkitchenCardList;//í≤óùèÍÇÃÉJÅ[ÉhÇäiî[Ç∑ÇÈÉäÉXÉg
 
     public GameManager manage_script;
@@ -14,7 +13,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public GameObject popup;
     public Transform playerField;
 
-    bool click = true;
+    bool click;
     int r, b;
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,6 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     {
         if (directer.playerkitchenCardList[(directer.playerkitchenCardList.Length - 1)] != null)
         {
-            gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
             {
                 if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
@@ -56,7 +54,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
         else
         {
             gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            click = true;
+            click = false;
         }
 
     }
@@ -87,11 +85,13 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                     {
                         Destroy(directer.playerkitchenCardList[a].gameObject);
                         Debug.Log("ëfçﬁçÌèú2");
+                        click = false;
+                        Debug.Log(click);
                         popup.SetActive(false);
                     }
                 }
             }
         }
-      
+
     }
 }
