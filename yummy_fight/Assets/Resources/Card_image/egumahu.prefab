@@ -109,6 +109,7 @@ MonoBehaviour:
   popup: {fileID: 0}
   playerField: {fileID: 0}
   yug: {fileID: 0}
+  harf: {fileID: 0}
 --- !u!61 &419840939
 BoxCollider2D:
   m_ObjectHideFlags: 0

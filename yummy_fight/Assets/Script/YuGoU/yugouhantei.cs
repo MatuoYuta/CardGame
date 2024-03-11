@@ -43,7 +43,7 @@ public class yugouhantei : MonoBehaviour
     {
         switch (yugou)
         {
-            case 101:
+            case 101:   //バガムートの処理
                 manage_script.CreateCard(101, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
@@ -70,17 +70,20 @@ public class yugouhantei : MonoBehaviour
                     }
                 }
                 break;
-            case 102:
+            case 102:    //エグマフの処理
                 manage_script.CreateCard(102, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
-                    if(directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                    if(harf == true)
                     {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        egtu();
-                        harf = false;
+                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                        {
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            egtu();
+                            harf = false;
+                        }
                     }
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
+                    else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
                     {
                         Destroy(directer.playerkitchenCardList[i].gameObject);
                         for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
@@ -94,7 +97,7 @@ public class yugouhantei : MonoBehaviour
                     }
                 }
                 break;
-            case 103:
+            case 103:       //トレバガの処理
                 manage_script.CreateCard(103, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
@@ -108,11 +111,23 @@ public class yugouhantei : MonoBehaviour
                                 Destroy(directer.playerkitchenCardList[a].gameObject);
                                 for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                                 {
-                                    if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
+                                    if(harf == true)
+                                    {
+                                        if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
+                                        {
+                                            Destroy(directer.playerkitchenCardList[j].gameObject);
+                                            harf = true;
+                                            popup.SetActive(false);
+                                            yugou = 0;
+                                            break;
+                                        }
+                                    }
+                                    else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
                                     {
                                         Destroy(directer.playerkitchenCardList[j].gameObject);
                                         popup.SetActive(false);
                                         yugou = 0;
+                                        break;
                                     }
                                 }
                             }
@@ -120,16 +135,26 @@ public class yugouhantei : MonoBehaviour
                     }
                 }
                 break;
-            case 104:
+            case 104:       //チーバガの処理
                 manage_script.CreateCard(104, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
+                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 5)
                     {
                         Destroy(directer.playerkitchenCardList[i].gameObject);
                         for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                         {
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 5)
+                            if(harf == true)
+                            {
+                                if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 105)
+                                {
+                                    Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    popup.SetActive(false);
+                                    yugou = 0;
+                                    break;
+                                }
+                            }
+                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                             {
                                 Destroy(directer.playerkitchenCardList[a].gameObject);
                                 for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
@@ -139,6 +164,7 @@ public class yugouhantei : MonoBehaviour
                                         Destroy(directer.playerkitchenCardList[j].gameObject);
                                         popup.SetActive(false);
                                         yugou = 0;
+                                        break;
                                     }
                                 }
                             }
@@ -146,7 +172,7 @@ public class yugouhantei : MonoBehaviour
                     }
                 }
                 break;
-            case 105:
+            case 105:       //ハーフバーガーの処理
                 manage_script.CreateCard(105, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
@@ -190,6 +216,7 @@ public class yugouhantei : MonoBehaviour
                                 Destroy(directer.playerkitchenCardList[m].gameObject);
                                 popup.SetActive(false);
                                 yugou = 0;
+                                break;
                             }
                         }
                     }
@@ -207,6 +234,7 @@ public class yugouhantei : MonoBehaviour
                 Destroy(directer.playerkitchenCardList[j].gameObject);
                 popup.SetActive(false);
                 yugou = 0;
+                break;
             }
         }
     }
