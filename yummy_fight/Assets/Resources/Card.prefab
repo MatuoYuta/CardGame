@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardObject: {fileID: 2663392173092283378}
+  enemylife: 5
 --- !u!1 &2663392171763320415
 GameObject:
   m_ObjectHideFlags: 0

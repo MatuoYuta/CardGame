@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AttackButton : MonoBehaviour
 {
     public GameObject cardObject; // 横向きにするCardオブジェクト
+    public int enemylife = 5; // Enemy's life
     private Button attackButton; // ボタンの参照
 
     void Start()
@@ -20,6 +21,10 @@ public class AttackButton : MonoBehaviour
         RotateCard(); // カードを横向きにするメソッドを呼び出す
         // ボタンを非表示にする
         gameObject.SetActive(false);
+
+        // Decrease enemy's life
+        enemylife--;
+        Debug.Log("Enemy's life: " + enemylife);
     }
 
     void RotateCard()
