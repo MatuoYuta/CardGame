@@ -53,11 +53,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("ドロー！");
         CreateCard(cardID, hand);
 
-        // 手札の枚数を同期
-        if (handCardsInfoSync != null)
-        {
-            handCardsInfoSync.SyncHandCardsCount();
-        }
+        
     }
 
     void SetStartHand() // 手札を5枚配る
