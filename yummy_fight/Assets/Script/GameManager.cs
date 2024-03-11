@@ -51,9 +51,12 @@ public class GameManager : MonoBehaviour
         int cardID = deck[0];
         deck.RemoveAt(0);
         Debug.Log("ドロー！");
-        CreateCard(cardID, hand);
+        CreateCard(cardID, hand);  
+    }
 
-        
+    public void EnemyDraw()
+    {
+        //CreateCard()
     }
 
     void SetStartHand() // 手札を5枚配る

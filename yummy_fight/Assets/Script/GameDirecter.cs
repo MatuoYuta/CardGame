@@ -14,6 +14,7 @@ public class GameDirecter : MonoBehaviour
     public GameObject phase_text;//どのフェーズかを表示する
 
     public GameManager manage_script;
+    public CPU cpu_script;
     public GameObject before_outline;
     public GameObject before_outline_object;
 
@@ -26,6 +27,9 @@ public class GameDirecter : MonoBehaviour
 
     public ObjectHighlight[] SearchImageList;//サーチするカード
 
+    public int turn;
+    public bool main, battle;
+
     public enum Phase//フェーズ管理用列挙型変数
     {
         INIT,
@@ -34,6 +38,12 @@ public class GameDirecter : MonoBehaviour
         MAIN,
         BATTLE,
         END,
+        Enemy_INIT,
+        Enemy_DRAW,
+        Enemy_STANDBY,
+        Enemy_MAIN,
+        Enemy_BATTLE,
+        Enemy_END,
     };
 
     Phase phase;
@@ -43,6 +53,9 @@ public class GameDirecter : MonoBehaviour
         phase = Phase.INIT;
         Movable = false;
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cpu_script = this.gameObject.GetComponent<CPU>();
+        main = true;
+        battle = true;
     }
     void Update()
     {
@@ -78,6 +91,22 @@ public class GameDirecter : MonoBehaviour
                 break;
             case Phase.END://エンドフェーズ
                 EndPhase();
+                break;
+            case Phase.Enemy_DRAW://ドローフェーズ
+                turn++;
+                Enemy_DrawPhase();
+                break;
+            case Phase.Enemy_STANDBY://スタンバイ（移動）フェーズ
+                Enemy_StandbyPhase();
+                break;
+            case Phase.Enemy_MAIN://メインフェーズ
+                Enemy_MainPhase();
+                break;
+            case Phase.Enemy_BATTLE://バトルフェーズ
+                Enemy_BattlePhase();
+                break;
+            case Phase.Enemy_END://エンドフェーズ
+                Enemy_EndPhase();
                 break;
         }
     }
@@ -141,15 +170,15 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("EndPhase");
         Attackable = false;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nEnd";
-        if (currentPlayer == playerList[0])
-        {
-            currentPlayer = playerList[1];
-        }
-        else
-        {
-            currentPlayer = playerList[0];
-        }
-        phase = Phase.DRAW;
+        //if (currentPlayer == playerList[0])
+        //{
+        //    currentPlayer = playerList[1];
+        //}
+        //else
+        //{
+        //    currentPlayer = playerList[0];
+        //}
+        phase = Phase.Enemy_DRAW;
 
         // BATTLEフェーズから出たのでクリックを禁止する
         foreach (var objClickExample in FindObjectsOfType<ObjectClickExample>())
@@ -157,6 +186,69 @@ public class GameDirecter : MonoBehaviour
             objClickExample.ExitBattlePhase();
         }
     }
+
+    void Enemy_DrawPhase()
+    {
+        Debug.Log("Enemy_DrawPhase");
+        phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nDraw";
+        currentPlayer.EnemyDraw();
+        phase = Phase.Enemy_STANDBY;
+    }
+
+    void Enemy_StandbyPhase()
+    {
+        Debug.Log("Enemy_StandbyPhase");
+        phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nStandby";
+        phase = Phase.Enemy_MAIN;
+    }
+
+    void Enemy_MainPhase()
+    {
+        if(main)
+        {
+            Debug.Log("Enemy_MainPhase");
+            phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nMain";
+            cpu_script.Main(turn);
+            main = false;
+        }
+        //phase = Phase.Enemy_BATTLE;
+    }
+
+    void Enemy_BattlePhase()
+    {
+        if(battle)
+        {
+            Debug.Log("Enemy_BattlePhase");
+            phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
+            main = true;
+            battle = false;
+        }
+    }
+
+    void Enemy_EndPhase()
+    {
+        Debug.Log("Enemy_EndPhase");
+        phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nEnd";
+        phase = Phase.DRAW;
+        battle = true;
+    }
+
+    public void Change_Main()
+    {
+        phase = Phase.Enemy_MAIN;
+    }
+
+    public void Change_Battle()
+    {
+        phase = Phase.Enemy_BATTLE;
+    }
+
+    public void Change_End()
+    {
+        phase = Phase.Enemy_END;
+    }
+    
+
     public void NextPhase()
     {
         switch (phase)

@@ -18,11 +18,17 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
-        cardParent = GameObject.Find("Player_hand").transform;
+        cardParent = transform.parent.gameObject.transform;
         change = true;
         Debug.Log(this.transform.localScale);
         transform.eulerAngles = new Vector3(0, 0, 0); // X²‚ğ’†S‚É45‹‰ñ“]AY²Z²‚Í‰Šú’l
         select = false;
+
+        if(cardParent.gameObject.CompareTag("Enemy"))
+        {
+            transform.eulerAngles = new Vector3(180, 0, 0);
+        }
+
     }
 
     void Update()

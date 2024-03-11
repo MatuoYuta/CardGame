@@ -970,7 +970,7 @@ GameObject:
   - component: {fileID: 340366090}
   m_Layer: 5
   m_Name: Enemy_hand
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2014,6 +2014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHand: {fileID: 0}
+  enemyHand: {fileID: 0}
   manage_script: {fileID: 0}
 --- !u!4 &605496845
 Transform:
@@ -2625,6 +2626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHand: {fileID: 0}
+  enemyHand: {fileID: 0}
   manage_script: {fileID: 0}
 --- !u!4 &950393403
 Transform:
@@ -3607,7 +3609,7 @@ GameObject:
   - component: {fileID: 1593941159}
   m_Layer: 5
   m_Name: Enemy_field
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3893,6 +3895,7 @@ MonoBehaviour:
   Attackable: 0
   phase_text: {fileID: 644895988}
   manage_script: {fileID: 0}
+  cpu_script: {fileID: 0}
   before_outline: {fileID: 0}
   before_outline_object: {fileID: 0}
   playerHandCardList: []
@@ -3902,6 +3905,9 @@ MonoBehaviour:
   EnemyKitchenCardList: []
   EnemyFieldCardList: []
   SearchImageList: []
+  turn: 0
+  main: 0
+  battle: 0
 --- !u!4 &1632766651
 Transform:
   m_ObjectHideFlags: 0
@@ -4867,7 +4873,7 @@ GameObject:
   - component: {fileID: 2060662984}
   m_Layer: 5
   m_Name: Enemy_kitchen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
