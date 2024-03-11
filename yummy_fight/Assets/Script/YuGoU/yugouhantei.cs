@@ -41,7 +41,7 @@ public class yugouhantei : MonoBehaviour
 
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1)
+                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
                     {
                         Destroy(directer.playerkitchenCardList[i].gameObject);
                         for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
@@ -49,11 +49,6 @@ public class yugouhantei : MonoBehaviour
                             if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                             {
                                 Destroy(directer.playerkitchenCardList[a].gameObject);
-                                for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
-                                {
-                                    if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3)
-                                    {
-                                        Destroy(directer.playerkitchenCardList[j].gameObject);
                                         for (int w = 0; w < directer.playerkitchenCardList.Length; w++)
                                         {
                                             if (directer.playerkitchenCardList[w].gameObject.GetComponent<CardView>().cardID == 4)
@@ -76,8 +71,6 @@ public class yugouhantei : MonoBehaviour
                                                     }
                                                 }
                                             }
-                                        }
-                                    }
                                 }
                             }
                         }
