@@ -11,9 +11,10 @@ public class yugouhantei : MonoBehaviour
     public GameObject popup;
     public Transform playerField;
 
+
     public int yugou;
 
-    bool harf;
+    public bool harf;
 
 
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
@@ -46,7 +47,16 @@ public class yugouhantei : MonoBehaviour
                 manage_script.CreateCard(101, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
+                    if(harf == true)
+                    {
+                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                        {
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            harfbagamu();
+                            harf = false;
+                        }
+                    }
+                    else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
                     {
                         Destroy(directer.playerkitchenCardList[i].gameObject);
                         for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
@@ -54,29 +64,7 @@ public class yugouhantei : MonoBehaviour
                             if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                             {
                                 Destroy(directer.playerkitchenCardList[a].gameObject);
-                                        for (int w = 0; w < directer.playerkitchenCardList.Length; w++)
-                                        {
-                                            if (directer.playerkitchenCardList[w].gameObject.GetComponent<CardView>().cardID == 4)
-                                            {
-                                                Destroy(directer.playerkitchenCardList[w].gameObject);
-                                                for (int y = 0; y < directer.playerkitchenCardList.Length; y++)
-                                                {
-                                                    if (directer.playerkitchenCardList[y].gameObject.GetComponent<CardView>().cardID == 6)
-                                                    {
-                                                        Destroy(directer.playerkitchenCardList[y].gameObject);
-                                                        for (int m = 0; m < directer.playerkitchenCardList.Length; m++)
-                                                        {
-                                                            if (directer.playerkitchenCardList[m].gameObject.GetComponent<CardView>().cardID == 8)
-                                                            {
-                                                                Destroy(directer.playerkitchenCardList[m].gameObject);
-                                                                popup.SetActive(false);
-                                                                yugou = 0;
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                }
+                                harfbagamu();
                             }
                         }
                     }
@@ -94,15 +82,7 @@ public class yugouhantei : MonoBehaviour
                             if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
                             {
                                 Destroy(directer.playerkitchenCardList[a].gameObject);
-                                for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
-                                {
-                                    if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 7)
-                                    {
-                                        Destroy(directer.playerkitchenCardList[j].gameObject);
-                                        popup.SetActive(false);
-                                        yugou = 0;
-                                    }
-                                }
+                                egtu();
                             }
                         }
                     }
@@ -184,4 +164,44 @@ public class yugouhantei : MonoBehaviour
 
         }
     }
+
+    public void harfbagamu()
+    {
+        for (int w = 0; w < directer.playerkitchenCardList.Length; w++)
+        {
+            if (directer.playerkitchenCardList[w].gameObject.GetComponent<CardView>().cardID == 4)
+            {
+                Destroy(directer.playerkitchenCardList[w].gameObject);
+                for (int y = 0; y < directer.playerkitchenCardList.Length; y++)
+                {
+                    if (directer.playerkitchenCardList[y].gameObject.GetComponent<CardView>().cardID == 6)
+                    {
+                        Destroy(directer.playerkitchenCardList[y].gameObject);
+                        for (int m = 0; m < directer.playerkitchenCardList.Length; m++)
+                        {
+                            if (directer.playerkitchenCardList[m].gameObject.GetComponent<CardView>().cardID == 8)
+                            {
+                                Destroy(directer.playerkitchenCardList[m].gameObject);
+                                popup.SetActive(false);
+                                yugou = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    public void egtu()
+    {
+        for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
+        {
+            if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 7)
+            {
+                Destroy(directer.playerkitchenCardList[j].gameObject);
+                popup.SetActive(false);
+                yugou = 0;
+            }
+        }
+    }
+}

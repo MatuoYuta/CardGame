@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerkitchenCardList: []
+  playerFieldCardList: []
   manage_script: {fileID: 0}
   directer: {fileID: 0}
   popup: {fileID: 0}

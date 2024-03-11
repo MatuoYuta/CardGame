@@ -14,15 +14,17 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
     public GameDirecter directer;
     public GameObject popup;
     public Transform playerField;
-    public yugouhantei yug;
+    public yugouhantei yug, harf;
 
     bool click = true;
-    bool aiue;
+    bool aiue;  //召喚条件を満たすかのやつ
+    //bool harf;  //ハーフバーガーの検知
     // Start is called before the first frame update
     void Start()
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        harf = GameObject.Find("popup/YugouButton").GetComponent<yugouhantei>();
         //yug = GameObject.Find("YugouButton").GetComponent<yugouhantei>();
         //popup = GameObject.Find("popup").GetComponent<GameObject>();
         popup.SetActive(false);
@@ -38,34 +40,20 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
         if (directer.playerkitchenCardList[0] != null)
         {
             gameObject.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-            for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
+            for(int n = 0;n < directer.playerkitchenCardList.Length; n++)
             {
-                if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
+                if(directer.playerkitchenCardList[n].gameObject.GetComponent<CardView>().cardID == 105)
+                {
+                    harfbagamu();
+                    harf.harf = true;
+                }
+                else if (directer.playerkitchenCardList[n].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[n].gameObject.GetComponent<CardView>().cardID == 3)
                 {
                     for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                     {
                         if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                         {
-                                    for(int w = 0;w < directer.playerkitchenCardList.Length; w++)
-                                    {
-                                        if(directer.playerkitchenCardList[w].gameObject.GetComponent<CardView>().cardID == 4)
-                                        {
-                                            for(int y = 0;y  < directer.playerkitchenCardList.Length; y++)
-                                            {
-                                                if(directer.playerkitchenCardList[y].gameObject.GetComponent<CardView>().cardID == 6)
-                                                {
-                                                    for(int m = 0;m < directer.playerkitchenCardList.Length; m++)
-                                                    {
-                                                        if(directer.playerkitchenCardList[m].gameObject.GetComponent<CardView>().cardID == 8)
-                                                        {
-                                                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                                                            aiue = true;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                            harfbagamu();
                         }
                     }
                 }
@@ -90,6 +78,30 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                 yug.yugou = 101;
             }
 
+        }
+    }
+
+    public void harfbagamu()
+    {
+        for (int w = 0; w < directer.playerkitchenCardList.Length; w++)
+        {
+            if (directer.playerkitchenCardList[w].gameObject.GetComponent<CardView>().cardID == 4)
+            {
+                for (int y = 0; y < directer.playerkitchenCardList.Length; y++)
+                {
+                    if (directer.playerkitchenCardList[y].gameObject.GetComponent<CardView>().cardID == 6)
+                    {
+                        for (int m = 0; m < directer.playerkitchenCardList.Length; m++)
+                        {
+                            if (directer.playerkitchenCardList[m].gameObject.GetComponent<CardView>().cardID == 8)
+                            {
+                                gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                aiue = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

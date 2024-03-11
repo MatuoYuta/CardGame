@@ -1466,6 +1466,8 @@ MonoBehaviour:
   popup: {fileID: 1712175148}
   playerField: {fileID: 2079498461}
   yugou: 0
+  harf: 0
+  playerFieldCardList: []
   bagam: {fileID: 0}
   chiba: {fileID: 0}
   har: {fileID: 0}
