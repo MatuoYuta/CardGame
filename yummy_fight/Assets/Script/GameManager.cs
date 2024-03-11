@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
+    [SerializeField] private HandCardsInfoSync handCardsInfoSync;
     public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
 
@@ -51,6 +52,12 @@ public class GameManager : MonoBehaviour
         deck.RemoveAt(0);
         Debug.Log("ドロー！");
         CreateCard(cardID, hand);
+
+        // 手札の枚数を同期
+        if (handCardsInfoSync != null)
+        {
+            handCardsInfoSync.SyncHandCardsCount();
+        }
     }
 
     void SetStartHand() // 手札を5枚配る

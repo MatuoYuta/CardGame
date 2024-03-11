@@ -32,8 +32,12 @@ public class HandCardsInfoSync : MonoBehaviourPun
 
     public void SyncHandCardsCount()
     {
-        int count = gameDirecter.playerHandCardList.Length; // GameDirecterからプレイヤー手札リストを取得
+        Debug.Log("SyncHandCardsCountが呼び出されました。");
+        int count = gameDirecter.playerHandCardList.Length; // 仮に、playerHandCardListが手札のカードリストを保持する配列だとします。
         photonView.RPC("UpdateOpponentHandCardsCount", RpcTarget.Others, count);
+
+        // 手札枚数をデバッグログに表示
+        Debug.Log($"手札の枚数は{count}枚です。");
     }
 
     [PunRPC]

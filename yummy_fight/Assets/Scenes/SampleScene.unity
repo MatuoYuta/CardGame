@@ -4980,6 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 5536703850652366214, guid: 2898e16390968ac44a371f2a8dd4090c, type: 3}
+  handCardsInfoSync: {fileID: 943181522}
   playerHand: {fileID: 1214996393}
   playerField: {fileID: 2079498461}
   playerKitchen: {fileID: 1101948051}
