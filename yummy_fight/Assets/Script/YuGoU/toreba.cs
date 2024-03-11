@@ -12,7 +12,7 @@ public class toreba : MonoBehaviour, IPointerClickHandler
     public GameDirecter directer;
     public GameObject popup;
     public Transform playerField;
-    public yugouhantei yug;
+    public yugouhantei yug,harf;
 
     bool click = true;
     bool aiue;
@@ -21,6 +21,7 @@ public class toreba : MonoBehaviour, IPointerClickHandler
     {
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        harf = GameObject.Find("popup/YugouButton").GetComponent<yugouhantei>();
         //yug = GameObject.Find("YugouButton").GetComponent<yugouhantei>();
         //popup = GameObject.Find("popup").GetComponent<GameObject>();
         popup.SetActive(false);
@@ -45,7 +46,13 @@ public class toreba : MonoBehaviour, IPointerClickHandler
                         {
                             for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                             {
-                                if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
+                                if(directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
+                                {
+                                    harf.harf = true;
+                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                    aiue = true;
+                                }
+                                else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
                                 {
                                     gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                                     aiue = true;

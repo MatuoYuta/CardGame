@@ -74,6 +74,12 @@ public class yugouhantei : MonoBehaviour
                 manage_script.CreateCard(102, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
+                    if(directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                    {
+                        Destroy(directer.playerkitchenCardList[i].gameObject);
+                        egtu();
+                        harf = false;
+                    }
                     if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
                     {
                         Destroy(directer.playerkitchenCardList[i].gameObject);
