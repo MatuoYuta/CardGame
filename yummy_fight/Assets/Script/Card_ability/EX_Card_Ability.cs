@@ -48,6 +48,15 @@ public class EX_Card_Ability : MonoBehaviour
             Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
             directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
         }
+
+        for(int t = 0; t<directer_script.playerFieldCardList.Length;t++)
+        {
+            Debug.Log(directer_script.playerFieldCardList[t].gameObject);
+            if (directer_script.playerFieldCardList[t].gameObject.GetComponent<CardView>().cardID != 101)
+            {
+                directer_script.playerFieldCardList[t].gameObject.GetComponent<CardController>().Destroy_me();
+            }
+        }
     }
 
     IEnumerator Egumahu()

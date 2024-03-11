@@ -38,7 +38,7 @@ public class yugouhantei : MonoBehaviour
         switch (yugou)
         {
             case 101:
-
+                manage_script.CreateCard(101, playerField);
                 for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                 {
                     if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
