@@ -12,7 +12,11 @@ public class yugouhantei : MonoBehaviour
     public Transform playerField;
 
     public int yugou;
-    
+
+    bool harf;
+
+
+    public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
 
     public Bagamu bagam;
     public chibagrw chiba;
@@ -32,6 +36,7 @@ public class yugouhantei : MonoBehaviour
     {
         //Yugousyoukan();
         //OnClick();
+
     }
     public void OnClick()
     {

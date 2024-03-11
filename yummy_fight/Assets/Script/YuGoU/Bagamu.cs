@@ -8,6 +8,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
 {
 
     public CardController[] playerkitchenCardList;//調理場のカードを格納するリスト
+        public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
 
     public GameManager manage_script;
     public GameDirecter directer;
