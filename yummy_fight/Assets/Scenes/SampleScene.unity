@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 96287013}
   - component: {fileID: 96287012}
   - component: {fileID: 96287011}
+  - component: {fileID: 96287014}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -341,7 +342,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 96287012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 96287014}
+        m_TargetAssemblyTypeName: tojiruButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &96287012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +393,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96287009}
   m_CullTransparentMesh: 1
+--- !u!114 &96287014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96287009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b904f375253474592e06df091281ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popup: {fileID: 1712175148}
 --- !u!224 &160693072 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1990166299040711107, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
@@ -770,18 +796,6 @@ PrefabInstance:
     - target: {fileID: 7536334355173994516, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
       propertyPath: m_Name
       value: torebaga
-      objectReference: {fileID: 0}
-    - target: {fileID: 8424965664473290611, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8424965664473290611, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8424965664473290611, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
@@ -4103,7 +4117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5272,18 +5286,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: egumahu
       objectReference: {fileID: 0}
-    - target: {fileID: 5115206453822620846, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115206453822620846, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115206453822620846, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5019608
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
 --- !u!1001 &7535599335555140774
@@ -5396,18 +5398,6 @@ PrefabInstance:
     - target: {fileID: 3268863965813373873, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081325375864239066, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081325375864239066, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081325375864239066, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}

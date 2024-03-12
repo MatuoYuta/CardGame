@@ -14,7 +14,11 @@ public class yugouhantei : MonoBehaviour
 
     public int yugou;
 
-    public bool harf;
+    public bool harf;       //  ハーフバーガーがあるかの検知
+    //おんなじ素材をすべて使うのを阻止するやつ！！
+    bool bans;              
+    bool pati;                   
+
 
 
     public CardController[] playerFieldCardList;//フィールドのカードを格納するリスト
@@ -41,160 +45,182 @@ public class yugouhantei : MonoBehaviour
     }
     public void OnClick()
     {
-        switch (yugou)
+        if(directer.playerFieldCardList.Length < 3)  //3枚以上は出さないようにする
         {
-            case 101:   //バガムートの処理
-                manage_script.CreateCard(101, playerField);
-                for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-                {
-                    if(harf == true)
+            switch (yugou)
+            {
+                case 101:   //バガムートの処理
+                    manage_script.CreateCard(101, playerField);
+                    for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                     {
-                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                        if (harf == true)
                         {
-                            Destroy(directer.playerkitchenCardList[i].gameObject);
-                            harfbagamu();
-                            harf = false;
-                        }
-                    }
-                    else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3)
-                    {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
-                        {
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
+                            if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
                             {
-                                Destroy(directer.playerkitchenCardList[a].gameObject);
+                                Destroy(directer.playerkitchenCardList[i].gameObject);
                                 harfbagamu();
+                                harf = false;
                             }
                         }
-                    }
-                }
-                break;
-            case 102:    //エグマフの処理
-                manage_script.CreateCard(102, playerField);
-                for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-                {
-                    if(harf == true)
-                    {
-                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
+                        else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 3 && bans == false)
                         {
                             Destroy(directer.playerkitchenCardList[i].gameObject);
-                            egtu();
-                            harf = false;
-                        }
-                    }
-                    else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
-                    {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
-                        {
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
+                            for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                             {
-                                Destroy(directer.playerkitchenCardList[a].gameObject);
-                                egtu();
+                                if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2 && pati == false)
+                                {
+                                    Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    harfbagamu();
+                                    pati = true;
+                                }
                             }
                         }
                     }
-                }
-                break;
-            case 103:       //トレバガの処理
-                manage_script.CreateCard(103, playerField);
-                for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-                {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 8)
+                    bans = false;
+                    pati = false;
+                    break;
+                case 102:    //エグマフの処理
+                    manage_script.CreateCard(102, playerField);
+                    for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                     {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                        if (harf == true)
                         {
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 6)
+                            if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 105)
                             {
-                                Destroy(directer.playerkitchenCardList[a].gameObject);
-                                for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
+                                Destroy(directer.playerkitchenCardList[i].gameObject);
+                                egtu();
+                                harf = false;
+                            }
+                        }
+                        else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2 && pati == false)
+                        {
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            pati = true;
+                            for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                            {
+                                if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3 && bans == false)
                                 {
-                                    if(harf == true)
+                                    Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    bans = true;
+                                    egtu();
+
+                                }
+                            }
+                        }
+                    }
+                    pati = false;
+                    bans = false;
+                    break;
+                case 103:       //トレバガの処理
+                    manage_script.CreateCard(103, playerField);
+                    for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
+                    {
+                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 8)
+                        {
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                            {
+                                if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 6)
+                                {
+                                    Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                                     {
-                                        if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
+                                        if (harf == true)
+                                        {
+                                            if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
+                                            {
+                                                Destroy(directer.playerkitchenCardList[j].gameObject);
+                                                harf = true;
+                                                popup.SetActive(false);
+                                                yugou = 0;
+                                                break;
+                                            }
+                                        }
+                                        else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 && bans == false)
                                         {
                                             Destroy(directer.playerkitchenCardList[j].gameObject);
-                                            harf = true;
                                             popup.SetActive(false);
                                             yugou = 0;
+                                            bans = true;
                                             break;
                                         }
                                     }
-                                    else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
+                                }
+                            }
+                        }
+                    }
+                    bans = false;
+                    break;
+                case 104:       //チーバガの処理
+                    manage_script.CreateCard(104, playerField);
+                    for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
+                    {
+                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 5)
+                        {
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                            {
+                                if (harf == true)
+                                {
+                                    if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 105)
                                     {
-                                        Destroy(directer.playerkitchenCardList[j].gameObject);
+                                        Destroy(directer.playerkitchenCardList[a].gameObject);
                                         popup.SetActive(false);
                                         yugou = 0;
                                         break;
                                     }
                                 }
+                                if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2 && pati == false)
+                                {
+                                    Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
+                                    {
+                                        if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 && bans == false)
+                                        {
+                                            Destroy(directer.playerkitchenCardList[j].gameObject);
+                                            popup.SetActive(false);
+                                            yugou = 0;
+                                            bans = true;
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                }
-                break;
-            case 104:       //チーバガの処理
-                manage_script.CreateCard(104, playerField);
-                for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-                {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 5)
+                    bans = false;
+                    pati = false;
+                    break;
+                case 105:       //ハーフバーガーの処理
+                    manage_script.CreateCard(105, playerField);
+                    for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
                     {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
+                        if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2 && pati == false)
                         {
-                            if(harf == true)
+                            Destroy(directer.playerkitchenCardList[i].gameObject);
+                            Debug.Log("素材削除");
+                            pati = true;
+                            for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
                             {
-                                if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 105)
+                                if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3 && bans == false)
                                 {
                                     Destroy(directer.playerkitchenCardList[a].gameObject);
+                                    Debug.Log("素材削除2");
                                     popup.SetActive(false);
                                     yugou = 0;
+                                    bans = true;
                                     break;
                                 }
                             }
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
-                            {
-                                Destroy(directer.playerkitchenCardList[a].gameObject);
-                                for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
-                                {
-                                    if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3)
-                                    {
-                                        Destroy(directer.playerkitchenCardList[j].gameObject);
-                                        popup.SetActive(false);
-                                        yugou = 0;
-                                        break;
-                                    }
-                                }
-                            }
                         }
                     }
-                }
-                break;
-            case 105:       //ハーフバーガーの処理
-                manage_script.CreateCard(105, playerField);
-                for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-                {
-                    if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
-                    {
-                        Destroy(directer.playerkitchenCardList[i].gameObject);
-                        Debug.Log("素材削除");
-                        for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
-                        {
-                            if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
-                            {
-                                Destroy(directer.playerkitchenCardList[a].gameObject);
-                                Debug.Log("素材削除2");
-                                popup.SetActive(false);
-                                yugou = 0;
-                            }
-                        }
-                    }
-                }
-                break;
+                    bans = false;
+                    pati = false;
+                    break;
 
+            }
         }
+
     }
 
     public void harfbagamu()
