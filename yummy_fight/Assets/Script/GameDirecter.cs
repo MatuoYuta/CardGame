@@ -27,8 +27,11 @@ public class GameDirecter : MonoBehaviour
 
     public ObjectHighlight[] SearchImageList;//サーチするカード
 
+    public GameObject p_text, e_text;
     public int turn;
     public bool main, battle;
+    public int player_life, enemy_life;//プレイヤーとエネミーのライフ
+    public bool enemyattack;
 
     public enum Phase//フェーズ管理用列挙型変数
     {
@@ -56,9 +59,14 @@ public class GameDirecter : MonoBehaviour
         cpu_script = this.gameObject.GetComponent<CPU>();
         main = true;
         battle = true;
+        player_life = 5;
+        enemy_life = 3;
     }
     void Update()
     {
+        p_text.GetComponent<TextMeshProUGUI>().text = player_life.ToString();
+        e_text.GetComponent<TextMeshProUGUI>().text = enemy_life.ToString();
+
         //カードのリスト格納
         playerHandCardList = manage_script.playerHand.GetComponentsInChildren<CardController>();
         playerFieldCardList = manage_script.playerField.GetComponentsInChildren<CardController>();
@@ -121,6 +129,10 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("DrawPhase");
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nDraw";
         currentPlayer.Draw();
+        for(int i =0;i<playerFieldCardList.Length;i++)
+        {
+            playerFieldCardList[i].kaihuku();
+        }
         phase = Phase.STANDBY;
     }
     void StandbyPhase()
@@ -222,7 +234,6 @@ public class GameDirecter : MonoBehaviour
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
             main = true;
             battle = false;
-            phase = Phase.Enemy_END;
         }
     }
 
@@ -264,5 +275,23 @@ public class GameDirecter : MonoBehaviour
                 phase = Phase.END;
                 break;
         }
+    }
+
+    public void Battle(GameObject attack,GameObject block)
+    {
+        if (attack.GetComponent<CardModel>().power > block.GetComponent<CardModel>().power)
+        {
+            Destroy(block);
+        }
+        else if(attack.GetComponent<CardModel>().power > block.GetComponent<CardModel>().power)
+        {
+            Destroy(attack);
+        }
+        else
+        {
+            Destroy(attack);
+            Destroy(block);
+        }
+
     }
 }

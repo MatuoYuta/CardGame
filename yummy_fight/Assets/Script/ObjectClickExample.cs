@@ -6,7 +6,16 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
 {
     public GameObject buttonToToggle; // 表示/非表示を切り替えるボタン
 
+    public CardController _controller;
+    public ObjectHighlight _hilight;
+
     private bool canClick = false; // クリックを許可するかどうかのフラグ
+
+    void Start()
+    {
+        _controller = this.gameObject.GetComponent<CardController>();
+        _hilight = this.gameObject.GetComponent<ObjectHighlight>();
+    }
 
     // クリックされたときに呼び出されるメソッド
     public void OnPointerClick(PointerEventData eventData)
@@ -19,8 +28,20 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
                 // ボタンがnullでなければ、表示/非表示を切り替える
                 if (buttonToToggle != null)
                 {
-                    // ボタンの表示状態を反転させる
-                    buttonToToggle.SetActive(!buttonToToggle.activeSelf);
+                    if(!_hilight.selected && !_controller.hirou)
+                    {
+                        buttonToToggle.SetActive(true);
+                    }
+                    else
+                    {
+                        buttonToToggle.SetActive(false);
+                    }
+                    
+                    //if (!_controller.hirou)
+                    //{
+                    //    // ボタンの表示状態を反転させる
+                    //    buttonToToggle.SetActive(!buttonToToggle.activeSelf);
+                    //}
 
                     // 表示/非表示を切り替えたことをコンソールに表示
                     if (buttonToToggle.activeSelf)

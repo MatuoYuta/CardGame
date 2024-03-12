@@ -33,15 +33,15 @@ public class CPU : MonoBehaviour
         {
             case 1:
 
-                StartCoroutine(Create(1, _manager.enemyKitchen,1));//バンズ
-                StartCoroutine(Create(2, _manager.enemyKitchen,2));//パティ
-                StartCoroutine(Yugou(105, _manager.enemyField,3));//半バーガー
+                StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
+                StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
+                StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
                 StartCoroutine(Change_main(4));
                 break;
             case 2:
-                StartCoroutine(Create(3, _manager.enemyKitchen,1));//マフィン
-                StartCoroutine(Create(2, _manager.enemyKitchen,2));//パティ
-                StartCoroutine(Create(7, _manager.enemyKitchen,3));//エッグ
+                StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン
+                StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
+                StartCoroutine(Create(7, _manager.enemyKitchen, 3));//エッグ
                 StartCoroutine(Yugou(102, _manager.enemyField, 4));//エグマフ
 
                 StartCoroutine(Create(1, _manager.enemyKitchen, 5));//バンズ
@@ -55,6 +55,22 @@ public class CPU : MonoBehaviour
                 StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ
 
                 StartCoroutine(Change_main(13));
+                break;
+        }
+    }
+
+    public void battle(int turn)
+    {
+        switch(turn)
+        {
+            case 2:
+                for(int i=0;i<_directer.EnemyFieldCardList.Length;i++)
+                {
+                    if(_directer.EnemyFieldCardList[i].gameObject.name == "egumahu")
+                    {
+                        _directer.EnemyFieldCardList[i].enemyattack();
+                    }
+                }
                 break;
         }
     }
@@ -78,5 +94,11 @@ public class CPU : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _directer.Change_Battle();
+    }
+
+    IEnumerator enemy_attack()
+    {
+        _directer.enemyattack = true;
+        yield return new WaitForSeconds(0.1f);
     }
 }

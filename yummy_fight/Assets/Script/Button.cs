@@ -33,6 +33,11 @@ public class Button : MonoBehaviour
         _directer.NextPhase();
     }
 
+    public void lifebreak()
+    {
+        _directer.player_life--;
+    }
+
     public void Select()
     {
         for(int i = 0;i<_directer.SearchImageList.Length;i++)

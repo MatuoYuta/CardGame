@@ -74,11 +74,14 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData) // ドラッグを始めるときに行う処理
     {
-        before_parent = transform.parent.gameObject.transform;
-        prevPos = this.transform.position;
-        cardParent = transform.parent;
-        transform.SetParent(cardParent.parent);
-        GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
+        if(!cardParent.gameObject.CompareTag("Enemy"))
+        {
+            before_parent = transform.parent.gameObject.transform;
+            prevPos = this.transform.position;
+            cardParent = transform.parent;
+            transform.SetParent(cardParent.parent);
+            GetComponent<CanvasGroup>().blocksRaycasts = false; // blocksRaycastsをオフにする
+        }
     }
 
     public void OnDrag(PointerEventData eventData) // ドラッグした時に起こす処理
