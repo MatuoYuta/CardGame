@@ -36,7 +36,7 @@ public class CPU : MonoBehaviour
                 StartCoroutine(Create(1, _manager.enemyKitchen,1));//バンズ
                 StartCoroutine(Create(2, _manager.enemyKitchen,2));//パティ
                 StartCoroutine(Yugou(105, _manager.enemyField,3));//半バーガー
-                StartCoroutine("Change_main");
+                StartCoroutine(Change_main(4));
                 break;
             case 2:
                 StartCoroutine(Create(3, _manager.enemyKitchen,1));//マフィン
@@ -54,7 +54,7 @@ public class CPU : MonoBehaviour
                 StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
                 StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ
 
-                StartCoroutine("Change_main");
+                StartCoroutine(Change_main(13));
                 break;
         }
     }
@@ -74,9 +74,9 @@ public class CPU : MonoBehaviour
         _manager.CreateCard(id, place);
     }
 
-    IEnumerator Change_main()
+    IEnumerator Change_main(int time)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(time);
         _directer.Change_Battle();
     }
 }

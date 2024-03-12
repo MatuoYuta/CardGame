@@ -46,7 +46,7 @@ public class GameDirecter : MonoBehaviour
         Enemy_END,
     };
 
-    Phase phase;
+    public Phase phase;
     Player1 currentPlayer;
     void Start()
     {
@@ -222,7 +222,7 @@ public class GameDirecter : MonoBehaviour
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
             main = true;
             battle = false;
-            phase = Phase.END;
+            phase = Phase.Enemy_END;
         }
     }
 
