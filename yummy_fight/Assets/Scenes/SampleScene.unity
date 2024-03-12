@@ -3882,6 +3882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632766651}
   - component: {fileID: 1632766650}
+  - component: {fileID: 1632766652}
   m_Layer: 0
   m_Name: GameDirecter
   m_TagString: Untagged
@@ -3909,7 +3910,7 @@ MonoBehaviour:
   Attackable: 0
   phase_text: {fileID: 644895988}
   manage_script: {fileID: 0}
-  cpu_script: {fileID: 0}
+  cpu_script: {fileID: 1632766652}
   before_outline: {fileID: 0}
   before_outline_object: {fileID: 0}
   playerHandCardList: []
@@ -3937,6 +3938,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1632766652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632766649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433ac7841decae74aaa9a69f3085fda7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _directer: {fileID: 0}
+  _manager: {fileID: 0}
 --- !u!1 &1657499575
 GameObject:
   m_ObjectHideFlags: 0

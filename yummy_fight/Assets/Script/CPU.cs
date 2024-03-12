@@ -33,25 +33,40 @@ public class CPU : MonoBehaviour
         {
             case 1:
 
-                StartCoroutine(Create(1, _manager.enemyKitchen));
-                StartCoroutine(Create(1, _manager.enemyKitchen));
-                StartCoroutine(Yugou(105, _manager.enemyField));
+                StartCoroutine(Create(1, _manager.enemyKitchen,1));//バンズ
+                StartCoroutine(Create(2, _manager.enemyKitchen,2));//パティ
+                StartCoroutine(Yugou(105, _manager.enemyField,3));//半バーガー
                 StartCoroutine("Change_main");
                 break;
             case 2:
+                StartCoroutine(Create(3, _manager.enemyKitchen,1));//マフィン
+                StartCoroutine(Create(2, _manager.enemyKitchen,2));//パティ
+                StartCoroutine(Create(7, _manager.enemyKitchen,3));//エッグ
+                StartCoroutine(Yugou(102, _manager.enemyField, 4));//エグマフ
+
+                StartCoroutine(Create(1, _manager.enemyKitchen, 5));//バンズ
+                StartCoroutine(Create(6, _manager.enemyKitchen, 6));//レタス
+                StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
+                StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
+
+                StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
+                StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
+                StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
+                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ
+
                 StartCoroutine("Change_main");
                 break;
         }
     }
 
-    IEnumerator Create(int id,Transform place)
+    IEnumerator Create(int id,Transform place, int wait)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(wait);
         _manager.CreateCard(id, place);
     }
-    IEnumerator Yugou(int id, Transform place)
+    IEnumerator Yugou(int id, Transform place, int wait)
     {   
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(wait);
         for (int i = 0; i < _directer.EnemyKitchenCardList.Length; i++)
         {
             Destroy(_directer.EnemyKitchenCardList[i].gameObject);

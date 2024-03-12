@@ -222,6 +222,7 @@ public class GameDirecter : MonoBehaviour
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
             main = true;
             battle = false;
+            phase = Phase.END;
         }
     }
 

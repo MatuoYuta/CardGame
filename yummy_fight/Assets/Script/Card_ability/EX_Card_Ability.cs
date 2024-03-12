@@ -62,37 +62,19 @@ public class EX_Card_Ability : MonoBehaviour
     IEnumerator Egumahu()
     {
         yield return new WaitForSeconds(1);
-
-        Debug.Log(directer_script.EnemyFieldCardList.Length);
-        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
-        {
-            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
-            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
-        }
     }
 
     IEnumerator Torebaga()
     {
         yield return new WaitForSeconds(1);
 
-        Debug.Log(directer_script.EnemyFieldCardList.Length);
-        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
-        {
-            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
-            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
-        }
     }
 
     IEnumerator Chibaga()
     {
         yield return new WaitForSeconds(1);
 
-        Debug.Log(directer_script.EnemyFieldCardList.Length);
-        for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
-        {
-            Debug.Log(directer_script.EnemyFieldCardList[i].gameObject);
-            directer_script.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().Destroy_me();
-        }
+      
     }
 
 }
