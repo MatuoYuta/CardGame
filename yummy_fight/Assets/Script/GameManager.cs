@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
 public class GameManager : MonoBehaviour
@@ -9,12 +10,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private HandCardsInfoSync handCardsInfoSync;
     public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
+    private PhotonView photonView;
 
     //同名ターン１制限用変数
     public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop;
 
     bool isPlayerTurn = true; //
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //
+
+    void Awake()
+    {
+        // このゲームオブジェクトにアタッチされているPhotonViewコンポーネントを取得
+        photonView = GetComponent<PhotonView>();
+    }
 
     void Start()
     {
@@ -36,6 +44,38 @@ public class GameManager : MonoBehaviour
         CardController card = Instantiate(cardPrefab, place);
         card.Init(cardID);
     }
+
+
+
+    [PunRPC]
+    public void CreateCardNetwork(int cardID, string placeName)
+    {
+        Transform placeTransform;
+        switch (placeName)
+        {
+            case "playerField":
+                placeTransform = playerField;
+                break;
+            case "enemyField":
+                placeTransform = enemyField;
+                break;
+            default:
+                Debug.LogError("不明な場所: " + placeName);
+                return;
+        }
+
+        CreateCard(cardID, placeTransform);
+    }
+
+    public void SummonCard(int cardID)
+    {
+        // ローカルプレイヤーのフィールドにカードを召喚
+        CreateCard(cardID, playerField);
+
+        // リモートプレイヤーのフィールドにもカードを表示するためにRPCを呼び出す
+        photonView.RPC("CreateCardNetwork", RpcTarget.Others, cardID, "enemyField");
+    }
+
 
     public void DrawCard(Transform hand) // カードを引く
     {
