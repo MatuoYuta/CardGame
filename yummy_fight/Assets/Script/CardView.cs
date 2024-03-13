@@ -9,10 +9,12 @@ public class CardView : MonoBehaviour
     [SerializeField] TextMeshProUGUI powerText;
     [SerializeField] Image iconImage;
     public int cardID;
+    public int power;
 
     public void Show(CardModel cardModel) // cardModelÇÃÉfÅ[É^éÊìæÇ∆îΩâf
     {
-        powerText.GetComponent<TextMeshProUGUI>().text = cardModel.power.ToString();
+        power = cardModel.power;
+        powerText.GetComponent<TextMeshProUGUI>().text = power.ToString();
         iconImage.sprite = cardModel.icon;
     }
 }

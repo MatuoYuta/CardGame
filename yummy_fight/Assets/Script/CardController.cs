@@ -6,14 +6,25 @@ public class CardController : MonoBehaviour
 {
     public CardView view; // カードの見た目の処理
     public CardModel model; // カードのデータを処理
-    public bool hirou;
+    public bool hirou,attack,block;
     GameDirecter _directer;
+    public GameObject attack_button, blockbutton;
 
     private void Awake()
     {
         view = GetComponent<CardView>();
         hirou = false;
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        attack_button = transform.Find("Attack").gameObject;
+        blockbutton = transform.Find("Block").gameObject;
+        blockbutton.SetActive(false);
+    }
+    void Update()
+    {
+        if (_directer.enemyattack)
+        {
+            enemyattack();
+        }
     }
 
     public void Init(int cardID) // カードを生成した時に呼ばれる関数
@@ -42,8 +53,8 @@ public class CardController : MonoBehaviour
         this.transform.Rotate(new Vector3(0f, 0f, -90f));
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
         hirou = true;
-
-        _directer.enemyattack = true;
+        attack = true;
+        Block();
     }
 
     public void enemyblock()
@@ -51,9 +62,16 @@ public class CardController : MonoBehaviour
         // カードを90度回転させる
         this.transform.Rotate(new Vector3(0f, 0f, -90f));
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
+        block = true;
         hirou = true;
+    }
 
-        _directer.enemyattack = true;
+    public void Block()
+    {
+        for(int i = 0;i<_directer.playerFieldCardList.Length;i++)
+        {
+            _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(true);
+        }
     }
 
     public void kaihuku()

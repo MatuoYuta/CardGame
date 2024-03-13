@@ -63,10 +63,14 @@ public class CPU : MonoBehaviour
     {
         switch(turn)
         {
+            case 1:
+                _directer.Change_End();
+                break;
+                
             case 2:
                 for(int i=0;i<_directer.EnemyFieldCardList.Length;i++)
                 {
-                    if(_directer.EnemyFieldCardList[i].gameObject.name == "egumahu")
+                    if(_directer.EnemyFieldCardList[i].gameObject.GetComponent<CardView>().cardID == 102)
                     {
                         _directer.EnemyFieldCardList[i].enemyattack();
                     }

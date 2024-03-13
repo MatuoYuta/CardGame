@@ -27,7 +27,7 @@ public class GameDirecter : MonoBehaviour
 
     public ObjectHighlight[] SearchImageList;//サーチするカード
 
-    public GameObject p_text, e_text;
+    public GameObject p_text, e_text,life_de_ukeru;
     public int turn;
     public bool main, battle;
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
@@ -54,6 +54,7 @@ public class GameDirecter : MonoBehaviour
     void Start()
     {
         phase = Phase.INIT;
+        life_de_ukeru.SetActive(false);
         Movable = false;
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
         cpu_script = this.gameObject.GetComponent<CPU>();
@@ -234,6 +235,7 @@ public class GameDirecter : MonoBehaviour
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
             main = true;
             battle = false;
+            cpu_script.battle(turn);
         }
     }
 
@@ -277,20 +279,35 @@ public class GameDirecter : MonoBehaviour
         }
     }
 
+    IEnumerator Destroy_me(GameObject me)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(me);
+    }
+
     public void Battle(GameObject attack,GameObject block)
     {
-        if (attack.GetComponent<CardModel>().power > block.GetComponent<CardModel>().power)
+        int attack_power = attack.GetComponent<CardView>().power;
+        int block_power = block.GetComponent<CardView>().power;
+        Debug.Log("バトル開始");
+        Debug.Log("アタックパワー" + attack_power);
+        Debug.Log("ブロックパワー" + block.GetComponent<CardView>().power);
+        if (attack_power > block_power)
         {
-            Destroy(block);
+            StartCoroutine(Destroy_me(block));
+            //Destroy(block);
         }
-        else if(attack.GetComponent<CardModel>().power > block.GetComponent<CardModel>().power)
+        else if(attack_power > block_power)
         {
-            Destroy(attack);
+            StartCoroutine(Destroy_me(attack));
+            //Destroy(attack);
         }
         else
         {
-            Destroy(attack);
-            Destroy(block);
+            StartCoroutine(Destroy_me(attack));
+            StartCoroutine(Destroy_me(block));
+            //Destroy(attack);
+            //Destroy(block);
         }
 
     }

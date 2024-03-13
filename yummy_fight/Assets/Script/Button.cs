@@ -9,7 +9,10 @@ public class Button : MonoBehaviour
     private GameDirecter _directer;
     [SerializeField]
     private GameManager _manager;
+    [SerializeField]
+    private CardController _controller;
     public GameObject hand;
+    public GameObject card;
     internal object onClick;
 
     public int search_id;
@@ -20,6 +23,8 @@ public class Button : MonoBehaviour
     void Start()
     {
         hand = GameObject.Find("Player_hand");
+        _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        card = transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -36,6 +41,21 @@ public class Button : MonoBehaviour
     public void lifebreak()
     {
         _directer.player_life--;
+    }
+
+    public void Block()
+    {
+        _controller.RotateCard();
+        this.gameObject.SetActive(false);
+        for(int i =0;i<_directer.EnemyFieldCardList.Length;i++)
+        {
+            if(_directer.EnemyFieldCardList[i].gameObject.GetComponent<CardController>().attack)
+            {
+                Debug.Log("アタッカー："+_directer.EnemyFieldCardList[i].gameObject);
+                Debug.Log("ブロッカー：" + transform.parent.gameObject);
+                _directer.Battle(_directer.EnemyFieldCardList[i].gameObject, card);
+            }
+        }
     }
 
     public void Select()
