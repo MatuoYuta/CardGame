@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 5
   name: cheese
   power: 1000
-  icon: {fileID: 21300000, guid: fdb2243da13ab924e9ad37b4c1c24b48, type: 3}
+  icon: {fileID: 21300000, guid: 995ba4016beb3d944950bfaf0332e13c, type: 3}

@@ -112,6 +112,21 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         }
         else if (action && cardParent == GameObject.Find("Action_Space").transform && before_parent == GameObject.Find("Player_hand").transform && directer_script.Summonable)
         {
+            if(this.gameObject.GetComponent<CardView>().cardID == 203)
+            {
+                this.transform.position = prevPos;
+                cardParent = before_parent;
+                transform.SetParent(before_parent);
+                GetComponent<CanvasGroup>().blocksRaycasts = true; // blocksRaycasts‚ðƒIƒ“‚É‚·‚é
+            }
+            else
+            {
+                transform.SetParent(cardParent);
+                    StartCoroutine("Destroy");
+            }
+        }
+        else if(this.gameObject.GetComponent<CardView>().cardID == 203 && directer_script.Zekkouhyoujun)
+        {
             transform.SetParent(cardParent);
             StartCoroutine("Destroy");
         }

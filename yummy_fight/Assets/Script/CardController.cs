@@ -54,23 +54,37 @@ public class CardController : MonoBehaviour
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
         hirou = true;
         attack = true;
-        Block();
+        _directer.Zekkouhyoujun = true;
+        Player_Block();
+        _directer.life_de_ukeru.SetActive(true);
     }
 
     public void enemyblock()
     {
+        Debug.Log("CPU：ブロックします");
         // カードを90度回転させる
         this.transform.Rotate(new Vector3(0f, 0f, -90f));
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
         block = true;
         hirou = true;
+
+        for(int i =0;i<_directer.playerFieldCardList.Length;i++)
+        {
+            if(_directer.playerFieldCardList[i].attack)
+            {
+                _directer.Battle(_directer.playerFieldCardList[i].gameObject,this.gameObject);
+            }
+        }
     }
 
-    public void Block()
+    public void Player_Block()
     {
         for(int i = 0;i<_directer.playerFieldCardList.Length;i++)
         {
-            _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(true);
+            if(!_directer.playerFieldCardList[i].hirou)
+            {
+                _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(true);
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class GameDirecter : MonoBehaviour
     public bool Movable;//動けるか(スタンバイフェーズ)
     public bool Summonable;//召喚できるか(メインフェーズ)
     public bool Attackable;//攻撃できるか（バトルフェーズ）
+    public bool Zekkouhyoujun;//箸休めが発動できるか
     public GameObject phase_text;//どのフェーズかを表示する
 
     public GameManager manage_script;
@@ -31,7 +32,7 @@ public class GameDirecter : MonoBehaviour
     public int turn;
     public bool main, battle;
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
-    public bool enemyattack;
+    public bool enemyattack,playerattack;
 
     public enum Phase//フェーズ管理用列挙型変数
     {
@@ -135,6 +136,13 @@ public class GameDirecter : MonoBehaviour
             playerFieldCardList[i].kaihuku();
         }
         phase = Phase.STANDBY;
+        manage_script.Buns = false;
+        manage_script.Patty = false;
+        manage_script.Muffin = false;
+        manage_script.Pickles = false;
+        manage_script.Foodraw = false;
+        manage_script.Plan = false;
+        manage_script.Stop = false;
     }
     void StandbyPhase()
     {
@@ -237,6 +245,11 @@ public class GameDirecter : MonoBehaviour
             battle = false;
             cpu_script.battle(turn);
         }
+
+        if (manage_script.Stop)
+        {
+            phase = Phase.Enemy_END;
+        }
     }
 
     void Enemy_EndPhase()
@@ -291,24 +304,26 @@ public class GameDirecter : MonoBehaviour
         int block_power = block.GetComponent<CardView>().power;
         Debug.Log("バトル開始");
         Debug.Log("アタックパワー" + attack_power);
-        Debug.Log("ブロックパワー" + block.GetComponent<CardView>().power);
+        Debug.Log("ブロックパワー" + block_power);
         if (attack_power > block_power)
         {
+            Debug.Log("アタッカーの勝ち");
             StartCoroutine(Destroy_me(block));
-            //Destroy(block);
         }
         else if(attack_power > block_power)
         {
+            Debug.Log("ブロッカーの勝ち");
             StartCoroutine(Destroy_me(attack));
-            //Destroy(attack);
         }
-        else
+        else if(attack_power == block_power)
         {
+            Debug.Log("引き分け");
             StartCoroutine(Destroy_me(attack));
             StartCoroutine(Destroy_me(block));
-            //Destroy(attack);
-            //Destroy(block);
         }
-
+        attack.GetComponent<CardController>().attack = false;
+        block.GetComponent<CardController>().block = false;
+        playerattack = false;
+        enemyattack = false;
     }
 }

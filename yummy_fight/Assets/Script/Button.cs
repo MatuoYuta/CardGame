@@ -41,6 +41,8 @@ public class Button : MonoBehaviour
     public void lifebreak()
     {
         _directer.player_life--;
+        _directer.playerattack = false;
+        _directer.enemyattack = false;
     }
 
     public void Block()

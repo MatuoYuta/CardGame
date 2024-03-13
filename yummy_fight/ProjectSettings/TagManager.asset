@@ -8,6 +8,9 @@ TagManager:
   - Image
   - kakudai
   - Enemy
+  - TAZOFX
+  - Attack
+  - Block
   layers:
   - Default
   - TransparentFX

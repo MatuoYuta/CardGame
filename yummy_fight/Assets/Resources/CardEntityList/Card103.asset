@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 103
   name: torebaga
   power: 6000
-  icon: {fileID: 21300000, guid: 4cff16ec605567045aa66832725afc80, type: 3}
+  icon: {fileID: 21300000, guid: d5101f11573eca34588363ad0ef9ab5e, type: 3}

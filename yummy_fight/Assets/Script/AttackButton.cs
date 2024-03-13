@@ -23,6 +23,7 @@ public class AttackButton : MonoBehaviour
     public void OnAttackButtonClick()
     {
         Debug.Log("相手に攻撃した");
+        cardObject.GetComponent<CardController>().attack = true;
         _controller.RotateCard(); // カードを横向きにするメソッドを呼び出す
         AttackPlayer(); // プレイヤーに攻撃するメソッドを呼び出す
         // ボタンを非表示にする
@@ -31,7 +32,13 @@ public class AttackButton : MonoBehaviour
 
     void AttackPlayer()
     {
-        _directer.enemy_life--;
+        _directer.playerattack = true;
+        if(_directer.EnemyFieldCardList.Length == 0)
+        {
+            cardObject.GetComponent<CardController>().attack = false;
+            _directer.playerattack = false;
+            _directer.enemy_life--;
+        }
 
         //// プレイヤーオブジェクトをタグで検索して取得
         //GameObject player = GameObject.FindGameObjectWithTag("Player");

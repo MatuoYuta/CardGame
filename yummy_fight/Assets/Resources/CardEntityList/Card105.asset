@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 105
   name: harf
   power: 5000
-  icon: {fileID: 21300000, guid: 4bbf680a960e9c742a81ca1cd9373d0c, type: 3}
+  icon: {fileID: 21300000, guid: 006885a896a33a94eae4346935ac0aa5, type: 3}

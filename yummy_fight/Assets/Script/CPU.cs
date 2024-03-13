@@ -7,6 +7,7 @@ public class CPU : MonoBehaviour
     // Start is called before the first frame update
     public GameDirecter _directer;
     public GameManager _manager;
+    int max = 0;
     void Start()
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
@@ -16,7 +17,30 @@ public class CPU : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(_directer.playerattack)
+        {
+            Debug.Log("プレイヤーの攻撃を検知");
+            if(_directer.EnemyFieldCardList.Length > 0)
+            {
+                for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+                {
+                    if (max < _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
+                    {
+                        max = _directer.EnemyFieldCardList[i].GetComponent<CardView>().power;
+                    }
+                }
+
+                for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+                {
+                    if (max == _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
+                    {
+                        _directer.EnemyFieldCardList[i].enemyblock();
+                        _directer.playerattack = false;
+
+                    }
+                }
+            }          
+        }
     }
 
     public void Standby()

@@ -49,6 +49,13 @@ public class Action_Card_Ability : MonoBehaviour
                             Plan();
                         }
                         break;
+                    case 203:
+                        if(!manage.Stop)
+                        {
+                            manage.Stop = true;
+                            directer.enemyattack = false;
+                        }
+                        break;
                 }
             }
         }

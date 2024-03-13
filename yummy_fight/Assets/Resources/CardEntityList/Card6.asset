@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 6
   name: lettuce
   power: 1000
-  icon: {fileID: 21300000, guid: a5415b0ccdb20a54986edeeeacafdc54, type: 3}
+  icon: {fileID: 21300000, guid: 51dfe2230b3b0e2449186ef27d63e459, type: 3}
