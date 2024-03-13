@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         // シーンの自動同期を有効にする
         PhotonNetwork.AutomaticallySyncScene = true;
         StartGame();
+        // シーン同期状態のチェックを開始
+        StartCoroutine(CheckSceneSyncStatus());
     }
 
     void StartGame() // 初期値の設定 
@@ -39,6 +41,14 @@ public class GameManager : MonoBehaviour
         
         // ターンの決定
         TurnCalc();
+    }
+    IEnumerator CheckSceneSyncStatus()
+    {
+        while (true)
+        {
+            Debug.Log("シーンが同期されている場合は同期されています: " + PhotonNetwork.AutomaticallySyncScene);
+            yield return new WaitForSeconds(5f);
+        }
     }
 
     public void CreateCard(int cardID, Transform place)
