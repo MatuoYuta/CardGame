@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // ƒV[ƒ“‚Ì©“®“¯Šú‚ğ—LŒø‚É‚·‚é
+        PhotonNetwork.AutomaticallySyncScene = true;
         StartGame();
     }
 
