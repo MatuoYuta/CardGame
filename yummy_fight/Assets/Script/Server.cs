@@ -16,9 +16,10 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
     public GameObject LobbyPanel;
     public GameObject Coin;
     public GameObject Canvas;
+    public GameObject StartPanel;
 
     private const int MaxPlayerPerRoom = 2;
-
+    public bool OnServer;
 
     // Start is called before the first frame update
     private void Awake()
@@ -29,10 +30,12 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
     void Start()
     {
         statusText.enabled = false;
-        LoginPanel.SetActive(true);
+        StartPanel.SetActive(true);
+        LoginPanel.SetActive(false);
         ConnectingPanel.SetActive(false);
         LobbyPanel.SetActive(false);
         Coin.SetActive(false);
+        OnServer = false;
     }
 
     private void OnGUI()
@@ -114,14 +117,17 @@ public class Server : MonoBehaviourPunCallbacks,IInRoomCallbacks
             }
         }
     }
-    /*void CreateAndJoinRoom()
+    public void CPUButton()
     {
-        //自動で作られるルームの設定
-        string roomName = "Room" + Random.Range(0, 10000); //ルーム名
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-        roomOptions.MaxPlayers = 2;　//ルームの定員
-        PhotonNetwork.CreateRoom(roomName, roomOptions);
-    }*/
+        StartPanel.SetActive(false);
+        Coin.SetActive(true);
+        OnServer = false;
+    }
+
+    public void PvPButton()
+    {
+        StartPanel.SetActive(false);
+        LoginPanel.SetActive(true);
+        OnServer = true;
+    }
 }
