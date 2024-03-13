@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -8,6 +9,7 @@ using Photon.Realtime;
 public class CoinT : MonoBehaviourPunCallbacks
 {
     private Animator CoinAnim;
+    public Server Server;
 
     public int Coin;
 
@@ -15,6 +17,7 @@ public class CoinT : MonoBehaviourPunCallbacks
     void Start()
     {
         CoinAnim = GetComponent<Animator>();
+        Server = GameObject.Find("Server").GetComponent<Server>();
     }
 
     // Update is called once per frame
@@ -25,17 +28,34 @@ public class CoinT : MonoBehaviourPunCallbacks
 
     void CoinToss()
     {
-        if (Input.GetKeyDown(KeyCode.Space)Å@&& PhotonNetwork.IsMasterClient)
+        if (Server.OnServer == true)
         {
-            Coin = Random.Range(0, 2);
-            Debug.Log(Coin + "Ç≈Ç∑");
-            CoinAnim.SetInteger("CoinCheck",Coin);
+            if (Input.GetKeyDown(KeyCode.Space) && PhotonNetwork.IsMasterClient)
+            {
+                Coin = Random.Range(0, 2);
+                Debug.Log(Coin + "Ç≈Ç∑");
+                CoinAnim.SetInteger("CoinCheck", Coin);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Coin = 0;
+                CoinAnim.SetInteger("CoinCheck", Coin);
+            }
         }
     }
 
     public void OnAnimationEnd()
     {
-        PhotonNetwork.LoadLevel("SampleScene");
-
+        if(Server.OnServer == true)
+        {
+            PhotonNetwork.LoadLevel("SampleScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }
