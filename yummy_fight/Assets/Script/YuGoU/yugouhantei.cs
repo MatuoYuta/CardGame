@@ -130,10 +130,11 @@ public class yugouhantei : MonoBehaviour
                                             if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
                                             {
                                                 Destroy(directer.playerkitchenCardList[j].gameObject);
-                                                harf = true;
+                                                harf = false;
                                                 popup.SetActive(false);
                                                 yugou = 0;
                                                 break;
+                                                
                                             }
                                         }
                                         else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 && bans == false)
@@ -167,6 +168,7 @@ public class yugouhantei : MonoBehaviour
                                         Destroy(directer.playerkitchenCardList[a].gameObject);
                                         popup.SetActive(false);
                                         yugou = 0;
+                                        harf = false;
                                         break;
                                     }
                                 }
