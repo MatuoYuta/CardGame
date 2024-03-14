@@ -46,17 +46,30 @@ public class toreba : MonoBehaviour, IPointerClickHandler
                         {
                             for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                             {
-                                if(directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
-                                {
-                                    harf.harf = true;
-                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                                    aiue = true;
-                                }
-                                else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
-                                {
-                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                                    aiue = true;
-                                }
+                                    if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
+                                    {
+                                        if(directer.phase == GameDirecter.Phase.MAIN)
+                                        {
+                                            harf.harf = true;
+                                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                            aiue = true;
+                                        }
+                                        else
+                                        {
+                                        popup.SetActive(false);
+                                        aiue = false;
+                                        }
+
+                                    }
+                                        else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1)
+                                        {
+                                        if(directer.phase == GameDirecter.Phase.MAIN)
+                                        {
+                                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                            aiue = true;
+                                        }
+
+                                    }
                             }
                         }
                     }

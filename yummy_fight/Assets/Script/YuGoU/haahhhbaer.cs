@@ -46,10 +46,19 @@ public class haahhhbaer : MonoBehaviour, IPointerClickHandler
                     {
                         if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
                         {
+                            if(directer.phase == GameDirecter.Phase.MAIN)
+                            {
+                                gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                click = true;
+                                aiue = true;
+                            }
+                            else
+                            {
+                                popup.SetActive(false);
+                                aiue = false;
 
-                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                            click = true;
-                            aiue = true;
+                            }
+
 
                         }
                     }

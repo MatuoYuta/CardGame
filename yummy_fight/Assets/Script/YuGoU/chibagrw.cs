@@ -44,10 +44,19 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
                     {
                         if(directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 105)
                         {
-                            harf.harf = true;
-                            gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                            click = true;
-                            aiue = true;
+                            if(directer.phase == GameDirecter.Phase.MAIN)  //MAINフェーズでしか融合できないようにする
+                            {
+                                harf.harf = true;
+                                gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                click = true;
+                                aiue = true;
+                            }
+                            else
+                            {
+                                popup.SetActive(false);
+                                aiue = false;
+                            }
+
                         }
                         else if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                         {
@@ -55,9 +64,18 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
                             {
                                 if(directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3)
                                 {
-                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                                    click = true;
-                                    aiue = true;
+                                    if(directer.phase == GameDirecter.Phase.MAIN)  //MAINフェーズでしか融合できないようにする
+                                    {
+                                        gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                        click = true;
+                                        aiue = true;
+                                    }
+                                    else
+                                    {
+                                        popup.SetActive(false);
+                                        aiue = false;
+                                    }
+
                                 }
                             }
 

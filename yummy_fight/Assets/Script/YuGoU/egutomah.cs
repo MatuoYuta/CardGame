@@ -85,8 +85,17 @@ public class egutomah : MonoBehaviour, IPointerClickHandler
         {
             if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 7)
             {
-                gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                aiue = true;
+                if(directer.phase == GameDirecter.Phase.MAIN)
+                {
+                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    aiue = true;
+                }
+                else
+                {
+                    popup.SetActive(false);
+                    aiue = false;
+                }
+
             }
         }
     }

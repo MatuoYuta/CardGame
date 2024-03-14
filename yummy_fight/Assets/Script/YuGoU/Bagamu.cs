@@ -96,8 +96,16 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                         {
                             if (directer.playerkitchenCardList[m].gameObject.GetComponent<CardView>().cardID == 8)
                             {
-                                gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                                aiue = true;
+                                if(directer.phase == GameDirecter.Phase.MAIN)
+                                {
+                                    gameObject.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                                    aiue = true;
+                                }
+                                else
+                                {
+                                    popup.SetActive(false);
+                                    aiue = false;
+                                }
                             }
                         }
                     }
