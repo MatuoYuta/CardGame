@@ -35,6 +35,7 @@ public class GameDirecter : MonoBehaviour
     public bool enemyattack,playerattack;
 
     public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
+    public Animator phaseAnimator;
 
     public enum Phase//フェーズ管理用列挙型変数
     {
