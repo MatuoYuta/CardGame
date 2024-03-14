@@ -43,6 +43,7 @@ public class Button : MonoBehaviour
         _directer.player_life--;
         _directer.playerattack = false;
         _directer.enemyattack = false;
+        this.gameObject.SetActive(false);
     }
 
     public void Block()
@@ -70,6 +71,7 @@ public class Button : MonoBehaviour
                 {
                     _directer.playerFieldCardList[i].GetComponent<CardView>().power += 3000;
                     panel_anim.SetTrigger("Down");
+                    _manager.chibaga = false;
                     for (int t = 0; t < _directer.SearchImageList.Length; t++)
                     {
                         Destroy(_directer.SearchImageList[t].gameObject);
