@@ -321,6 +321,21 @@ public class GameDirecter : MonoBehaviour
         }
     }
 
+    public void ChangePhase(Phase newPhase)
+    {
+        phase = newPhase;
+        UpdatePhaseText(); // フェーズテキストの更新
+        TriggerPhaseAnimation(); // フェーズアニメーションのトリガー
+    }
+
+    void TriggerPhaseAnimation()
+{
+    // アニメーションのトリガー名を 'Phase' に合わせてトリガーする
+    phaseAnimator.SetTrigger("Phase");
+}
+
+
+
     void UpdatePhaseText()
     {
         Color enemyPhaseColor = Color.red;

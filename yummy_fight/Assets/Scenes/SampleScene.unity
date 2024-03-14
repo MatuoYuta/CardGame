@@ -4294,7 +4294,7 @@ MonoBehaviour:
   enemyattack: 0
   playerattack: 0
   phaseText: {fileID: 1928910569}
-  phaseAnimator: {fileID: 0}
+  phaseAnimator: {fileID: 1928910570}
   phase: 0
 --- !u!4 &1632766651
 Transform:
