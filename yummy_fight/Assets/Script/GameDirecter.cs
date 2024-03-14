@@ -34,6 +34,8 @@ public class GameDirecter : MonoBehaviour
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
     public bool enemyattack,playerattack;
 
+    public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
+
     public enum Phase//フェーズ管理用列挙型変数
     {
         INIT,
@@ -123,12 +125,16 @@ public class GameDirecter : MonoBehaviour
     void InitPhase()
     {
         Debug.Log("InitPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer+"\nInit";
         phase = Phase.DRAW;
     }
     void DrawPhase()
     {
         Debug.Log("DrawPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nDraw";
         currentPlayer.Draw();
         for(int i =0;i<playerFieldCardList.Length;i++)
@@ -147,6 +153,8 @@ public class GameDirecter : MonoBehaviour
     void StandbyPhase()
     {
         Debug.Log("StandbyPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nStandby";
         Movable = true;
 
@@ -169,12 +177,16 @@ public class GameDirecter : MonoBehaviour
     void MainPhase()
     {
         Debug.Log("MainPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         Summonable = true;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nMain";
     }
     void BattlePhase()
     {
         Debug.Log("BattlePhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         Movable = false;
         Summonable = false;
         Attackable = true;
@@ -189,6 +201,8 @@ public class GameDirecter : MonoBehaviour
     void EndPhase()
     {
         Debug.Log("EndPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         Attackable = false;
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nEnd";
         //if (currentPlayer == playerList[0])
@@ -211,6 +225,8 @@ public class GameDirecter : MonoBehaviour
     void Enemy_DrawPhase()
     {
         Debug.Log("Enemy_DrawPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nDraw";
         currentPlayer.EnemyDraw();
         phase = Phase.Enemy_STANDBY;
@@ -219,6 +235,8 @@ public class GameDirecter : MonoBehaviour
     void Enemy_StandbyPhase()
     {
         Debug.Log("Enemy_StandbyPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nStandby";
         phase = Phase.Enemy_MAIN;
     }
@@ -228,6 +246,8 @@ public class GameDirecter : MonoBehaviour
         if(main)
         {
             Debug.Log("Enemy_MainPhase");
+            // フェーズ変更に伴うテキストの更新
+            UpdatePhaseText();
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nMain";
             cpu_script.Main(turn);
             main = false;
@@ -240,6 +260,8 @@ public class GameDirecter : MonoBehaviour
         if(battle)
         {
             Debug.Log("Enemy_BattlePhase");
+            // フェーズ変更に伴うテキストの更新
+            UpdatePhaseText();
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nBattle";
             main = true;
             battle = false;
@@ -255,6 +277,8 @@ public class GameDirecter : MonoBehaviour
     void Enemy_EndPhase()
     {
         Debug.Log("Enemy_EndPhase");
+        // フェーズ変更に伴うテキストの更新
+        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nEnd";
         phase = Phase.DRAW;
         battle = true;
@@ -288,6 +312,48 @@ public class GameDirecter : MonoBehaviour
                 break;
             case Phase.BATTLE://バトルフェーズ
                 phase = Phase.END;
+                break;
+        }
+    }
+
+    void UpdatePhaseText()
+    {
+        switch (phase)
+        {
+  
+            case Phase.DRAW:
+                phaseText.text = "ドローフェーズ";
+                break;
+            case Phase.STANDBY:
+                phaseText.text = "スタンバイフェーズ";
+                break;
+            case Phase.MAIN:
+                phaseText.text = "メインフェーズ";
+                break;
+            case Phase.BATTLE:
+                phaseText.text = "バトルフェーズ";
+                break;
+            case Phase.END:
+                phaseText.text = "エンドフェーズ";
+                break;
+           
+            case Phase.Enemy_DRAW:
+                phaseText.text = "敵 ドローフェーズ";
+                break;
+            case Phase.Enemy_STANDBY:
+                phaseText.text = "敵 スタンバイフェーズ";
+                break;
+            case Phase.Enemy_MAIN:
+                phaseText.text = "敵 メインフェーズ";
+                break;
+            case Phase.Enemy_BATTLE:
+                phaseText.text = "敵 バトルフェーズ";
+                break;
+            case Phase.Enemy_END:
+                phaseText.text = "敵 エンドフェーズ";
+                break;
+            default:
+                phaseText.text = "未定義のフェーズ";
                 break;
         }
     }
