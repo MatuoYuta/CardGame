@@ -11,11 +11,11 @@ public class CardController : MonoBehaviour
     GameDirecter _directer;
     public GameObject attack_button, blockbutton;
     public GameObject power_text;
-    int default_power;
+    public int default_power;
 
     private void Awake()
     {
-        view = GetComponent<CardView>();
+        view = this.gameObject.GetComponent<CardView>();
         default_power = view.power;
         hirou = false;
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
@@ -72,18 +72,21 @@ public class CardController : MonoBehaviour
 
     public void enemyblock()
     {
-        Debug.Log("CPU：ブロックします");
-        // カードを90度回転させる
-        this.transform.Rotate(new Vector3(0f, 0f, -90f));
-        this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
-        block = true;
-        hirou = true;
-
-        for(int i =0;i<_directer.playerFieldCardList.Length;i++)
+        if(!hirou)
         {
-            if(_directer.playerFieldCardList[i].attack)
+            Debug.Log("CPU：ブロックします");
+            // カードを90度回転させる
+            this.transform.Rotate(new Vector3(0f, 0f, -90f));
+            this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
+            block = true;
+            hirou = true;
+
+            for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
             {
-                _directer.Battle(_directer.playerFieldCardList[i].gameObject,this.gameObject);
+                if (_directer.playerFieldCardList[i].attack)
+                {
+                    _directer.Battle(_directer.playerFieldCardList[i].gameObject, this.gameObject);
+                }
             }
         }
     }
