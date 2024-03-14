@@ -14,6 +14,7 @@ public class CardView : MonoBehaviour
     public void Show(CardModel cardModel) // cardModel‚Ìƒf[ƒ^æ“¾‚Æ”½‰f
     {
         power = cardModel.power;
+        this.gameObject.GetComponent<CardController>().default_power = power;
         powerText.GetComponent<TextMeshProUGUI>().text = power.ToString();
         iconImage.sprite = cardModel.icon;
     }
