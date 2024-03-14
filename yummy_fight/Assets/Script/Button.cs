@@ -72,6 +72,7 @@ public class Button : MonoBehaviour
                     _directer.playerFieldCardList[i].GetComponent<CardView>().power += 3000;
                     panel_anim.SetTrigger("Down");
                     _manager.chibaga = false;
+                    _directer.Koukahatudou = false;
                     for (int t = 0; t < _directer.SearchImageList.Length; t++)
                     {
                         Destroy(_directer.SearchImageList[t].gameObject);

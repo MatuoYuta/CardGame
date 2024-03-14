@@ -13,7 +13,7 @@ public class Action_Card_Ability : MonoBehaviour
     public GameObject scroll_view;
     public Transform hand;
     public CardController[] Search_Card;
-    public Animator panel_anim;
+    public Animator panel_anim, kouka;
 
     private int cnt = 0;
     // Start is called before the first frame update
@@ -40,18 +40,22 @@ public class Action_Card_Ability : MonoBehaviour
                     case 201:
                         if (!manage.Foodraw)
                         {
-                            Foodraw();
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Foodraw");
                         }
                         break;
                     case 202:
                         if(!manage.Plan)
                         {
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Plan");
                             Plan();
                         }
                         break;
                     case 203:
                         if(!manage.Stop)
                         {
+                            kouka.SetTrigger("Kouka");
                             manage.Stop = true;
                             directer.enemyattack = false;
                         }
@@ -60,16 +64,22 @@ public class Action_Card_Ability : MonoBehaviour
             }
         }
     }
-    public void Foodraw()
+    public IEnumerator Foodraw()
     {
-        manage.DrawCard(hand.transform);
-        manage.DrawCard(hand.transform);
         Use_Avility = true;
         manage.Foodraw = true;
+        yield return new WaitForSeconds(0);
+        manage.DrawCard(hand.transform);
+        manage.DrawCard(hand.transform);
+        this.gameObject.GetComponent<CardController>().Destroy_me();
+
     }
 
-    public void Plan()
+    public IEnumerator Plan()
     {
+        Use_Avility = true;
+        manage.Plan = true;
+        yield return new WaitForSeconds(0);
         for (int i = 0; i < directer.SearchImageList.Length; i++)
         {
             Destroy(directer.SearchImageList[i].gameObject);
@@ -88,7 +98,6 @@ public class Action_Card_Ability : MonoBehaviour
             cnt = 0;
         }
 
-        Use_Avility = true;
-        manage.Plan = true;
+
     }
 }

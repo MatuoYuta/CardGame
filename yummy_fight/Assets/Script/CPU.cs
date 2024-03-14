@@ -20,26 +20,35 @@ public class CPU : MonoBehaviour
         if(_directer.playerattack)
         {
             Debug.Log("プレイヤーの攻撃を検知");
-            if(_directer.EnemyFieldCardList.Length > 0)
+            if(!_directer.Koukahatudou)
             {
-                for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
-                {
-                    if (max < _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
-                    {
-                        max = _directer.EnemyFieldCardList[i].GetComponent<CardView>().power;
-                    }
-                }
+                StartCoroutine("Block");
+            }
+        }
+    }
 
-                for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+    public IEnumerator Block()
+    {
+        yield return new WaitForSeconds(0);
+        if (_directer.EnemyFieldCardList.Length > 0)
+        {
+            for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+            {
+                if (max < _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
                 {
-                    if (max == _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
-                    {
-                        _directer.EnemyFieldCardList[i].enemyblock();
-                        _directer.playerattack = false;
-
-                    }
+                    max = _directer.EnemyFieldCardList[i].GetComponent<CardView>().power;
                 }
-            }          
+            }
+
+            for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+            {
+                if (max == _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
+                {
+                    _directer.EnemyFieldCardList[i].enemyblock();
+                    _directer.playerattack = false;
+
+                }
+            }
         }
     }
 

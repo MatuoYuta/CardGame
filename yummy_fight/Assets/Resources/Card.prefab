@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: -9188519922151179092}
   - component: {fileID: 1352933032644135599}
   - component: {fileID: 1830813667404738968}
+  - component: {fileID: 6439613076841187648}
   m_Layer: 5
   m_Name: Card
   m_TagString: Card
@@ -404,7 +405,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 2, z: 1.3}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7327995334382269744}
   - {fileID: 7413837917325769500}
@@ -507,6 +508,7 @@ MonoBehaviour:
   attack_button: {fileID: 0}
   blockbutton: {fileID: 0}
   power_text: {fileID: 2663392171763320415}
+  default_power: 0
 --- !u!114 &1474079739549371617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +605,7 @@ MonoBehaviour:
   _manage: {fileID: 0}
   scroll_view: {fileID: 0}
   panel_anim: {fileID: 0}
+  kouka: {fileID: 6439613076841187648}
 --- !u!114 &1730855086783156771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +626,7 @@ MonoBehaviour:
   scroll_view: {fileID: 0}
   Search_Card: []
   panel_anim: {fileID: 0}
+  kouka: {fileID: 6439613076841187648}
 --- !u!114 &1899299876239268584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +688,28 @@ MonoBehaviour:
   hand: {fileID: 0}
   Search_Card: []
   panel_anim: {fileID: 0}
+  kouka: {fileID: 6439613076841187648}
+--- !u!95 &6439613076841187648
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2663392173092283378}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c493799b29756004cb4a9595fc8fc011, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3920738932702367564
 GameObject:
   m_ObjectHideFlags: 0
