@@ -322,35 +322,35 @@ public class GameDirecter : MonoBehaviour
         {
   
             case Phase.DRAW:
-                phaseText.text = "ドローフェーズ";
+                phaseText.text = "Draw Phase";
                 break;
             case Phase.STANDBY:
-                phaseText.text = "スタンバイフェーズ";
+                phaseText.text = "Standby Phase";
                 break;
             case Phase.MAIN:
-                phaseText.text = "メインフェーズ";
+                phaseText.text = "Main Phase";
                 break;
             case Phase.BATTLE:
-                phaseText.text = "バトルフェーズ";
+                phaseText.text = "Battle Phase";
                 break;
             case Phase.END:
-                phaseText.text = "エンドフェーズ";
+                phaseText.text = "End Phase";
                 break;
            
             case Phase.Enemy_DRAW:
-                phaseText.text = "敵 ドローフェーズ";
+                phaseText.text = "Draw Phase";
                 break;
             case Phase.Enemy_STANDBY:
-                phaseText.text = "敵 スタンバイフェーズ";
+                phaseText.text = " Standby Phase";
                 break;
             case Phase.Enemy_MAIN:
-                phaseText.text = "敵 メインフェーズ";
+                phaseText.text = " Main Phase";
                 break;
             case Phase.Enemy_BATTLE:
-                phaseText.text = "敵 バトルフェーズ";
+                phaseText.text = " Battle Phase";
                 break;
             case Phase.Enemy_END:
-                phaseText.text = "敵 エンドフェーズ";
+                phaseText.text = "End Phase";
                 break;
             default:
                 phaseText.text = "未定義のフェーズ";
