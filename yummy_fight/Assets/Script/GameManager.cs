@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
     [SerializeField] private HandCardsInfoSync handCardsInfoSync;
-    public Transform playerHand, playerField,playerKitchen, enemyHand, enemyField,enemyKitchen,searchArea;
+    public Transform playerHand, playerField,playerKitchen, enemyHand,enemyField,enemyKitchen,searchArea,bagamute,egumahu,torabaga,chibaga;
     public GameObject select_panel;
     private PhotonView photonView;
 

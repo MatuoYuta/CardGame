@@ -1649,8 +1649,14 @@ MonoBehaviour:
   - {fileID: 4061000368390287725, guid: beb7654c491eb22439b255a3953b77c5, type: 3}
   - {fileID: 1498085727856387117, guid: 453b7e59364f1994fa57365a96fd73c6, type: 3}
   - {fileID: 1498085727856387117, guid: ef9354b6d51c0c24a8e1592c50a3321d, type: 3}
+  - {fileID: 4061000368390287725, guid: 6ea532af5b885734f94150962b945c74, type: 3}
+  - {fileID: 4061000368390287725, guid: de612f9b57daad844afc40d9d07c2f78, type: 3}
+  - {fileID: 4061000368390287725, guid: 6df18cb74e45a3b4caafead742b0d779, type: 3}
+  - {fileID: 4061000368390287725, guid: c7f9c433372c8274f8a83cfa01955b28, type: 3}
+  - {fileID: 4061000368390287725, guid: a0396871a0a8abd4d8aae25cbecd08d3, type: 3}
   scroll: {fileID: 1599501468}
   manage: {fileID: 0}
+  _directer: {fileID: 0}
 --- !u!1 &526761896
 GameObject:
   m_ObjectHideFlags: 0
@@ -4092,7 +4098,7 @@ GameObject:
   - component: {fileID: 1599501473}
   - component: {fileID: 1599501474}
   m_Layer: 5
-  m_Name: Select_Area
+  m_Name: Search_Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4264,6 +4270,7 @@ MonoBehaviour:
   Movable: 0
   Summonable: 0
   Attackable: 0
+  Zekkouhyoujun: 0
   phase_text: {fileID: 644895988}
   manage_script: {fileID: 0}
   cpu_script: {fileID: 1632766652}
@@ -4354,7 +4361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 599, y: -165}
+  m_AnchoredPosition: {x: 621.1, y: -176}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1657499577
