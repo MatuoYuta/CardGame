@@ -40,6 +40,12 @@ public class AttackButton : MonoBehaviour
             _directer.enemy_life--;
         }
 
+        if(cardObject.GetComponent<CardView>().cardID == 104)
+        {
+            Debug.Log("チーバガ効果発動");
+            cardObject.GetComponent<EX_Card_Ability>().Chibaga();
+        }
+
         //// プレイヤーオブジェクトをタグで検索して取得
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
 

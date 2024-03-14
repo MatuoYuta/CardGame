@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class EX_Card_Ability : MonoBehaviour
 {
-   public  GameDirecter directer_script;
+    public GameDirecter directer_script;
+    public GameObject select_area;
+    public SearchArea search_script;
+    public GameObject scroll_view;
+    public Animator panel_anim;
     // Start is called before the first frame update
     void Start()
     {
+        search_script = GameObject.Find("Content").GetComponent<SearchArea>();
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        scroll_view = GameObject.Find("Search_Area");
+        panel_anim = scroll_view.GetComponent<Animator>();
         switch (this.GetComponent<CardView>().cardID)
         {
             case 101:
                 Debug.Log("ÉoÉKÉÄÅ[Ég");
                 StartCoroutine("Bagamute");
-                break;
-            case 102:
-                StartCoroutine("Egumahu");
-                break;
-            case 103:
-                StartCoroutine("Torebaga");
-                break;
-            case 104:
-                StartCoroutine("Chibaga");
                 break;
         }
     }
@@ -31,11 +29,6 @@ public class EX_Card_Ability : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void Select_Card()
-    {
-
     }
 
     IEnumerator Bagamute()
@@ -59,22 +52,32 @@ public class EX_Card_Ability : MonoBehaviour
         }
     }
 
-    IEnumerator Egumahu()
+    public void Egumahu()
     {
-        yield return new WaitForSeconds(1);
+        
     }
 
-    IEnumerator Torebaga()
+    public void Torebaga()
     {
-        yield return new WaitForSeconds(1);
+        
 
     }
 
-    IEnumerator Chibaga()
+    public void Chibaga()
     {
-        yield return new WaitForSeconds(1);
+        SelectCard();
+    }
 
-      
+    public void SelectCard()
+    {
+        for (int i = 0; i < directer_script.SearchImageList.Length; i++)
+        {
+            Destroy(directer_script.SearchImageList[i].gameObject);
+        }
+
+        search_script.CreatePrefab_field();
+        panel_anim.SetTrigger("Up");
+        scroll_view.SetActive(true);
     }
 
 }

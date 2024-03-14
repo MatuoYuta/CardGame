@@ -8,10 +8,12 @@ public class SearchArea : MonoBehaviour
     [SerializeField]
     private GameObject scroll;
     public GameManager manage;
+    public GameDirecter _directer;
     // Start is called before the first frame update
     void Start()
     {
         manage = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         //scroll.gameObject.SetActive(false);
     }
 
@@ -39,5 +41,22 @@ public class SearchArea : MonoBehaviour
         }
 
         Instantiate(image[cardID -1 ], this.transform);
+    }
+
+    public void CreatePrefab_field()
+    {
+        int cardID;
+        for(int i=0;i<_directer.playerFieldCardList.Length;i++)
+        {
+            cardID = _directer.playerFieldCardList[i].GetComponent<CardView>().cardID;
+            if(cardID > 100)
+            {
+                Instantiate(image[cardID - 90],this.transform);
+            }
+            else
+            {
+                Instantiate(image[cardID],this.transform);
+            }           
+        }
     }
 }

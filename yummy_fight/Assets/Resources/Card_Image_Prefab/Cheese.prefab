@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: -277102126784516665}
   - component: {fileID: 5346975084567869372}
   - component: {fileID: -6908966516743853666}
+  - component: {fileID: 4688022265892164263}
   m_Layer: 5
   m_Name: Cheese
   m_TagString: Card
@@ -231,3 +232,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ebcec500d900e40bcbebd703a872ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4688022265892164263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869272956058360516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bf2a850777abd43a94feef32b3d682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5

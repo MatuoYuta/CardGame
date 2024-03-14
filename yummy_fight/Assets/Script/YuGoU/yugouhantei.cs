@@ -185,6 +185,10 @@ public class yugouhantei : MonoBehaviour
                                             bans = true;
                                             break;
                                         }
+
+
+
+
                                     }
                                 }
                             }

@@ -22,7 +22,7 @@ public class Action_Card_Ability : MonoBehaviour
         search_script = GameObject.Find("Content").GetComponent<SearchArea>();
         manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
-        scroll_view = GameObject.Find("Select_Area");
+        scroll_view = GameObject.Find("Search_Area");
         hand = GameObject.Find("Player_hand").transform;
         move_scr = this.gameObject.GetComponent<CardMovement>();
         panel_anim = scroll_view.GetComponent<Animator>();
