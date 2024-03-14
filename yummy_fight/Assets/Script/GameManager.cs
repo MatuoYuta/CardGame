@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
     [SerializeField] private HandCardsInfoSync handCardsInfoSync;
-    public Transform playerHand, playerField,playerKitchen, enemyHand,enemyField,enemyKitchen,searchArea,bagamute,egumahu,torabaga,chibaga;
+    public Transform playerHand, playerField,playerKitchen, enemyHand,enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
     private PhotonView photonView;
 
     //ìØñºÉ^Å[ÉìÇPêßå¿ópïœêî
-    public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop;
+    public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop, bagamute, egumahu, torabaga, chibaga;
 
     bool isPlayerTurn = true; //
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //

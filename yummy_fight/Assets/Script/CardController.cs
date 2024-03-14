@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CardController : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class CardController : MonoBehaviour
     public bool hirou,attack,block;
     GameDirecter _directer;
     public GameObject attack_button, blockbutton;
+    public GameObject power_text;
+    int default_power;
 
     private void Awake()
     {
         view = GetComponent<CardView>();
+        default_power = view.power;
         hirou = false;
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         attack_button = transform.Find("Attack").gameObject;
@@ -25,6 +29,8 @@ public class CardController : MonoBehaviour
         {
             enemyattack();
         }
+
+        power_text.GetComponent<TextMeshProUGUI>().text = view.power.ToString();
     }
 
     public void Init(int cardID) // ÉJÅ[ÉhÇê∂ê¨ÇµÇΩéûÇ…åƒÇŒÇÍÇÈä÷êî
@@ -45,6 +51,11 @@ public class CardController : MonoBehaviour
         this.transform.Rotate(new Vector3(0f, 0f, 90f));
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
         hirou = true;
+    }
+
+    public void power_back()
+    {
+        view.power = default_power;
     }
 
     public void enemyattack()

@@ -506,6 +506,7 @@ MonoBehaviour:
   block: 0
   attack_button: {fileID: 0}
   blockbutton: {fileID: 0}
+  power_text: {fileID: 2663392171763320415}
 --- !u!114 &1474079739549371617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +522,7 @@ MonoBehaviour:
   powerText: {fileID: 2663392171763320353}
   iconImage: {fileID: 2663392173092283382}
   cardID: 0
+  power: 0
 --- !u!61 &6496161346600437326
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -596,6 +598,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directer_script: {fileID: 0}
+  select_area: {fileID: 0}
+  search_script: {fileID: 0}
+  _manage: {fileID: 0}
+  scroll_view: {fileID: 0}
+  panel_anim: {fileID: 0}
 --- !u!114 &1730855086783156771
 MonoBehaviour:
   m_ObjectHideFlags: 0

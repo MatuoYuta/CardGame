@@ -68,13 +68,7 @@ public class Button : MonoBehaviour
             {
                 if (_directer.SearchImageList[i].selected)
                 {
-                    Debug.Log(_directer.SearchImageList[i].gameObject.name);
-                    for(int y =0;y<_directer.playerFieldCardList.Length;y++)
-                    {
-
-                    }
-
-                    cnt = 0;
+                    _directer.playerFieldCardList[i].GetComponent<CardView>().power += 3000;
                     panel_anim.SetTrigger("Down");
                     for (int t = 0; t < _directer.SearchImageList.Length; t++)
                     {

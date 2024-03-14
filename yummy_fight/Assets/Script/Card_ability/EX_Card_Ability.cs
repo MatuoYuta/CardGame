@@ -7,6 +7,7 @@ public class EX_Card_Ability : MonoBehaviour
     public GameDirecter directer_script;
     public GameObject select_area;
     public SearchArea search_script;
+    public GameManager _manage;
     public GameObject scroll_view;
     public Animator panel_anim;
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class EX_Card_Ability : MonoBehaviour
     {
         search_script = GameObject.Find("Content").GetComponent<SearchArea>();
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        _manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         scroll_view = GameObject.Find("Search_Area");
         panel_anim = scroll_view.GetComponent<Animator>();
         switch (this.GetComponent<CardView>().cardID)
@@ -65,6 +67,7 @@ public class EX_Card_Ability : MonoBehaviour
 
     public void Chibaga()
     {
+        _manage.chibaga = true;
         SelectCard();
     }
 
