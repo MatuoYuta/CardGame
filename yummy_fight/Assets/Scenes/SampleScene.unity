@@ -4348,6 +4348,7 @@ MonoBehaviour:
   Attackable: 0
   Zekkouhyoujun: 0
   phase_text: {fileID: 644895988}
+  fade_panel: {fileID: 1249570739}
   manage_script: {fileID: 0}
   cpu_script: {fileID: 1632766652}
   before_outline: {fileID: 0}
@@ -4370,6 +4371,7 @@ MonoBehaviour:
   enemyattack: 0
   playerattack: 0
   Koukahatudou: 0
+  senityuu: 0
   phaseText: {fileID: 1928910569}
   phaseAnimator: {fileID: 1928910570}
   phase: 0
