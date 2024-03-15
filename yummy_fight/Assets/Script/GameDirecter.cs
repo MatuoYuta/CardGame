@@ -40,6 +40,7 @@ public class GameDirecter : MonoBehaviour
     public Animator phaseAnimator;
 
     public enum Phase//フェーズ管理用列挙型変数
+
     {
         INIT,
         DRAW,
@@ -71,6 +72,7 @@ public class GameDirecter : MonoBehaviour
         player_life = 5;
         enemy_life = 3;
     }
+    private Phase previousPhase;
     void Update()
     {
         p_text.GetComponent<TextMeshProUGUI>().text = player_life.ToString();
@@ -131,6 +133,27 @@ public class GameDirecter : MonoBehaviour
             case Phase.Enemy_END://エンドフェーズ
                 Enemy_EndPhase();
                 break;
+        }
+
+        if (phase != previousPhase)
+        {
+            // フェーズインデックスを1に設定してアニメーションをトリガー
+            phaseAnimator.SetInteger("phaseIndex", 1);
+
+            // アニメーション再生後、フェーズインデックスを元に戻すための処理をスケジュール
+            // 必要に応じて遅延を設定
+            StartCoroutine(ResetPhaseIndexAfterDelay(0.5f));
+
+            // 現在のフェーズを記録
+            previousPhase = phase;
+        }
+        IEnumerator ResetPhaseIndexAfterDelay(float delay)
+        {
+            // 指定された遅延後に実行
+            yield return new WaitForSeconds(delay);
+
+            // フェーズインデックスを元に戻す（例: 0にリセット）
+            phaseAnimator.SetInteger("phaseIndex", 0);
         }
     }
     void InitPhase()
@@ -334,6 +357,11 @@ public class GameDirecter : MonoBehaviour
     public void ChangePhase(Phase newPhase)
     {
         phase = newPhase;
+        // phaseIndexパラメータを更新
+        if (phaseAnimator != null)
+        {
+            phaseAnimator.SetInteger("phaseIndex", (int)phase);
+        }
         UpdatePhaseText(); // フェーズテキストの更新
         TriggerPhaseAnimation(); // フェーズアニメーションのトリガー
     }
@@ -348,51 +376,52 @@ public class GameDirecter : MonoBehaviour
 
     void UpdatePhaseText()
     {
-        Color enemyPhaseColor = Color.red;
+        Color enemyPhaseColor = new Color(255f / 255f, 14f / 255f, 14f / 255f,255f / 255f); // 敵のフェーズの色を赤に設定
+        Color playerPhaseColor = new Color(24f/255f,81f/255f,255f/255f,255f/255f); // プレイヤーのフェーズの色を青に設定
         switch (phase)
         {
-            // プレイヤーフェーズの場合（敵フェーズでないため、デフォルトの色を使用）
+            // プレイヤーフェーズの場合、テキストの色を青色に設定
             case Phase.DRAW:
                 phaseText.text = "Draw Phase";
-                phaseText.color = Color.white; // デフォルトの色（またはプレイヤーのフェーズ色）
+                phaseText.color = new Color(255f / 255f, 14f / 255f, 14f / 255f, 255f / 255f); // 青色
                 break;
             case Phase.STANDBY:
                 phaseText.text = "Standby Phase";
-                phaseText.color = Color.white; // デフォルトの色
+                phaseText.color = new Color(255, 14f , 14f , 255f); // 青色
                 break;
             case Phase.MAIN:
                 phaseText.text = "Main Phase";
-                phaseText.color = Color.white; // デフォルトの色
+                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
                 break;
             case Phase.BATTLE:
                 phaseText.text = "Battle Phase";
-                phaseText.color = Color.white; // デフォルトの色
+                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
                 break;
             case Phase.END:
                 phaseText.text = "End Phase";
-                phaseText.color = Color.white; // デフォルトの色
+                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
                 break;
 
             // 敵のフェーズの場合、テキストの色を赤色に設定
             case Phase.Enemy_DRAW:
-                phaseText.text = "Enemy Draw Phase";
-                phaseText.color = enemyPhaseColor;
+                phaseText.text = "Draw Phase";
+                phaseText.color = enemyPhaseColor; // 赤色
                 break;
             case Phase.Enemy_STANDBY:
-                phaseText.text = "Enemy Standby Phase";
-                phaseText.color = enemyPhaseColor;
+                phaseText.text = "Standby Phase";
+                phaseText.color = enemyPhaseColor; // 赤色
                 break;
             case Phase.Enemy_MAIN:
-                phaseText.text = "Enemy Main Phase";
-                phaseText.color = enemyPhaseColor;
+                phaseText.text = "Main Phase";
+                phaseText.color = enemyPhaseColor; // 赤色
                 break;
             case Phase.Enemy_BATTLE:
-                phaseText.text = "Enemy Battle Phase";
-                phaseText.color = enemyPhaseColor;
+                phaseText.text = "Battle Phase";
+                phaseText.color = enemyPhaseColor; // 赤色
                 break;
             case Phase.Enemy_END:
-                phaseText.text = "Enemy End Phase";
-                phaseText.color = enemyPhaseColor;
+                phaseText.text = "End Phase";
+                phaseText.color = enemyPhaseColor; // 赤色
                 break;
             default:
                 phaseText.text = "Undefined Phase";
