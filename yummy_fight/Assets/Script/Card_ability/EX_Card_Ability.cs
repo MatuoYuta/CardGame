@@ -9,7 +9,7 @@ public class EX_Card_Ability : MonoBehaviour
     public SearchArea search_script;
     public GameManager _manage;
     public GameObject scroll_view;
-    public Animator panel_anim;
+    public Animator panel_anim, kouka;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +35,9 @@ public class EX_Card_Ability : MonoBehaviour
 
     IEnumerator Bagamute()
     {
+        _manage.bagamute = true;
         yield return new WaitForSeconds(1);
-
+        kouka.SetTrigger("Kouka");
         Debug.Log(directer_script.EnemyFieldCardList.Length);
         for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
         {
@@ -54,19 +55,24 @@ public class EX_Card_Ability : MonoBehaviour
         }
     }
 
-    public void Egumahu()
+    public IEnumerator Egumahu()
+
     {
-        
+        yield return new WaitForSeconds(0);
+        kouka.SetTrigger("Kouka");
     }
 
-    public void Torebaga()
+    public IEnumerator Torebaga()
     {
-        
+        yield return new WaitForSeconds(0);
+        kouka.SetTrigger("Kouka");
 
     }
 
-    public void Chibaga()
+    public IEnumerator Chibaga()
     {
+        yield return new WaitForSeconds(0);
+        kouka.SetTrigger("Kouka");
         _manage.chibaga = true;
         SelectCard();
     }

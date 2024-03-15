@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameDirecter : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameDirecter : MonoBehaviour
     public bool Attackable;//攻撃できるか（バトルフェーズ）
     public bool Zekkouhyoujun;//箸休めが発動できるか
     public GameObject phase_text;//どのフェーズかを表示する
+    public GameObject fade_panel;
 
     public GameManager manage_script;
     public CPU cpu_script;
@@ -32,7 +34,7 @@ public class GameDirecter : MonoBehaviour
     public int turn;
     public bool main, battle;
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
-    public bool enemyattack,playerattack;
+    public bool enemyattack,playerattack,Koukahatudou,senityuu;
 
     public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
     public Animator phaseAnimator;
@@ -58,6 +60,7 @@ public class GameDirecter : MonoBehaviour
     void Start()
     {
         phase = Phase.INIT;
+        fade_panel.SetActive(false);
         life_de_ukeru.SetActive(false);
         Movable = false;
         manage_script = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -82,6 +85,12 @@ public class GameDirecter : MonoBehaviour
         EnemyKitchenCardList = manage_script.enemyKitchen.GetComponentsInChildren<CardController>();
 
         SearchImageList = manage_script.searchArea.GetComponentsInChildren<ObjectHighlight>();
+
+        if(enemy_life <= 0 && !senityuu)
+        {
+            senityuu = true;
+            StartCoroutine("Color_FadeOut");
+        }
 
 
         switch (phase)
@@ -424,5 +433,62 @@ public class GameDirecter : MonoBehaviour
         block.GetComponent<CardController>().block = false;
         playerattack = false;
         enemyattack = false;
+    }
+
+    IEnumerator Color_FadeOut()
+    {
+        fade_panel.SetActive(true);
+        // 画面をフェードアウトさせるコールチン
+        // 前提：画面を覆うPanelにアタッチしている
+
+        // 色を変えるゲームオブジェクトからImageコンポーネントを取得
+        Image fade = fade_panel.GetComponent<Image>();
+
+        // フェード後の色を設定（黒）★変更可
+        fade.color = new Color((0.0f / 255.0f), (0.0f / 255.0f), (0.0f / 255.0f), (0.0f / 255.0f));
+
+        // フェードインにかかる時間（秒）★変更可
+        const float fade_time = 0.3f;
+
+        // ループ回数（0はエラー）★変更可
+        const int loop_count = 10;
+
+        // ウェイト時間算出
+        float wait_time = fade_time / loop_count;
+
+        // 色の間隔を算出
+        float alpha_interval = 255.0f / loop_count;
+
+        // 色を徐々に変えるループ
+        for (float alpha = 0.0f; alpha <= 255.0f; alpha += alpha_interval)
+        {
+            // 待ち時間
+            yield return new WaitForSeconds(wait_time);
+
+            // Alpha値を少しずつ上げる
+            Color new_color = fade.color;
+            new_color.a = alpha / 255.0f;
+            fade.color = new_color;
+        }
+        // Color_FadeOut 完了後、1秒待ってから Color_FadeIn 実行
+        yield return new WaitForSeconds(1f);
+        if(enemy_life <= 0)
+        {
+            Win();
+        }
+        else if (player_life >= 0)
+        {
+            Lose();
+        }
+    }
+
+    private void Win()
+    {
+        SceneManager.LoadScene("WinScene");
+    }
+
+    private void Lose()
+    {
+        SceneManager.LoadScene("LoseScene");
     }
 }

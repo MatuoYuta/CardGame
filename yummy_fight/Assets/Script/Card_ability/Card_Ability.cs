@@ -12,7 +12,7 @@ public class Card_Ability : MonoBehaviour
     public SearchArea search_script;
     public GameObject scroll_view;
     public CardController[] Search_Card;
-    public Animator panel_anim;
+    public Animator panel_anim,kouka;
 
     private int cnt = 0;
     // Start is called before the first frame update
@@ -38,25 +38,29 @@ public class Card_Ability : MonoBehaviour
                     case 1:
                         if(!manage.Buns)
                         {
-                            Buns();
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Buns");
                         }
                         break;
                     case 2:
                         if (!manage.Patty)
                         {
-                            Patty();
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Patty");
                         }
                         break;
                     case 3:
                         if (!manage.Muffin)
                         {
-                            Muffin();
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Muffin");
                         }
                         break;
                     case 4:
                         if(!manage.Pickles)
                         {
-                            Pickles();
+                            kouka.SetTrigger("Kouka");
+                            StartCoroutine("Pickles");
                         }
                         break;
                 }
@@ -69,36 +73,43 @@ public class Card_Ability : MonoBehaviour
 
     }
 
-    public void Buns()
+    public IEnumerator Buns()
     {
-        SearchCard(manage.playerHand, 2);//パティサーチ
         Use_Avility = true;
         manage.Buns = true;
-        
+        yield return new WaitForSeconds(0);
+        SearchCard(manage.playerHand, 2);//パティサーチ
+
     }
-    public void Patty()
+    public IEnumerator Patty()
     {
-        SearchCard(manage.playerHand, 1);//バンズをサーチ
-        SearchCard(manage.playerHand, 3);//マフィンをサーチ
         Use_Avility = true;
         manage.Patty = true;
+        yield return new WaitForSeconds(0);
+        SearchCard(manage.playerHand, 1);//バンズをサーチ
+        SearchCard(manage.playerHand, 3);//マフィンをサーチ
+
     }
 
-    public void Muffin()
+    public IEnumerator Muffin()
     {
-        SearchCard(manage.playerHand, 2);//パティサーチ
         Use_Avility = true;
         manage.Muffin = true;
+        yield return new WaitForSeconds(0);
+        SearchCard(manage.playerHand, 2);//パティサーチ
+
     }
 
-    public void Pickles()
+    public IEnumerator Pickles()
     {
+        Use_Avility = true;
+        manage.Pickles = true;
+        yield return new WaitForSeconds(0);
         SearchCard(manage.playerHand, 5);
         SearchCard(manage.playerHand, 6);
         SearchCard(manage.playerHand, 7);
         SearchCard(manage.playerHand, 8);
-        Use_Avility = true;
-        manage.Pickles = true;
+
     }
 
     public void Foodraw()

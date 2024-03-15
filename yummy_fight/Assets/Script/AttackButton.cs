@@ -32,6 +32,13 @@ public class AttackButton : MonoBehaviour
 
     void AttackPlayer()
     {
+        if (cardObject.GetComponent<CardView>().cardID == 104)
+        {
+            Debug.Log("チーバガ効果発動");
+            cardObject.GetComponent<EX_Card_Ability>().StartCoroutine("Chibaga");
+            _directer.Koukahatudou = true;
+        }
+
         _directer.playerattack = true;
         if(_directer.EnemyFieldCardList.Length == 0)
         {
@@ -40,11 +47,7 @@ public class AttackButton : MonoBehaviour
             _directer.enemy_life--;
         }
 
-        if(cardObject.GetComponent<CardView>().cardID == 104)
-        {
-            Debug.Log("チーバガ効果発動");
-            cardObject.GetComponent<EX_Card_Ability>().Chibaga();
-        }
+
 
         //// プレイヤーオブジェクトをタグで検索して取得
         //GameObject player = GameObject.FindGameObjectWithTag("Player");

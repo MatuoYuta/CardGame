@@ -122,7 +122,6 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
             else
             {
                 transform.SetParent(cardParent);
-                    StartCoroutine("Destroy");
             }
         }
         else if(this.gameObject.GetComponent<CardView>().cardID == 203 && directer_script.Zekkouhyoujun)
