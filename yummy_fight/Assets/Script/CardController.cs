@@ -50,7 +50,6 @@ public class CardController : MonoBehaviour
     public void RotateCard()
     {
         // カードを90度回転させる
-        SE.hirou_SE();
         this.transform.Rotate(new Vector3(0f, 0f, 90f));
         this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
         hirou = true;
@@ -109,7 +108,6 @@ public class CardController : MonoBehaviour
     {
         if (hirou)
         {
-            SE.stand_SE();
             // カードを90度回転させる
             this.transform.Rotate(new Vector3(0f, 0f, -90f));
             this.transform.localScale = new Vector3(1.3f, 2f, 1.3f);

@@ -38,6 +38,7 @@ public class GameDirecter : MonoBehaviour
 
     public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
     public Animator phaseAnimator;
+    SE_Controller SE;
 
     public enum Phase//フェーズ管理用列挙型変数
 
@@ -60,6 +61,7 @@ public class GameDirecter : MonoBehaviour
     Player1 currentPlayer;
     void Start()
     {
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         phase = Phase.INIT;
         fade_panel = GameObject.Find("Fade");
         fade_panel.SetActive(false);
@@ -432,7 +434,8 @@ public class GameDirecter : MonoBehaviour
 
     IEnumerator Destroy_me(GameObject me)
     {
-        yield return new WaitForSeconds(1);
+        SE.hakai_SE();
+        yield return new WaitForSeconds(0.5f);
         Destroy(me);
     }
 

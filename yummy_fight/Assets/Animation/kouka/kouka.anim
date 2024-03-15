@@ -60,7 +60,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: _outlineWidth
-    path: Outline
+    path: kouka_outline
     classID: 114
     script: {fileID: 11500000, guid: c280d1ddc7af1a04e8f71ea529d0c27f, type: 3}
   m_PPtrCurves: []
@@ -72,7 +72,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2294442873
+      path: 133638182
       attribute: 1982165419
       script: {fileID: 11500000, guid: c280d1ddc7af1a04e8f71ea529d0c27f, type: 3}
       typeID: 114
@@ -143,7 +143,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: _outlineWidth
-    path: Outline
+    path: kouka_outline
     classID: 114
     script: {fileID: 11500000, guid: c280d1ddc7af1a04e8f71ea529d0c27f, type: 3}
   m_EulerEditorCurves: []

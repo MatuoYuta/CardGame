@@ -6,7 +6,7 @@ public class SE_Controller : MonoBehaviour
 {
     public AudioSource audio;
 
-    public AudioClip ability, phase, life_break, draw, stand, hirou,click;
+    public AudioClip ability, phase, life_break, draw,hakai;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,6 @@ public class SE_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            audio.PlayOneShot(click);
-        }
     }
 
     public void Ability_SE()
@@ -40,19 +36,9 @@ public class SE_Controller : MonoBehaviour
     {
         audio.PlayOneShot(draw);
     }
-    public void stand_SE()
-    {
-        audio.PlayOneShot(stand);
-    }
 
-    public void hirou_SE()
+    public void hakai_SE()
     {
-        audio.PlayOneShot(hirou);
+        audio.PlayOneShot(hakai);
     }
-    public void click_SE()
-    {
-        audio.PlayOneShot(click);
-    }
-
-
 }

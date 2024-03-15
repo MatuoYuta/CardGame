@@ -83,7 +83,7 @@ public class Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Buns = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         SearchCard(manage.playerHand, 2);//パティサーチ
 
     }
@@ -91,7 +91,7 @@ public class Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Patty = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         SearchCard(manage.playerHand, 1);//バンズをサーチ
         SearchCard(manage.playerHand, 3);//マフィンをサーチ
 
@@ -101,7 +101,7 @@ public class Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Muffin = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         SearchCard(manage.playerHand, 2);//パティサーチ
 
     }
@@ -110,7 +110,7 @@ public class Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Pickles = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         SearchCard(manage.playerHand, 5);
         SearchCard(manage.playerHand, 6);
         SearchCard(manage.playerHand, 7);

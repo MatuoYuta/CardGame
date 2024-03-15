@@ -3167,13 +3167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 1006508454}
-  ability: {fileID: 0}
-  phase: {fileID: 0}
-  life_break: {fileID: 0}
-  draw: {fileID: 0}
-  stand: {fileID: 0}
-  hirou: {fileID: 0}
-  click: {fileID: 0}
+  ability: {fileID: 8300000, guid: d2fbe8c44787f0b42b06bf3c38030c36, type: 3}
+  phase: {fileID: 8300000, guid: 61fc2aa59178be444b2a51a26cb291e8, type: 3}
+  life_break: {fileID: 8300000, guid: 9b45d90726115cd458b10c41bc8873e1, type: 3}
+  draw: {fileID: 8300000, guid: acb417233c94dc340b83d042975a1b2c, type: 3}
+  hakai: {fileID: 8300000, guid: 505915502a4713a40afc087f4671e92d, type: 3}
 --- !u!4 &1006508456
 Transform:
   m_ObjectHideFlags: 0
