@@ -60,6 +60,7 @@ public class GameDirecter : MonoBehaviour
     void Start()
     {
         phase = Phase.INIT;
+        fade_panel = GameObject.Find("Fade");
         fade_panel.SetActive(false);
         life_de_ukeru.SetActive(false);
         Movable = false;
