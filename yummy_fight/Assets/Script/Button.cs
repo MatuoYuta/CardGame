@@ -51,7 +51,6 @@ public class Button : MonoBehaviour
 
     public void Block()
     {
-        SE.block_SE();
         _controller.RotateCard();
         this.gameObject.SetActive(false);
         for(int i =0;i<_directer.EnemyFieldCardList.Length;i++)
