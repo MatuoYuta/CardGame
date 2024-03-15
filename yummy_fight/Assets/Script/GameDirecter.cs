@@ -32,7 +32,7 @@ public class GameDirecter : MonoBehaviour
     public int turn;
     public bool main, battle;
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
-    public bool enemyattack,playerattack;
+    public bool enemyattack,playerattack,Koukahatudou;
 
     public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
     public Animator phaseAnimator;
