@@ -379,29 +379,29 @@ public class GameDirecter : MonoBehaviour
     void UpdatePhaseText()
     {
         Color enemyPhaseColor = new Color(255f / 255f, 14f / 255f, 14f / 255f,255f / 255f); // 敵のフェーズの色を赤に設定
-        Color playerPhaseColor = new Color(24f/255f,81f/255f,255f/255f,255f/255f); // プレイヤーのフェーズの色を青に設定
+        Color playerPhaseColor = new Color(55f / 255f, 140f / 255f, 212f / 255f, 255f / 255f); // プレイヤーのフェーズの色を青に設定
         switch (phase)
         {
             // プレイヤーフェーズの場合、テキストの色を青色に設定
             case Phase.DRAW:
                 phaseText.text = "Draw Phase";
-                phaseText.color = new Color(255f / 255f, 14f / 255f, 14f / 255f, 255f / 255f); // 青色
+                phaseText.color = playerPhaseColor; // 青色
                 break;
             case Phase.STANDBY:
                 phaseText.text = "Standby Phase";
-                phaseText.color = new Color(255, 14f , 14f , 255f); // 青色
+                phaseText.color = playerPhaseColor; // 青色
                 break;
             case Phase.MAIN:
                 phaseText.text = "Main Phase";
-                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
+                phaseText.color = playerPhaseColor;  // 青色
                 break;
             case Phase.BATTLE:
                 phaseText.text = "Battle Phase";
-                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
+                phaseText.color = playerPhaseColor;  // 青色
                 break;
             case Phase.END:
                 phaseText.text = "End Phase";
-                phaseText.color = new Color(255, 14f, 14f, 255f);  // 青色
+                phaseText.color = playerPhaseColor;  // 青色
                 break;
 
             // 敵のフェーズの場合、テキストの色を赤色に設定
