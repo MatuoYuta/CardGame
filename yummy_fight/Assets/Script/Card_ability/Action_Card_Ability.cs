@@ -73,7 +73,7 @@ public class Action_Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Foodraw = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         manage.DrawCard(hand.transform);
         manage.DrawCard(hand.transform);
         this.gameObject.GetComponent<CardController>().Destroy_me();
@@ -84,7 +84,7 @@ public class Action_Card_Ability : MonoBehaviour
     {
         Use_Avility = true;
         manage.Plan = true;
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < directer.SearchImageList.Length; i++)
         {
             Destroy(directer.SearchImageList[i].gameObject);

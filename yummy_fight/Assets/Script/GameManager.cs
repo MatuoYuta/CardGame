@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Transform playerHand, playerField,playerKitchen, enemyHand,enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
     private PhotonView photonView;
-
+    SE_Controller SE;
     //同名ターン１制限用変数
     public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop, bagamute, egumahu, torabaga, chibaga;
 
@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {   
+    {
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         // シーンの自動同期を有効にする
         PhotonNetwork.AutomaticallySyncScene = true;
         StartGame();
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void CreateCard(int cardID, Transform place)
     {
+        SE.draw_SE();
         CardController card = Instantiate(cardPrefab, place);
         card.Init(cardID);
     }
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         // デッキの一番上のカードを抜き取り、手札に加える
+        SE.draw_SE();
         int cardID = deck[0];
         deck.RemoveAt(0);
         Debug.Log("ドロー！");
