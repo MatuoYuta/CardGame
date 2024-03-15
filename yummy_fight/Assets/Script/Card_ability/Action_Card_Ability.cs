@@ -85,6 +85,7 @@ public class Action_Card_Ability : MonoBehaviour
         Use_Avility = true;
         manage.Plan = true;
         yield return new WaitForSeconds(1);
+        this.gameObject.GetComponent<CardController>().Destroy_me();
         for (int i = 0; i < directer.SearchImageList.Length; i++)
         {
             Destroy(directer.SearchImageList[i].gameObject);

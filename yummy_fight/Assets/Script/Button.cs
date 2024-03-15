@@ -163,7 +163,6 @@ public class Button : MonoBehaviour
 
                     cnt = 0;
                     panel_anim.SetTrigger("Down");
-                    this.gameObject.GetComponent<CardController>().Destroy_me();
                     for (int t = 0; t < _directer.SearchImageList.Length; t++)
                     {
                         Destroy(_directer.SearchImageList[t].gameObject);
