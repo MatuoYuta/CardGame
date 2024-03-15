@@ -10,10 +10,12 @@ public class AttackButton : MonoBehaviour
     public CardController _controller;
     private Button attackButton; // ボタンの参照
     public bool hirou;
+    SE_Controller SE;
 
     void Start()
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         _controller = cardObject.GetComponent<CardController>();
         // ボタンコンポーネントを取得
         attackButton = GetComponent<Button>();
@@ -23,6 +25,7 @@ public class AttackButton : MonoBehaviour
     public void OnAttackButtonClick()
     {
         Debug.Log("相手に攻撃した");
+
         cardObject.GetComponent<CardController>().attack = true;
         _controller.RotateCard(); // カードを横向きにするメソッドを呼び出す
         AttackPlayer(); // プレイヤーに攻撃するメソッドを呼び出す

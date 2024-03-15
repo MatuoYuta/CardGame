@@ -13,12 +13,14 @@ public class Card_Ability : MonoBehaviour
     public GameObject scroll_view;
     public CardController[] Search_Card;
     public Animator panel_anim,kouka;
+    SE_Controller SE;
 
     private int cnt = 0;
     // Start is called before the first frame update
     void Start()
     {
         search_script = GameObject.Find("Content").GetComponent<SearchArea>();
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         scroll_view = GameObject.Find("Search_Area");
@@ -38,6 +40,7 @@ public class Card_Ability : MonoBehaviour
                     case 1:
                         if(!manage.Buns)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Buns");
                         }
@@ -45,6 +48,7 @@ public class Card_Ability : MonoBehaviour
                     case 2:
                         if (!manage.Patty)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Patty");
                         }
@@ -52,6 +56,7 @@ public class Card_Ability : MonoBehaviour
                     case 3:
                         if (!manage.Muffin)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Muffin");
                         }
@@ -59,6 +64,7 @@ public class Card_Ability : MonoBehaviour
                     case 4:
                         if(!manage.Pickles)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Pickles");
                         }

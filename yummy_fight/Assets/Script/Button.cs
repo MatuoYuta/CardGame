@@ -14,6 +14,7 @@ public class Button : MonoBehaviour
     public GameObject hand;
     public GameObject card;
     internal object onClick;
+    SE_Controller SE;
 
     public int search_id;
     private int cnt;
@@ -22,6 +23,7 @@ public class Button : MonoBehaviour
 
     void Start()
     {
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         hand = GameObject.Find("Player_hand");
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         card = transform.parent.gameObject;
@@ -40,6 +42,7 @@ public class Button : MonoBehaviour
 
     public void lifebreak()
     {
+        SE.life_break_SE();
         _directer.player_life--;
         _directer.playerattack = false;
         _directer.enemyattack = false;
@@ -48,6 +51,7 @@ public class Button : MonoBehaviour
 
     public void Block()
     {
+        SE.block_SE();
         _controller.RotateCard();
         this.gameObject.SetActive(false);
         for(int i =0;i<_directer.EnemyFieldCardList.Length;i++)

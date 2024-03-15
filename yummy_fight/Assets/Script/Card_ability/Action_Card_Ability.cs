@@ -14,11 +14,13 @@ public class Action_Card_Ability : MonoBehaviour
     public Transform hand;
     public CardController[] Search_Card;
     public Animator panel_anim, kouka;
+    SE_Controller SE;
 
     private int cnt = 0;
     // Start is called before the first frame update
     void Start()
     {
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         search_script = GameObject.Find("Content").GetComponent<SearchArea>();
         manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
@@ -40,6 +42,7 @@ public class Action_Card_Ability : MonoBehaviour
                     case 201:
                         if (!manage.Foodraw)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Foodraw");
                         }
@@ -47,6 +50,7 @@ public class Action_Card_Ability : MonoBehaviour
                     case 202:
                         if(!manage.Plan)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Plan");
                             Plan();
@@ -55,6 +59,7 @@ public class Action_Card_Ability : MonoBehaviour
                     case 203:
                         if(!manage.Stop)
                         {
+                            SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             manage.Stop = true;
                             directer.enemyattack = false;

@@ -10,10 +10,12 @@ public class EX_Card_Ability : MonoBehaviour
     public GameManager _manage;
     public GameObject scroll_view;
     public Animator panel_anim, kouka;
+    SE_Controller SE;
     // Start is called before the first frame update
     void Start()
     {
         search_script = GameObject.Find("Content").GetComponent<SearchArea>();
+        SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         directer_script = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         _manage = GameObject.Find("GameManager").GetComponent<GameManager>();
         scroll_view = GameObject.Find("Search_Area");
@@ -36,6 +38,7 @@ public class EX_Card_Ability : MonoBehaviour
     IEnumerator Bagamute()
     {
         _manage.bagamute = true;
+        SE.Ability_SE();
         yield return new WaitForSeconds(1);
         kouka.SetTrigger("Kouka");
         Debug.Log(directer_script.EnemyFieldCardList.Length);
@@ -58,12 +61,14 @@ public class EX_Card_Ability : MonoBehaviour
     public IEnumerator Egumahu()
 
     {
+        SE.Ability_SE();
         yield return new WaitForSeconds(0);
         kouka.SetTrigger("Kouka");
     }
 
     public IEnumerator Torebaga()
     {
+        SE.Ability_SE();
         yield return new WaitForSeconds(0);
         kouka.SetTrigger("Kouka");
 
@@ -71,6 +76,7 @@ public class EX_Card_Ability : MonoBehaviour
 
     public IEnumerator Chibaga()
     {
+        SE.Ability_SE();
         yield return new WaitForSeconds(0);
         kouka.SetTrigger("Kouka");
         _manage.chibaga = true;
