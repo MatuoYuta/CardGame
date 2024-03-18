@@ -24,6 +24,7 @@ public class EX_Card_Ability : MonoBehaviour
         {
             case 101:
                 Debug.Log("ÉoÉKÉÄÅ[Ég");
+                directer_script.Ensyutu_Start();
                 StartCoroutine("Bagamute");
                 break;
         }
@@ -39,7 +40,8 @@ public class EX_Card_Ability : MonoBehaviour
     {
         _manage.bagamute = true;
         SE.Ability_SE();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
+        directer_script.Ensyutu_End();
         kouka.SetTrigger("Kouka");
         Debug.Log(directer_script.EnemyFieldCardList.Length);
         for (int i = 0; i < directer_script.EnemyFieldCardList.Length; i++)
@@ -62,14 +64,14 @@ public class EX_Card_Ability : MonoBehaviour
 
     {
         SE.Ability_SE();
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         kouka.SetTrigger("Kouka");
     }
 
     public IEnumerator Torebaga()
     {
         SE.Ability_SE();
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         kouka.SetTrigger("Kouka");
 
     }
@@ -77,7 +79,7 @@ public class EX_Card_Ability : MonoBehaviour
     public IEnumerator Chibaga()
     {
         SE.Ability_SE();
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(1);
         kouka.SetTrigger("Kouka");
         _manage.chibaga = true;
         SelectCard();

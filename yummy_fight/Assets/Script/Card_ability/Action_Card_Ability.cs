@@ -35,7 +35,7 @@ public class Action_Card_Ability : MonoBehaviour
     {
         if (move_scr.cardParent != null)
         {
-            if (!Use_Avility && move_scr.cardParent == GameObject.Find("Action_Space").transform)
+            if (!this.Use_Avility && move_scr.cardParent == GameObject.Find("Action_Space").transform)
             {
                 switch (this.GetComponent<CardView>().cardID)
                 {

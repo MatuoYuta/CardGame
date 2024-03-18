@@ -15,6 +15,7 @@ public class GameDirecter : MonoBehaviour
     public bool Zekkouhyoujun;//箸休めが発動できるか
     public GameObject phase_text;//どのフェーズかを表示する
     public GameObject fade_panel;
+    public GameObject Ensyutu;
 
     public GameManager manage_script;
     public CPU cpu_script;
@@ -61,6 +62,7 @@ public class GameDirecter : MonoBehaviour
     Player1 currentPlayer;
     void Start()
     {
+        Ensyutu.SetActive(false);
         SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         phase = Phase.INIT;
         fade_panel = GameObject.Find("Fade");
@@ -71,8 +73,8 @@ public class GameDirecter : MonoBehaviour
         cpu_script = this.gameObject.GetComponent<CPU>();
         main = true;
         battle = true;
-        player_life = 5;
-        enemy_life = 3;
+        player_life = 1;
+        enemy_life = 2;
     }
     private Phase previousPhase;
     void Update()
@@ -437,6 +439,16 @@ public class GameDirecter : MonoBehaviour
         SE.hakai_SE();
         yield return new WaitForSeconds(0.5f);
         Destroy(me);
+    }
+
+    public void Ensyutu_Start()
+    {
+        Ensyutu.SetActive(true);
+    }
+
+    public void Ensyutu_End()
+    {
+        Ensyutu.SetActive(false);
     }
 
     public void Battle(GameObject attack,GameObject block)

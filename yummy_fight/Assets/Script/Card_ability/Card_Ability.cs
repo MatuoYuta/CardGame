@@ -33,7 +33,7 @@ public class Card_Ability : MonoBehaviour
     {
         if(move_scr.cardParent != null)//e—v‘f‚ªƒkƒ‹‚¶‚á‚È‚¯‚ê‚Î
         {
-            if (!Use_Avility && move_scr.cardParent == GameObject.Find("Player_kitchen").transform)
+            if (!this.Use_Avility && move_scr.cardParent == GameObject.Find("Player_kitchen").transform)
             {
                 switch (this.GetComponent<CardView>().cardID)
                 {
