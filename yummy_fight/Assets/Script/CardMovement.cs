@@ -26,7 +26,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
         if(cardParent.gameObject.CompareTag("Enemy"))
         {
-            transform.eulerAngles = new Vector3(180, 0, 0);
+            transform.rotation = Quaternion.Euler(180,0,0);
         }
 
     }

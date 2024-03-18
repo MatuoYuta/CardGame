@@ -68,8 +68,8 @@ public class CPU : MonoBehaviour
 
                 StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
                 StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-                StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
-                StartCoroutine(Change_main(4));
+                //StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
+                //StartCoroutine(Change_main(4));
                 break;
             case 2:
                 StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7413837917325769500}
   - component: {fileID: 733615597727995290}
   - component: {fileID: 3399391515712061616}
+  - component: {fileID: 7566192879691592667}
   m_Layer: 5
   m_Name: PowerPanel
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7566192879691592667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114526240915271696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8b0923000d8a441a8c473288f195b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 2663392173092283378}
 --- !u!1 &260734234132616774
 GameObject:
   m_ObjectHideFlags: 0

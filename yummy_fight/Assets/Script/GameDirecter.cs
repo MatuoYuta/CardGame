@@ -115,6 +115,7 @@ public class GameDirecter : MonoBehaviour
                 }
                 break;
             case Phase.STANDBY://スタンバイ（移動）フェーズ
+                draw = false;
                 StandbyPhase();
                 break;
             case Phase.MAIN://スタンバイ（移動）フェーズ
@@ -275,7 +276,7 @@ public class GameDirecter : MonoBehaviour
         // フェーズ変更に伴うテキストの更新
         UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nDraw";
-        currentPlayer.EnemyDraw();
+        //currentPlayer.EnemyDraw();
         phase = Phase.Enemy_STANDBY;
     }
 

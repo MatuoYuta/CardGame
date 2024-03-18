@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             DrawCard(playerHand);
+            CreateCard(999, enemyHand);
         }
     }
 
