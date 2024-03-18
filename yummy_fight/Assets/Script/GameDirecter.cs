@@ -33,7 +33,7 @@ public class GameDirecter : MonoBehaviour
 
     public GameObject p_text, e_text,life_de_ukeru;
     public int turn;
-    public bool main, battle;
+    public bool draw,main, battle;
     public int player_life, enemy_life;//プレイヤーとエネミーのライフ
     public bool enemyattack,playerattack,Koukahatudou,senityuu;
 
@@ -107,7 +107,12 @@ public class GameDirecter : MonoBehaviour
                 InitPhase();
                 break;
             case Phase.DRAW://ドローフェーズ
-                DrawPhase();
+                if(!draw)
+                {
+                    draw = true;
+                    UpdatePhaseText();
+                    Invoke("DrawPhase", 3);
+                }
                 break;
             case Phase.STANDBY://スタンバイ（移動）フェーズ
                 StandbyPhase();
@@ -167,12 +172,12 @@ public class GameDirecter : MonoBehaviour
         UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer+"\nInit";
         phase = Phase.DRAW;
+        draw = false;
     }
     void DrawPhase()
     {
         Debug.Log("DrawPhase");
         // フェーズ変更に伴うテキストの更新
-        UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nDraw";
         currentPlayer.Draw();
         for(int i =0;i<playerFieldCardList.Length;i++)
