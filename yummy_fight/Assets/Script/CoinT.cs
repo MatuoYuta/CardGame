@@ -10,6 +10,8 @@ public class CoinT : MonoBehaviourPunCallbacks
 {
     private Animator CoinAnim;
     public Server Server;
+    public Button CoinPanel;
+    private bool Click;
 
     public int Coin;
 
@@ -18,6 +20,8 @@ public class CoinT : MonoBehaviourPunCallbacks
     {
         CoinAnim = GetComponent<Animator>();
         Server = GameObject.Find("Server").GetComponent<Server>();
+        CoinPanel = GameObject.Find("CoinPanel").GetComponent<Button>();
+        Click = false;
     }
 
     // Update is called once per frame
@@ -26,11 +30,15 @@ public class CoinT : MonoBehaviourPunCallbacks
         CoinToss();
     }
 
+    public void OnClick()
+    {
+        Click = true;
+    }
     void CoinToss()
     {
         if (Server.OnServer == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && PhotonNetwork.IsMasterClient)
+            if (Click == true && PhotonNetwork.IsMasterClient)
             {
                 Coin = Random.Range(0, 2);
                 Debug.Log(Coin + "‚Å‚·");
@@ -39,7 +47,7 @@ public class CoinT : MonoBehaviourPunCallbacks
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Click == true)
             {
                 Coin = 0;
                 CoinAnim.SetInteger("CoinCheck", Coin);
