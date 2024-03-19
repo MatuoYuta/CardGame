@@ -73,7 +73,7 @@ public class GameDirecter : MonoBehaviour
         cpu_script = this.gameObject.GetComponent<CPU>();
         main = true;
         battle = true;
-        player_life = 1;
+        player_life = 2;
         enemy_life = 2;
     }
     private Phase previousPhase;

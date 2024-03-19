@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject select_panel;
     private PhotonView photonView;
     SE_Controller SE;
+    public GameObject Menu;
     //同名ターン１制限用変数
     public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop, bagamute, egumahu, torabaga, chibaga;
 
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SE = GameObject.Find("SE").GetComponent<SE_Controller>();
+        Menu.SetActive(false);
         // シーンの自動同期を有効にする
         PhotonNetwork.AutomaticallySyncScene = true;
         StartGame();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Button : MonoBehaviour
     private CardController _controller;
     public GameObject hand;
     public GameObject card;
+    public GameObject menu;
     internal object onClick;
     SE_Controller SE;
 
@@ -27,6 +29,21 @@ public class Button : MonoBehaviour
         hand = GameObject.Find("Player_hand");
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         card = transform.parent.gameObject;
+    }
+
+    public void Title()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    public void Menu_Show()
+    {
+        menu.SetActive(true);
+    }
+
+    public void Menu_Close()
+    {
+        menu.SetActive(false);
     }
 
     // Update is called once per frame
