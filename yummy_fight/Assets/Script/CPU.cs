@@ -58,18 +58,39 @@ public class CPU : MonoBehaviour
         {
             _directer.EnemyKitchenCardList[i].gameObject.transform.SetParent(_manager.enemyField);
         }
+
+        
+        
     }
 
     public void Main(int turn)
     {
-        switch (turn)
+        /*int[] array = new int[_directer.playerFieldCardList.Length];
+        for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
         {
+            
+            array[i] = _directer.playerFieldCardList[i].view.cardID;
+            Debug.Log(array[i]+"つっちーのスクリプト");
+        }*/
+
+        int[] array = new int[_directer.enemyHandCardList.Length];
+        for(int i = 0;i < _directer.enemyHandCardList.Length; i++)
+        {
+            array[i] = _directer.enemyHandCardList[i].view.cardID;
+        }
+
+
+        
+
+            switch (turn)
+        {
+            
             case 1:
 
                 StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
                 StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-                //StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
-                //StartCoroutine(Change_main(4));
+                StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
+                StartCoroutine(Change_main(4));
                 break;
             case 2:
                 StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン
@@ -82,15 +103,16 @@ public class CPU : MonoBehaviour
                 StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
                 StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
 
-                StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
+                /*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
                 StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
                 StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
-                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ
+                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*/
 
                 StartCoroutine(Change_main(13));
                 break;
         }
     }
+
 
     public void battle(int turn)
     {

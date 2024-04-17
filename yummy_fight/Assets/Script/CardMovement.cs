@@ -34,7 +34,7 @@ public class CardMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     void Update()
     {
 
-        if (directer_script.playerkitchenCardList.Length < 5 )//調理場のカードが５枚未満の時に置けるようにする
+        if (directer_script.playerkitchenCardList.Length  < 5)//調理場のカードが５枚未満の時に置けるようにする
         {
             kitchen = true;
         }

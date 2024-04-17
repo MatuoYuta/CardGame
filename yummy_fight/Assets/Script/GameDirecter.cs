@@ -41,6 +41,7 @@ public class GameDirecter : MonoBehaviour
     public Animator phaseAnimator;
     SE_Controller SE;
 
+
     public enum Phase//フェーズ管理用列挙型変数
 
     {
