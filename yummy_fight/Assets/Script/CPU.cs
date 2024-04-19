@@ -25,6 +25,7 @@ public class CPU : MonoBehaviour
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _Controller = GameObject.Find("CardController").GetComponent<CardController>();
     }
 
     // Update is called once per frame
@@ -70,10 +71,7 @@ public class CPU : MonoBehaviour
         for(int i = 0; i< _directer.EnemyKitchenCardList.Length;i++)
         {
             _directer.EnemyKitchenCardList[i].gameObject.transform.SetParent(_manager.enemyField);
-        }
-
-        
-        
+        }  
     }
 
     public void Main()
@@ -96,9 +94,7 @@ public class CPU : MonoBehaviour
                     for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
                     {
                         if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティ
-                        {
-                            
-                            
+                        {   
                             StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
                             StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
                             Destroy(_directer.enemyHandCardList[a].gameObject);
@@ -162,25 +158,22 @@ public class CPU : MonoBehaviour
 
     public void battle(int turn)
     {
-        int maxPower = 0;
+        
         
         if(_directer.EnemyFieldCardList.Length > 0) //CPUのフィールドにカードが一枚以上あるとき
         {
-            for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
-            {
-                if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power　&& _directer.EnemyFieldCardList[i].view.hirou == false ) //攻撃力が最も高いカードを探す
-                {
-                    maxPower = i;   //登録
-                    Debug.Log(_directer.EnemyFieldCardList[maxPower].view.power);
-                }
-            }
+           
+            EnemyAttackJudge();
+
+
 
             if (_directer.playerFieldCardList.Length == 0)
             {
+                
 
             }
-
             
+
         }
         
         
@@ -200,6 +193,23 @@ public class CPU : MonoBehaviour
                 }
                 break;
         }*/
+    }
+
+    public void EnemyAttackJudge()
+    {
+        int maxPower = 0;
+        for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
+        {
+            if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power && _directer.EnemyFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
+            {
+                maxPower = i;   //登録
+                Debug.Log(_directer.EnemyFieldCardList[maxPower].view.power);
+            }
+        }
+        _directer.EnemyFieldCardList[maxPower].enemyattack();
+        _directer.EnemyFieldCardList[maxPower].view.hirou = true;
+        Debug.Log(maxPower + "やーーー");
+        maxPower = 0;
     }
 
     IEnumerator Create(int id,Transform place, int wait)
