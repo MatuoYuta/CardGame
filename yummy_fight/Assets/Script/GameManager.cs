@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public bool Buns, Patty,Muffin,Pickles,Foodraw,Plan,Stop, bagamute, egumahu, torabaga, chibaga;
 
     bool isPlayerTurn = true; //
-    public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };  //
+    public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };
+    public List<int> Edeck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };//
 
     void Awake()
     {
@@ -109,9 +110,20 @@ public class GameManager : MonoBehaviour
         CreateCard(cardID, hand);  
     }
 
-    public void EnemyDraw()
+    public void EnemyDraw(Transform hand)
     {
-        //CreateCard()
+        // デッキがないなら引かない
+        if (Edeck.Count == 0)
+        {
+            return;
+        }
+
+        // デッキの一番上のカードを抜き取り、手札に加える
+        SE.draw_SE();
+        int cardID = Edeck[0];
+        Edeck.RemoveAt(0);
+        Debug.Log("ドロー！");
+        CreateCard(cardID, hand);
     }
 
     void SetStartHand() // 手札を5枚配る
@@ -119,7 +131,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             DrawCard(playerHand);
-            CreateCard(999, enemyHand);
+            EnemyDraw(enemyHand);
+            //CreateCard(999, enemyHand);
         }
     }
 

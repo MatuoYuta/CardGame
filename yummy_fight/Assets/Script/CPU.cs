@@ -7,7 +7,20 @@ public class CPU : MonoBehaviour
     // Start is called before the first frame update
     public GameDirecter _directer;
     public GameManager _manager;
+    public CardController _Controller;
     int max = 0;
+
+    //手札に何があるか
+    bool paty;
+    bool bans;
+    bool mahin;
+    bool piclus;
+    bool chees;
+    bool retasu;
+    bool egg;
+    bool tomato;
+    
+
     void Start()
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
@@ -63,26 +76,59 @@ public class CPU : MonoBehaviour
         
     }
 
-    public void Main(int turn)
+    public void Main()
     {
-        /*int[] array = new int[_directer.playerFieldCardList.Length];
-        for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
-        {
-            
-            array[i] = _directer.playerFieldCardList[i].view.cardID;
-            Debug.Log(array[i]+"つっちーのスクリプト");
-        }*/
-
+       
         int[] array = new int[_directer.enemyHandCardList.Length];
-        for(int i = 0;i < _directer.enemyHandCardList.Length; i++)
+        for (int i = 0; i < _directer.enemyHandCardList.Length; i++)  //int型の配列にenemyの手札カードのIDを保存
         {
             array[i] = _directer.enemyHandCardList[i].view.cardID;
+            Debug.Log(array[i]);
         }
 
+        if (_directer.EnemyFieldCardList.Length <= 2)       //フィールドに出せるカードの制限
+        {
+            for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
+            {
+                if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3)        //バンズがあるときかマフィンがあるとき
+                {
+                     
+                    for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
+                    {
+                        if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティ
+                        {
+                            
+                            
+                            StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
+                            StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
+                            Destroy(_directer.enemyHandCardList[a].gameObject);
+                            Destroy(_directer.enemyHandCardList[b].gameObject);
+                            StartCoroutine(Create(4, _manager.enemyField, 3));         //ピクルス                          
+                            StartCoroutine(Create(5, _manager.enemyField, 3));         //チーズ
+                            StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
+                            StartCoroutine(Change_main(4));                            //メインターン終了
+                            //paty = true;
+                        }
+                      
+                    }
+                }
+                break;
+            }
+            //paty = false;
+        }
+            
+
+        /*if(_directer.EnemyFieldCardList.Length <= 2)
+        {
+            for(int q = 0; q <= _directer.EnemyFieldCardList.Length; q++)
+            {
+
+            }
+        }*/
 
         
 
-            switch (turn)
+            /*switch (turn)
         {
             
             case 1:
@@ -103,20 +149,42 @@ public class CPU : MonoBehaviour
                 StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
                 StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
 
-                /*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
+                *//*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
                 StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
                 StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
-                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*/
+                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*//*
 
                 StartCoroutine(Change_main(13));
                 break;
-        }
+        }*/
     }
 
 
     public void battle(int turn)
     {
-        switch(turn)
+        int maxPower = 0;
+        
+        if(_directer.EnemyFieldCardList.Length > 0) //CPUのフィールドにカードが一枚以上あるとき
+        {
+            for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
+            {
+                if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power　&& _directer.EnemyFieldCardList[i].view.hirou == false ) //攻撃力が最も高いカードを探す
+                {
+                    maxPower = i;   //登録
+                    Debug.Log(_directer.EnemyFieldCardList[maxPower].view.power);
+                }
+            }
+
+            if (_directer.playerFieldCardList.Length == 0)
+            {
+
+            }
+
+            
+        }
+        
+        
+        /*switch(turn)
         {
             case 1:
                 _directer.Change_End();
@@ -131,7 +199,7 @@ public class CPU : MonoBehaviour
                     }
                 }
                 break;
-        }
+        }*/
     }
 
     IEnumerator Create(int id,Transform place, int wait)

@@ -298,7 +298,8 @@ public class GameDirecter : MonoBehaviour
             // フェーズ変更に伴うテキストの更新
             UpdatePhaseText();
             phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nMain";
-            cpu_script.Main(turn);
+            //cpu_script.Main(turn);
+            cpu_script.Main();
             main = false;
         }
         //phase = Phase.Enemy_BATTLE;

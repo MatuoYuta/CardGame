@@ -10,6 +10,7 @@ public class CardView : MonoBehaviour
     [SerializeField] Image iconImage;
     public int cardID;
     public int power;
+    public bool hirou;
 
     public void Show(CardModel cardModel) // cardModel‚Ìƒf[ƒ^æ“¾‚Æ”½‰f
     {
