@@ -23,12 +23,15 @@ public class Button : MonoBehaviour
     public Animator panel_anim;
     internal bool interactable;
 
+    public CPU _cpu;
+
     void Start()
     {
         SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         hand = GameObject.Find("Player_hand");
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         card = transform.parent.gameObject;
+        _cpu = GameObject.Find("GameDirecter").GetComponent<CPU>();
     }
 
     public void Title()
@@ -64,6 +67,7 @@ public class Button : MonoBehaviour
         _directer.playerattack = false;
         _directer.enemyattack = false;
         this.gameObject.SetActive(false);
+        _cpu.EnemyAttackJudge();
     }
 
     public void Block()

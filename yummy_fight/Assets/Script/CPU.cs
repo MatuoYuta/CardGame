@@ -198,16 +198,25 @@ public class CPU : MonoBehaviour
     public void EnemyAttackJudge()
     {
         int maxPower = 0;
-        for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
+            for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
         {
             if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power && _directer.EnemyFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
             {
                 maxPower = i;   //登録
                 Debug.Log(_directer.EnemyFieldCardList[maxPower].view.power);
+                
+                
             }
+            
+            if (!_directer.EnemyFieldCardList[maxPower].view.hirou)
+            {
+                _directer.EnemyFieldCardList[maxPower].enemyattack();
+                Debug.Log("ta");
+                _directer.EnemyFieldCardList[maxPower].view.hirou = true;
+            }
+            
         }
-        _directer.EnemyFieldCardList[maxPower].enemyattack();
-        _directer.EnemyFieldCardList[maxPower].view.hirou = true;
+        
         Debug.Log(maxPower + "やーーー");
         maxPower = 0;
     }
