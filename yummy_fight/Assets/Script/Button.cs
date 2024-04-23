@@ -24,6 +24,7 @@ public class Button : MonoBehaviour
     internal bool interactable;
 
     public CPU _cpu;
+    public int BlockCard_ListNum;
 
     void Start()
     {
@@ -81,8 +82,21 @@ public class Button : MonoBehaviour
                 Debug.Log("アタッカー："+_directer.EnemyFieldCardList[i].gameObject);
                 Debug.Log("ブロッカー：" + transform.parent.gameObject);
                 _directer.Battle(_directer.EnemyFieldCardList[i].gameObject, card);
+                _directer.life_de_ukeru.SetActive(false);
+                _cpu.EnemyAttackJudge();
+
+                for (int ii = 0; ii < _directer.playerFieldCardList.Length; ii++)   //プレイヤーのフィールドのカードを見ていく
+                {
+
+                    if (_directer.playerFieldCardList[ii] == card) 
+                    {
+                        BlockCard_ListNum = ii;
+                    }
+
+                }
             }
         }
+        
     }
 
     public void Select()

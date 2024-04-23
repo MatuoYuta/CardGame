@@ -40,6 +40,7 @@ public class GameDirecter : MonoBehaviour
     public TextMeshProUGUI phaseText;// UIテキストをアサインするためのパブリック変数
     public Animator phaseAnimator;
     SE_Controller SE;
+    public Button _button;
 
 
     public enum Phase//フェーズ管理用列挙型変数
@@ -76,6 +77,8 @@ public class GameDirecter : MonoBehaviour
         battle = true;
         player_life = 2;
         enemy_life = 2;
+
+        _button = GetComponent<Button>();
     }
     private Phase previousPhase;
     void Update()
@@ -481,6 +484,8 @@ public class GameDirecter : MonoBehaviour
             Debug.Log("引き分け");
             StartCoroutine(Destroy_me(attack));
             StartCoroutine(Destroy_me(block));
+            //Debug.Log(_button.BlockCard_ListNum);
+            //playerFieldCardList[_button.BlockCard_ListNum] = null;
         }
         attack.GetComponent<CardController>().attack = false;
         block.GetComponent<CardController>().block = false;

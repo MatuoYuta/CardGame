@@ -9,16 +9,8 @@ public class CPU : MonoBehaviour
     public GameManager _manager;
     public CardController _Controller;
     int max = 0;
-
-    //手札に何があるか
-    bool paty;
-    bool bans;
-    bool mahin;
-    bool piclus;
-    bool chees;
-    bool retasu;
-    bool egg;
-    bool tomato;
+    int saigo = 0;
+    int AtkCnt = 0;
     
 
     void Start()
@@ -165,15 +157,6 @@ public class CPU : MonoBehaviour
            
             EnemyAttackJudge();
 
-
-
-            if (_directer.playerFieldCardList.Length == 0)
-            {
-                
-
-            }
-            
-
         }
         
         
@@ -197,28 +180,74 @@ public class CPU : MonoBehaviour
 
     public void EnemyAttackJudge()
     {
+        Debug.Log("tututut");
+        if (AtkCnt == _directer.EnemyFieldCardList.Length)
+        {
+            Debug.Log("エンドフェイズ突入" + AtkCnt);
+            _directer.Change_End();
+            AtkCnt = 0;
+        }
+
+        int P_maxPower = 0;
+        if(_directer.playerFieldCardList.Length == 0)
+        {
+            //P_maxPower = 100;
+        }
+        else
+        {
+            for (int i = 1; i < _directer.playerFieldCardList.Length; i++)   //プレイヤーのフィールドのカードを見ていく
+            {
+                if (_directer.playerFieldCardList[P_maxPower].view.power < _directer.playerFieldCardList[i].view.power && _directer.playerFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
+                {
+                    P_maxPower = i;   //登録                
+                }
+
+            }
+        }
+        
+
         int maxPower = 0;
-            for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
+        for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
         {
             if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power && _directer.EnemyFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
             {
-                maxPower = i;   //登録
-                Debug.Log(_directer.EnemyFieldCardList[maxPower].view.power);
-                
-                
-            }
-            
-            if (!_directer.EnemyFieldCardList[maxPower].view.hirou)
+                maxPower = i;   //登録                
+            }                   
+        }
+
+        if (!_directer.EnemyFieldCardList[maxPower].view.hirou)    //カードが疲労状態じゃないなら攻撃
+        {
+            if(_directer.playerFieldCardList.Length == 0)
             {
                 _directer.EnemyFieldCardList[maxPower].enemyattack();
-                Debug.Log("ta");
                 _directer.EnemyFieldCardList[maxPower].view.hirou = true;
+                AtkCnt++;
+                Debug.Log("AtkCnt" + AtkCnt);
+            }
+            else if (_directer.playerFieldCardList[P_maxPower].view.power　<= _directer.EnemyFieldCardList[maxPower].view.power)
+            {
+                _directer.EnemyFieldCardList[maxPower].enemyattack();
+                _directer.EnemyFieldCardList[maxPower].view.hirou = true;
+                AtkCnt++;
+                Debug.Log("AtkCnt" + AtkCnt);
+                maxPower = 0;
+
+                
+            }
+            else if(_directer.playerFieldCardList[P_maxPower].view.power > _directer.EnemyFieldCardList[maxPower].view.power)
+            {
+                Debug.Log("P_maxPower"+P_maxPower);
+                Debug.Log("_directer.playerFieldCardList.Length"+_directer.playerFieldCardList.Length);
+                Debug.Log("_directer.playerFieldCardList[P_maxPower].view.power"+_directer.playerFieldCardList[P_maxPower].view.power);
+                Debug.Log("↓");
+                _directer.Change_End();
             }
             
         }
-        
-        Debug.Log(maxPower + "やーーー");
         maxPower = 0;
+        
+
+
     }
 
     IEnumerator Create(int id,Transform place, int wait)
