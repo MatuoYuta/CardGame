@@ -68,6 +68,13 @@ public class Button : MonoBehaviour
         _directer.playerattack = false;
         _directer.enemyattack = false;
         this.gameObject.SetActive(false);
+        for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
+        {
+            if (!_directer.playerFieldCardList[i].hirou)
+            {
+                _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(false);
+            }
+        }
         _cpu.EnemyAttackJudge();
     }
 

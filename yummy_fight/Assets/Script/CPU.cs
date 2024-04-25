@@ -26,30 +26,30 @@ public class CPU : MonoBehaviour
         {
             Debug.Log("プレイヤーの攻撃を検知");
             if(!_directer.Koukahatudou)
-            {
+            {               
                 StartCoroutine("Block");
             }
         }
     }
 
-    public IEnumerator Block()
+    public IEnumerator Block()      //04/25/12:04,次にやる事->　enemyFieldのカードがすべて疲労状態ならライフで受ける処理を書く
     {
         yield return new WaitForSeconds(0);
-        if (_directer.EnemyFieldCardList.Length > 0)
+        if (_directer.EnemyFieldCardList.Length > 0)    //CPUのフィールドに1体以上モンスターがいるとき
         {
             for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
             {
-                if (max < _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
+                if (max < _directer.EnemyFieldCardList[i].GetComponent<CardView>().power && _directer.EnemyFieldCardList[i].view.hirou == false)   //もっともパワーが高いやつを探す
                 {
-                    max = _directer.EnemyFieldCardList[i].GetComponent<CardView>().power;
+                    max = _directer.EnemyFieldCardList[i].GetComponent<CardView>().power;   //入れる
                 }
             }
 
             for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
             {
-                if (max == _directer.EnemyFieldCardList[i].GetComponent<CardView>().power)
+                if (max == _directer.EnemyFieldCardList[i].GetComponent<CardView>().power && _directer.EnemyFieldCardList[i].view.hirou == false)  //一番パワーでかいやつを探す
                 {
-                    _directer.EnemyFieldCardList[i].enemyblock();
+                    _directer.EnemyFieldCardList[i].enemyblock();   //おったらそいつでブロック
                     _directer.playerattack = false;
 
                 }
@@ -66,6 +66,7 @@ public class CPU : MonoBehaviour
         for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
         {
             _directer.EnemyFieldCardList[i].kaihuku_Enemy();
+            _directer.EnemyFieldCardList[i].view.hirou = false;
         }
 
     }
@@ -95,8 +96,8 @@ public class CPU : MonoBehaviour
 
                             Destroy(_directer.enemyHandCardList[a].gameObject);
                             Destroy(_directer.enemyHandCardList[b].gameObject);
-                            
-                            
+
+                            StartCoroutine(Create(1, _manager.enemyField, 3));
                             StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
                             StartCoroutine(Change_main(7));                            //メインターン終了
                         }                     
@@ -114,8 +115,6 @@ public class CPU : MonoBehaviour
 
             }
         }*/
-
-        
 
             /*switch (turn)
         {
