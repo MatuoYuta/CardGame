@@ -10,29 +10,53 @@ public class CPU : MonoBehaviour
     public CardController _Controller;
     int max = 0;
     public int AtkCnt = 0;
-
+    int hirouCnt = 0;
+    public AttackButton _AttackButton;
+    public bool bans;
+    public bool mafin;
 
     void Start()
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _Controller = GameObject.Find("CardController").GetComponent<CardController>();
+        _AttackButton = GameObject.Find("AttackButton").GetComponent<AttackButton>();
     }
 
+    //バガムート　101 素材　バンズ 1 OR マフィン　3 と　パティ　2　と　ピクルス　4 と　レタス　6　と　トマト　8
+    //チーバガ　104 素材　バンズ 1 OR マフィン　3　と　パティ　2　と チーズ　5
+    //トレバガ　103 素材　バンズ 1 OR マフィン　3　と　パティ　2　と　トマト　8
+    //エグマフ　102 素材　マフィン　3 と　パティ　2　と エッグ　7
+    //ハーフ　105 素材　バンズ 1 OR マフィン　3 と　パティ　2
     // Update is called once per frame
     void Update()
     {
         if(_directer.playerattack)
         {
             Debug.Log("プレイヤーの攻撃を検知");
-            if(!_directer.Koukahatudou)
-            {               
+            if(!_directer.Koukahatudou && _directer.EnemyFieldCardList.Length > 0)
+            {
+                for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+                {
+                    if (_directer.EnemyFieldCardList[i].view.hirou)
+                    {
+                        hirouCnt++;
+                    }
+                }
+                if(_directer.EnemyFieldCardList.Length <= hirouCnt)     //enemyFieldがすべて疲労状態なら
+                {
+                    _directer.enemy_life--;
+                    _AttackButton.cardObject.GetComponent<CardController>().attack = false;
+                    _directer.playerattack = false;
+                }
+                
+
                 StartCoroutine("Block");
             }
         }
     }
 
-    public IEnumerator Block()      //04/25/12:04,次にやる事->　enemyFieldのカードがすべて疲労状態ならライフで受ける処理を書く
+    public IEnumerator Block()      
     {
         yield return new WaitForSeconds(0);
         if (_directer.EnemyFieldCardList.Length > 0)    //CPUのフィールドに1体以上モンスターがいるとき
@@ -85,13 +109,23 @@ public class CPU : MonoBehaviour
         {
             for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
             {
-                if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3)        //バンズがあるときかマフィンがあるとき
+                if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
                 {                   
                     for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
                     {
                         if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
                         {   
                             StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
+                            /*if(_directer.enemyHandCardList[a].view.cardID == 1)
+                            {
+                                StartCoroutine(Create(3, _manager.enemyHand, 1));   //バンズの能力を発動
+                                bans = true;
+                            }
+                            else if(_directer.enemyHandCardList[a].view.cardID == 3)
+                            {
+                                StartCoroutine(Create(1, _manager.enemyHand, 1));   //マフィンの能力を発動
+                                mafin = true;
+                            }*/
                             StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
 
                             Destroy(_directer.enemyHandCardList[a].gameObject);
@@ -99,14 +133,14 @@ public class CPU : MonoBehaviour
 
                             StartCoroutine(Create(1, _manager.enemyField, 3));
                             StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
-                            StartCoroutine(Change_main(7));                            //メインターン終了
+                           
                         }                     
                     }
                 }
                 break;
             }
         }
-            
+        StartCoroutine(Change_main(7));                            //メインターン終了    
 
         /*if(_directer.EnemyFieldCardList.Length <= 2)
         {
@@ -116,35 +150,35 @@ public class CPU : MonoBehaviour
             }
         }*/
 
-            /*switch (turn)
-        {
-            
-            case 1:
+        /*switch (turn)
+    {
 
-                StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
-                StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-                StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
-                StartCoroutine(Change_main(4));
-                break;
-            case 2:
-                StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン
-                StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-                StartCoroutine(Create(7, _manager.enemyKitchen, 3));//エッグ
-                StartCoroutine(Yugou(102, _manager.enemyField, 4));//エグマフ
+        case 1:
 
-                StartCoroutine(Create(1, _manager.enemyKitchen, 5));//バンズ
-                StartCoroutine(Create(6, _manager.enemyKitchen, 6));//レタス
-                StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
-                StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
+            StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
+            StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
+            StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
+            StartCoroutine(Change_main(4));
+            break;
+        case 2:
+            StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン
+            StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
+            StartCoroutine(Create(7, _manager.enemyKitchen, 3));//エッグ
+            StartCoroutine(Yugou(102, _manager.enemyField, 4));//エグマフ
 
-                *//*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
-                StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
-                StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
-                StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*//*
+            StartCoroutine(Create(1, _manager.enemyKitchen, 5));//バンズ
+            StartCoroutine(Create(6, _manager.enemyKitchen, 6));//レタス
+            StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
+            StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
 
-                StartCoroutine(Change_main(13));
-                break;
-        }*/
+            *//*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
+            StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
+            StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
+            StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*//*
+
+            StartCoroutine(Change_main(13));
+            break;
+    }*/
     }
 
 

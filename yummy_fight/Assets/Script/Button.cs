@@ -69,11 +69,8 @@ public class Button : MonoBehaviour
         _directer.enemyattack = false;
         this.gameObject.SetActive(false);
         for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
-        {
-            if (!_directer.playerFieldCardList[i].hirou)
-            {
-                _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(false);
-            }
+        {           
+            _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(false);            
         }
         _cpu.EnemyAttackJudge();
     }
@@ -92,7 +89,10 @@ public class Button : MonoBehaviour
                 _directer.life_de_ukeru.SetActive(false);
             }
         }
-        
+        for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
+        {
+            _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(false);
+        }
     }
 
     public void Select()

@@ -114,12 +114,17 @@ public class GameDirecter : MonoBehaviour
                 InitPhase();
                 break;
             case Phase.DRAW://ドローフェーズ
-                if(!draw)
+                Debug.Log("どろーふぇーずちぇっく");
+                if (!draw)
                 {
                     draw = true;
                     UpdatePhaseText();
-                    Invoke("DrawPhase", 3);
+                    Debug.Log("どろーふぇーず");
+                    Debug.Log(draw);
+
+                    Invoke("DrawPhase", 3.0f);
                 }
+                
                 E_turn = false;
                 break;
             case Phase.STANDBY://スタンバイ（移動）フェーズ
@@ -151,6 +156,8 @@ public class GameDirecter : MonoBehaviour
                 break;
             case Phase.Enemy_END://エンドフェーズ
                 Enemy_EndPhase();
+                cpu_script.bans = false;
+                cpu_script.mafin = false;
                 break;
         }
 
@@ -186,7 +193,7 @@ public class GameDirecter : MonoBehaviour
     }
     void DrawPhase()
     {
-        Debug.Log("DrawPhase");
+        Debug.Log("どろーーーーーーーーー");
         // フェーズ変更に伴うテキストの更新
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nDraw";
         currentPlayer.Draw();
@@ -362,9 +369,19 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("Enemy_EndPhase");
         // フェーズ変更に伴うテキストの更新
         UpdatePhaseText();
-        phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nEnd";
-        phase = Phase.DRAW;
+        phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nEnd";        
         battle = true;
+        //Invoke("Invoke_draw", 3.5f);
+        phase = Phase.DRAW;
+
+    }
+
+    void Invoke_draw()
+    {
+        Debug.Log("Invoke後どろーふぇーず");
+
+        phase = Phase.DRAW;
+        Debug.Log(phase);
     }
 
     public void Change_Main()
@@ -380,7 +397,9 @@ public class GameDirecter : MonoBehaviour
     public void Change_End()
     {
         phase = Phase.Enemy_END;
+
     }
+
     
 
     public void NextPhase()
