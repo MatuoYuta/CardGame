@@ -114,4 +114,15 @@ public class CardController : MonoBehaviour
             hirou = false;
         }
     }
+
+    public void kaihuku_Enemy()
+    {
+        if (hirou)
+        {
+            // カードを90度回転させる
+            this.transform.Rotate(new Vector3(0f, 0f, 90f));
+            this.transform.localScale = new Vector3(1.3f, 2f, 1.3f);
+            hirou = false;
+        }
+    }
 }

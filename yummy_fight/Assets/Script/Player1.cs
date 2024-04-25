@@ -32,6 +32,6 @@ public class Player1: MonoBehaviour
 
     public void EnemyDraw()
     {
-        manage_script.DrawCard(enemyHand);
+        manage_script.EnemyDraw(enemyHand);
     }
 }

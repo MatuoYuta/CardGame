@@ -9,9 +9,8 @@ public class CPU : MonoBehaviour
     public GameManager _manager;
     public CardController _Controller;
     int max = 0;
-    int saigo = 0;
-    int AtkCnt = 0;
-    
+    public int AtkCnt = 0;
+
 
     void Start()
     {
@@ -63,7 +62,12 @@ public class CPU : MonoBehaviour
         for(int i = 0; i< _directer.EnemyKitchenCardList.Length;i++)
         {
             _directer.EnemyKitchenCardList[i].gameObject.transform.SetParent(_manager.enemyField);
-        }  
+        }
+        for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
+        {
+            _directer.EnemyFieldCardList[i].kaihuku_Enemy();
+        }
+
     }
 
     public void Main()
@@ -81,28 +85,25 @@ public class CPU : MonoBehaviour
             for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
             {
                 if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3)        //バンズがあるときかマフィンがあるとき
-                {
-                     
+                {                   
                     for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
                     {
-                        if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティ
+                        if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
                         {   
                             StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
                             StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
+
                             Destroy(_directer.enemyHandCardList[a].gameObject);
                             Destroy(_directer.enemyHandCardList[b].gameObject);
-                            StartCoroutine(Create(4, _manager.enemyField, 3));         //ピクルス                          
-                            StartCoroutine(Create(5, _manager.enemyField, 3));         //チーズ
+                            
+                            
                             StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
-                            StartCoroutine(Change_main(4));                            //メインターン終了
-                            //paty = true;
-                        }
-                      
+                            StartCoroutine(Change_main(7));                            //メインターン終了
+                        }                     
                     }
                 }
                 break;
             }
-            //paty = false;
         }
             
 
@@ -153,10 +154,8 @@ public class CPU : MonoBehaviour
         
         
         if(_directer.EnemyFieldCardList.Length > 0) //CPUのフィールドにカードが一枚以上あるとき
-        {
-           
+        {          
             EnemyAttackJudge();
-
         }
         
         
@@ -180,7 +179,7 @@ public class CPU : MonoBehaviour
 
     public void EnemyAttackJudge()
     {
-        Debug.Log("tututut");
+        Debug.Log("EnemyAttackJudgeの実行");
         if (AtkCnt == _directer.EnemyFieldCardList.Length)
         {
             Debug.Log("エンドフェイズ突入" + AtkCnt);
@@ -189,7 +188,7 @@ public class CPU : MonoBehaviour
         }
 
         int P_maxPower = 0;
-        if(_directer.playerFieldCardList.Length == 0)
+        if(_directer.playerFieldCardList.Length <= 0)
         {
             //P_maxPower = 100;
         }
@@ -201,7 +200,6 @@ public class CPU : MonoBehaviour
                 {
                     P_maxPower = i;   //登録                
                 }
-
             }
         }
         
@@ -240,6 +238,8 @@ public class CPU : MonoBehaviour
                 Debug.Log("_directer.playerFieldCardList.Length"+_directer.playerFieldCardList.Length);
                 Debug.Log("_directer.playerFieldCardList[P_maxPower].view.power"+_directer.playerFieldCardList[P_maxPower].view.power);
                 Debug.Log("↓");
+                maxPower = 0;
+                P_maxPower = 0;
                 _directer.Change_End();
             }
             

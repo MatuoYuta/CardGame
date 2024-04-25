@@ -41,7 +41,9 @@ public class GameDirecter : MonoBehaviour
     public Animator phaseAnimator;
     SE_Controller SE;
     public Button _button;
-
+    public CPU _cpu;
+    public bool E_turn;
+    public bool E_draw;
 
     public enum Phase//フェーズ管理用列挙型変数
 
@@ -79,6 +81,7 @@ public class GameDirecter : MonoBehaviour
         enemy_life = 2;
 
         _button = GetComponent<Button>();
+        _cpu = GameObject.Find("GameDirecter").GetComponent<CPU>();
     }
     private Phase previousPhase;
     void Update()
@@ -117,6 +120,7 @@ public class GameDirecter : MonoBehaviour
                     UpdatePhaseText();
                     Invoke("DrawPhase", 3);
                 }
+                E_turn = false;
                 break;
             case Phase.STANDBY://スタンバイ（移動）フェーズ
                 draw = false;
@@ -134,6 +138,7 @@ public class GameDirecter : MonoBehaviour
             case Phase.Enemy_DRAW://ドローフェーズ
                 turn++;
                 Enemy_DrawPhase();
+                E_turn = true;
                 break;
             case Phase.Enemy_STANDBY://スタンバイ（移動）フェーズ
                 Enemy_StandbyPhase();
@@ -211,11 +216,16 @@ public class GameDirecter : MonoBehaviour
     }
 
     // Player_fieldにあるカードの向きをリセットする関数
-    void ResetCardRotation(CardController[] cards)
+    public void ResetCardRotation(CardController[] cards)
     {
+        
         foreach (var card in cards)
         {
-            if (card != null)
+            if (card != null && phase == Phase.Enemy_STANDBY)
+            {
+                Quaternion rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else
             {
                 card.transform.rotation = Quaternion.identity;
             }
@@ -249,6 +259,7 @@ public class GameDirecter : MonoBehaviour
     void EndPhase()
     {
         Debug.Log("EndPhase");
+        E_draw = true;
         // フェーズ変更に伴うテキストの更新
         UpdatePhaseText();
         Attackable = false;
@@ -265,7 +276,7 @@ public class GameDirecter : MonoBehaviour
         //{
         //    currentPlayer = playerList[0];
         //}
-        phase = Phase.Enemy_DRAW;
+        Invoke("changeP_end", 3.5f);
 
         // BATTLEフェーズから出たのでクリックを禁止する
         foreach (var objClickExample in FindObjectsOfType<ObjectClickExample>())
@@ -274,13 +285,26 @@ public class GameDirecter : MonoBehaviour
         }
     }
 
+    void changeP_end()
+    {
+        
+        phase = Phase.Enemy_DRAW;
+        
+    }
+
     void Enemy_DrawPhase()
     {
         Debug.Log("Enemy_DrawPhase");
+        
         // フェーズ変更に伴うテキストの更新
         UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nDraw";
-        //currentPlayer.EnemyDraw();
+        currentPlayer.EnemyDraw();
+        Invoke("Invoke_changeStanby", 3.5f);
+    }
+
+    void Invoke_changeStanby()
+    {
         phase = Phase.Enemy_STANDBY;
     }
 
@@ -290,6 +314,12 @@ public class GameDirecter : MonoBehaviour
         // フェーズ変更に伴うテキストの更新
         UpdatePhaseText();
         phase_text.GetComponent<TextMeshProUGUI>().text = "Enemy" + "\nStandby";
+        _cpu.Standby();
+        Invoke("Invoke_changeMain", 3.5f);
+    }
+
+    void Invoke_changeMain()
+    {
         phase = Phase.Enemy_MAIN;
     }
 
@@ -452,6 +482,21 @@ public class GameDirecter : MonoBehaviour
         Destroy(me);
     }
 
+    IEnumerator Destroy_me_ETurn(GameObject me)
+    {
+        SE.hakai_SE();
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Destroy_me_ETrunの呼び出し");
+        Destroy(me);
+        Debug.Log("ですとろい");
+        Invoke("E_judge", 0.1f);
+    }
+
+    void E_judge()
+    {
+        _cpu.EnemyAttackJudge();
+    }
+
     public void Ensyutu_Start()
     {
         Ensyutu.SetActive(true);
@@ -469,24 +514,49 @@ public class GameDirecter : MonoBehaviour
         Debug.Log("バトル開始");
         Debug.Log("アタックパワー" + attack_power);
         Debug.Log("ブロックパワー" + block_power);
-        if (attack_power > block_power)
+        if (phase == Phase.Enemy_BATTLE)
         {
-            Debug.Log("アタッカーの勝ち");
-            StartCoroutine(Destroy_me(block));
+            Debug.Log("エネミーバトルフェイズ");
+            if (attack_power > block_power)
+            {
+                Debug.Log("アタッカーの勝ち");
+                StartCoroutine(Destroy_me_ETurn(block));
+            }
+            else if (attack_power > block_power)
+            {
+                Debug.Log("ブロッカーの勝ち");
+                _cpu.AtkCnt -= 1;
+                StartCoroutine(Destroy_me_ETurn(attack));
+            }
+            else if (attack_power == block_power)
+            {
+                Debug.Log("引き分け");
+                _cpu.AtkCnt -= 1;
+                StartCoroutine(Destroy_me(attack));
+                StartCoroutine(Destroy_me_ETurn(block));
+            }
         }
-        else if(attack_power > block_power)
+        else
         {
-            Debug.Log("ブロッカーの勝ち");
-            StartCoroutine(Destroy_me(attack));
+            if (attack_power > block_power)
+            {
+                Debug.Log("アタッカーの勝ち");
+                StartCoroutine(Destroy_me(block));
+            }
+            else if (attack_power > block_power)
+            {
+                Debug.Log("ブロッカーの勝ち");
+                StartCoroutine(Destroy_me(attack));
+            }
+            else if (attack_power == block_power)
+            {
+                Debug.Log("引き分け");
+                StartCoroutine(Destroy_me(attack));
+                StartCoroutine(Destroy_me(block));
+            }
         }
-        else if(attack_power == block_power)
-        {
-            Debug.Log("引き分け");
-            StartCoroutine(Destroy_me(attack));
-            StartCoroutine(Destroy_me(block));
-            //Debug.Log(_button.BlockCard_ListNum);
-            //playerFieldCardList[_button.BlockCard_ListNum] = null;
-        }
+
+        
         attack.GetComponent<CardController>().attack = false;
         block.GetComponent<CardController>().block = false;
         playerattack = false;

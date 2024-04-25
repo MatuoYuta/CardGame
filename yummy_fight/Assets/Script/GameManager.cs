@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };
     public List<int> Edeck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };//
 
+    public GameDirecter _directer;
     void Awake()
     {
         // このゲームオブジェクトにアタッチされているPhotonViewコンポーネントを取得
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         StartGame();
         // シーン同期状態のチェックを開始
         StartCoroutine(CheckSceneSyncStatus());
+        _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
     }
 
     void StartGame() // 初期値の設定 
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
+        
         // デッキの一番上のカードを抜き取り、手札に加える
         SE.draw_SE();
         int cardID = deck[0];
@@ -117,13 +119,34 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        if (_directer.E_draw)
+        {
+            // デッキの一番上のカードを抜き取り、手札に加える
+            SE.draw_SE();
+            int cardID = Edeck[0];
+            Edeck.RemoveAt(0);
+            CreateCard(cardID, hand);
+            Debug.Log("エネミードロー");
+            _directer.E_draw = false;
+        }
 
+    }
+    public void EnemyDraw_Start(Transform hand)
+    {
+        // デッキがないなら引かない
+        if (Edeck.Count == 0)
+        {
+            return;
+        }
+        
         // デッキの一番上のカードを抜き取り、手札に加える
         SE.draw_SE();
         int cardID = Edeck[0];
         Edeck.RemoveAt(0);
-        Debug.Log("ドロー！");
         CreateCard(cardID, hand);
+        Debug.Log("エネミードロー");
+
+        
     }
 
     void SetStartHand() // 手札を5枚配る
@@ -131,7 +154,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             DrawCard(playerHand);
-            EnemyDraw(enemyHand);
+            EnemyDraw_Start(enemyHand);
             //CreateCard(999, enemyHand);
         }
     }

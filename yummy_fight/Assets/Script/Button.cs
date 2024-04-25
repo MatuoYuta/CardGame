@@ -83,17 +83,6 @@ public class Button : MonoBehaviour
                 Debug.Log("ブロッカー：" + transform.parent.gameObject);
                 _directer.Battle(_directer.EnemyFieldCardList[i].gameObject, card);
                 _directer.life_de_ukeru.SetActive(false);
-                _cpu.EnemyAttackJudge();
-
-                for (int ii = 0; ii < _directer.playerFieldCardList.Length; ii++)   //プレイヤーのフィールドのカードを見ていく
-                {
-
-                    if (_directer.playerFieldCardList[ii] == card) 
-                    {
-                        BlockCard_ListNum = ii;
-                    }
-
-                }
             }
         }
         
