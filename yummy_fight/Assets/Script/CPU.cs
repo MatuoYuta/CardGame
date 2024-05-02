@@ -8,12 +8,14 @@ public class CPU : MonoBehaviour
     public GameDirecter _directer;
     public GameManager _manager;
     public CardController _Controller;
+    public GameObject hand;
     int max = 0;
     public int AtkCnt = 0;
     int hirouCnt = 0;
     public AttackButton _AttackButton;
     public bool bans;
     public bool mafin;
+    //int serach = 0;             //カード効果で使うドロー変数
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class CPU : MonoBehaviour
         _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _Controller = GameObject.Find("CardController").GetComponent<CardController>();
         _AttackButton = GameObject.Find("AttackButton").GetComponent<AttackButton>();
+        hand = GameObject.Find("Canvas/enemy_hand");
     }
 
     //バガムート　101 素材　バンズ 1 OR マフィン　3 と　パティ　2　と　ピクルス　4 と　レタス　6　と　トマト　8
@@ -97,7 +100,13 @@ public class CPU : MonoBehaviour
 
     public void Main()
     {
-       
+        //バガムート　101 素材　バンズ 1 OR マフィン　3 と　パティ　2　と　ピクルス　4 と　レタス　6　と　トマト　8
+        //チーバガ　104 素材　バンズ 1 OR マフィン　3　と　パティ　2　と チーズ　5
+        //トレバガ　103 素材　バンズ 1 OR マフィン　3　と　パティ　2　と　トマト　8
+        //エグマフ　102 素材　マフィン　3 と　パティ　2　と エッグ　7
+        //ハーフ　105 素材　バンズ 1 OR マフィン　3 と　パティ　2
+
+
         int[] array = new int[_directer.enemyHandCardList.Length];
         for (int i = 0; i < _directer.enemyHandCardList.Length; i++)  //int型の配列にenemyの手札カードのIDを保存
         {
@@ -116,9 +125,11 @@ public class CPU : MonoBehaviour
                         if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
                         {   
                             StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
+                            kouka(_directer.enemyHandCardList[a].view.cardID);
+                            Debug.Log(_directer.enemyHandCardList[a].view.cardID);
                             /*if(_directer.enemyHandCardList[a].view.cardID == 1)
                             {
-                                StartCoroutine(Create(3, _manager.enemyHand, 1));   //バンズの能力を発動
+                                _manager.CreateCard(3, hand.transform);   //バンズの能力を発動
                                 bans = true;
                             }
                             else if(_directer.enemyHandCardList[a].view.cardID == 3)
@@ -127,6 +138,7 @@ public class CPU : MonoBehaviour
                                 mafin = true;
                             }*/
                             StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
+
 
                             Destroy(_directer.enemyHandCardList[a].gameObject);
                             Destroy(_directer.enemyHandCardList[b].gameObject);
@@ -179,6 +191,20 @@ public class CPU : MonoBehaviour
             StartCoroutine(Change_main(13));
             break;
     }*/
+    }
+    public void kouka(int serach)
+    {
+        switch (serach)
+        {
+            case 1:
+                _manager.CreateCard(3, hand.transform);   //バンズの能力を発動
+                bans = true;
+                break;
+            case 3:
+                _manager.CreateCard(1, hand.transform);   //マフィンの能力を発動
+                mafin = true;
+                break;
+        }
     }
 
 

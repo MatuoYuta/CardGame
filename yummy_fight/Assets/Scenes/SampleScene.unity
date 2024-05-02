@@ -471,8 +471,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u6C7A\u5B9A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1268,8 +1268,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1498,6 +1498,8 @@ MonoBehaviour:
   menu: {fileID: 0}
   search_id: 0
   panel_anim: {fileID: 1599501473}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!1 &494920251
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,8 +2267,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2572,6 +2574,8 @@ MonoBehaviour:
   menu: {fileID: 0}
   search_id: 0
   panel_anim: {fileID: 0}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!1 &745013841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,6 +3000,8 @@ MonoBehaviour:
   menu: {fileID: 0}
   search_id: 0
   panel_anim: {fileID: 0}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!114 &999252083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3392,6 +3398,8 @@ MonoBehaviour:
   menu: {fileID: 4487493563254779007}
   search_id: 0
   panel_anim: {fileID: 0}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!1 &1072411699
 GameObject:
   m_ObjectHideFlags: 0
@@ -3590,8 +3598,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30E9\u30A4\u30D5\u3067\u53D7\u3051\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4082,6 +4090,8 @@ MonoBehaviour:
   menu: {fileID: 4487493563254779007}
   search_id: 0
   panel_anim: {fileID: 0}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!1 &1199499682
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,8 +4464,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30AD\u30E3\u30F3\u30BB\u30EB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4670,8 +4680,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9589\u3058\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5152,6 +5162,10 @@ MonoBehaviour:
   senityuu: 0
   phaseText: {fileID: 1928910569}
   phaseAnimator: {fileID: 1928910570}
+  _button: {fileID: 0}
+  _cpu: {fileID: 0}
+  E_turn: 0
+  E_draw: 0
   phase: 0
 --- !u!4 &1632766651
 Transform:
@@ -5182,6 +5196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _directer: {fileID: 0}
   _manager: {fileID: 0}
+  _Controller: {fileID: 0}
+  hand: {fileID: 340366085}
+  AtkCnt: 0
+  _AttackButton: {fileID: 0}
+  bans: 0
+  mafin: 0
 --- !u!1 &1657499575
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,8 +5472,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u53EC\u559A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5808,6 +5828,8 @@ MonoBehaviour:
   menu: {fileID: 4487493563254779007}
   search_id: 0
   panel_anim: {fileID: 0}
+  _cpu: {fileID: 0}
+  BlockCard_ListNum: 0
 --- !u!1 &1928910568
 GameObject:
   m_ObjectHideFlags: 0
@@ -6526,6 +6548,8 @@ MonoBehaviour:
   torabaga: 0
   chibaga: 0
   deck: 0100000002000000cb00000004000000ca000000060000000700000008000000c9000000ca000000cb0000000100000002000000030000000400000005000000060000000700000008000000c9000000ca000000cb0000000100000002000000030000000400000005000000060000000700000008000000c9000000ca000000cb000000
+  Edeck: 010000000200000003000000040000000500000006000000070000000800000001000000020000000300000004000000050000000600000007000000080000000100000002000000
+  _directer: {fileID: 0}
 --- !u!4 &2077252320
 Transform:
   m_ObjectHideFlags: 0
@@ -7638,8 +7662,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u97F3\u91CF\u8A2D\u5B9A\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
-  m_sharedMaterial: {fileID: -2730079793586263496, guid: fcb5a877fa9302448a8c272799fe98f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
