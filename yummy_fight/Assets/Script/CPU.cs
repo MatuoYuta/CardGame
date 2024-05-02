@@ -13,8 +13,10 @@ public class CPU : MonoBehaviour
     public int AtkCnt = 0;
     int hirouCnt = 0;
     public AttackButton _AttackButton;
+    int[] array;
     public bool bans;
     public bool mafin;
+    public bool patty;
     //int serach = 0;             //カード効果で使うドロー変数
 
     void Start()
@@ -57,6 +59,12 @@ public class CPU : MonoBehaviour
                 StartCoroutine("Block");
             }
         }
+
+        array = new int[_directer.enemyHandCardList.Length];
+        for (int i = 0; i < _directer.enemyHandCardList.Length; i++)  //int型の配列にenemyの手札カードのIDを保存
+        {
+            array[i] = _directer.enemyHandCardList[i].view.cardID;
+        }
     }
 
     public IEnumerator Block()      
@@ -95,7 +103,8 @@ public class CPU : MonoBehaviour
             _directer.EnemyFieldCardList[i].kaihuku_Enemy();
             _directer.EnemyFieldCardList[i].view.hirou = false;
         }
-
+        bans = false;
+        mafin = false;
     }
 
     public void Main()
@@ -107,106 +116,222 @@ public class CPU : MonoBehaviour
         //ハーフ　105 素材　バンズ 1 OR マフィン　3 と　パティ　2
 
 
-        int[] array = new int[_directer.enemyHandCardList.Length];
+        /*array = new int[_directer.enemyHandCardList.Length];
         for (int i = 0; i < _directer.enemyHandCardList.Length; i++)  //int型の配列にenemyの手札カードのIDを保存
         {
             array[i] = _directer.enemyHandCardList[i].view.cardID;
             Debug.Log(array[i]);
-        }
+        }*/
 
         if (_directer.EnemyFieldCardList.Length <= 2)       //フィールドに出せるカードの制限
         {
-            for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
-            {
-                if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
-                {                   
-                    for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
-                    {
-                        if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
-                        {   
-                            StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
-                            kouka(_directer.enemyHandCardList[a].view.cardID);
-                            Debug.Log(_directer.enemyHandCardList[a].view.cardID);
-                            /*if(_directer.enemyHandCardList[a].view.cardID == 1)
-                            {
-                                _manager.CreateCard(3, hand.transform);   //バンズの能力を発動
-                                bans = true;
-                            }
-                            else if(_directer.enemyHandCardList[a].view.cardID == 3)
-                            {
-                                StartCoroutine(Create(1, _manager.enemyHand, 1));   //マフィンの能力を発動
-                                mafin = true;
-                            }*/
-                            StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
-
-
-                            Destroy(_directer.enemyHandCardList[a].gameObject);
-                            Destroy(_directer.enemyHandCardList[b].gameObject);
-
-                            StartCoroutine(Create(1, _manager.enemyField, 3));
-                            StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
-                           
-                        }                     
-                    }
-                }
-                break;
-            }
+            Harf();
+            //HandCheck();
+            //Debug.Log("チェック１_directer.EnemyKitchenCardList.Length　" + _directer.EnemyKitchenCardList.Length);
         }
         StartCoroutine(Change_main(7));                            //メインターン終了    
-
-        /*if(_directer.EnemyFieldCardList.Length <= 2)
-        {
-            for(int q = 0; q <= _directer.EnemyFieldCardList.Length; q++)
-            {
-
-            }
-        }*/
-
-        /*switch (turn)
-    {
-
-        case 1:
-
-            StartCoroutine(Create(1, _manager.enemyKitchen, 1));//バンズ
-            StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-            StartCoroutine(Yugou(105, _manager.enemyField, 3));//半バーガー
-            StartCoroutine(Change_main(4));
-            break;
-        case 2:
-            StartCoroutine(Create(3, _manager.enemyKitchen, 1));//マフィン
-            StartCoroutine(Create(2, _manager.enemyKitchen, 2));//パティ
-            StartCoroutine(Create(7, _manager.enemyKitchen, 3));//エッグ
-            StartCoroutine(Yugou(102, _manager.enemyField, 4));//エグマフ
-
-            StartCoroutine(Create(1, _manager.enemyKitchen, 5));//バンズ
-            StartCoroutine(Create(6, _manager.enemyKitchen, 6));//レタス
-            StartCoroutine(Create(8, _manager.enemyKitchen, 7));//トマト
-            StartCoroutine(Yugou(103, _manager.enemyField, 8));//トレバガ
-
-            *//*StartCoroutine(Create(1, _manager.enemyKitchen, 9));//バンズ
-            StartCoroutine(Create(2, _manager.enemyKitchen, 10));//パティ
-            StartCoroutine(Create(5, _manager.enemyKitchen, 11));//チーズ
-            StartCoroutine(Yugou(104, _manager.enemyField, 12));//トレバガ*//*
-
-            StartCoroutine(Change_main(13));
-            break;
-    }*/
+        
     }
     public void kouka(int serach)
     {
         switch (serach)
         {
             case 1:
-                _manager.CreateCard(3, hand.transform);   //バンズの能力を発動
-                bans = true;
+                if (!bans)
+                {
+                    _manager.CreateCard(2, hand.transform);   //バンズの能力を発動
+                    bans = true;
+                }                
+                break;
+
+            case 2:
+                if (!patty)
+                {
+                    _manager.CreateCard(1, hand.transform);   //パティの能力を発動
+                    patty = true;
+                }
                 break;
             case 3:
-                _manager.CreateCard(1, hand.transform);   //マフィンの能力を発動
-                mafin = true;
+                if (!mafin)
+                {
+                    _manager.CreateCard(2, hand.transform);   //マフィンの能力を発動
+                    mafin = true;
+                }
+                break;
+
+            default:
                 break;
         }
     }
 
+    void Harf()
+    {
+        for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
+        {
+
+            if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
+            {
+
+                for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
+                {
+                    if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
+                    {
+                        StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Debug.Log(_directer.enemyHandCardList[a].view.cardID);
+                        StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
+                        kouka(_directer.enemyHandCardList[b].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        Destroy(_directer.enemyHandCardList[b].gameObject);
+                        //StartCoroutine(Create(1, _manager.enemyField, 3));
+                        StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    void Bagamu()
+    {
+        
+        for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
+        {
+
+            if (_directer.enemyHandCardList[a].view.cardID == 8)        //トマトがあるとき
+            {
+                for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
+                {
+                    if (_directer.enemyHandCardList[b].view.cardID == 6)  //レタスがあるとき
+                    {
+                        for (int c = 0; c < _directer.enemyHandCardList.Length; c++)
+                        {
+                            if (_directer.enemyHandCardList[c].view.cardID == 4)     //ピクルスがあるとき
+                            {
+                                for (int d = 0; d < _directer.enemyHandCardList.Length; d++)
+                                {
+                                    if (_directer.enemyHandCardList[d].view.cardID == 1 || _directer.enemyHandCardList[d].view.cardID == 3) //バンズかマフィンがあるとき
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    void HandCheck()
+    {
+        for(int a = 0; a < _directer.enemyHandCardList.Length; a++)
+        {
+            Debug.Log("_directer.EnemyKitchenCardList.Length" + _directer.EnemyKitchenCardList.Length);
+            if(_directer.EnemyKitchenCardList.Length < 1)
+            {
+                //StartCoroutine(wait(a, 1));
+                switch (_directer.enemyHandCardList[a].view.cardID)
+                {
+                    case 1:
+                        Create1(array[a], _manager.enemyKitchen, 1);//バンズ
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 2:
+                        Create1(array[a], _manager.enemyKitchen, 1);//パティ
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 3:
+                        Create1(array[a], _manager.enemyKitchen, 1);//マフィン
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 4:
+                        Create1(array[a], _manager.enemyKitchen, 1);//ピクルス
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 5:
+                        Create1(array[a], _manager.enemyKitchen, 1);//チーズ
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 6:
+                        Create1(array[a], _manager.enemyKitchen, 1);//レタス
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 7:
+                        Create1(array[a], _manager.enemyKitchen, 1);//エッグ
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                    case 8:
+                        Create1(array[a], _manager.enemyKitchen, 1);//トマト
+                        kouka(_directer.enemyHandCardList[a].view.cardID);
+                        Destroy(_directer.enemyHandCardList[a].gameObject);
+                        break;
+                }
+                Debug.Log("チェック_directer.EnemyKitchenCardList.Length　" + _directer.EnemyKitchenCardList.Length);
+            }
+            
+
+        }
+    }
+
+    IEnumerator wait(int a,int wait)
+    {
+        Debug.Log("wait");
+        yield return new WaitForSeconds(wait);
+        switch (_directer.enemyHandCardList[a].view.cardID)
+        {
+            case 1:
+                Create1(array[a], _manager.enemyKitchen, 1);//バンズ
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 2:
+                Create1(array[a], _manager.enemyKitchen, 1);//パティ
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 3:
+                Create1(array[a], _manager.enemyKitchen, 1);//マフィン
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 4:
+                Create1(array[a], _manager.enemyKitchen, 1);//ピクルス
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 5:
+                Create1(array[a], _manager.enemyKitchen, 1);//チーズ
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 6:
+                Create1(array[a], _manager.enemyKitchen, 1);//レタス
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 7:
+                Create1(array[a], _manager.enemyKitchen, 1);//エッグ
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+            case 8:
+                Create1(array[a], _manager.enemyKitchen, 1);//トマト
+                kouka(_directer.enemyHandCardList[a].view.cardID);
+                Destroy(_directer.enemyHandCardList[a].gameObject);
+                break;
+        }
+    }
 
     public void battle(int turn)
     {
@@ -312,6 +437,11 @@ public class CPU : MonoBehaviour
     IEnumerator Create(int id,Transform place, int wait)
     {
         yield return new WaitForSeconds(wait);
+        _manager.CreateCard(id, place);
+    }
+
+    void Create1(int id, Transform place, int wait)
+    {
         _manager.CreateCard(id, place);
     }
     IEnumerator Yugou(int id, Transform place, int wait)

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     bool isPlayerTurn = true; //
     public List<int> deck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };
-    public List<int> Edeck = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };//
+    public List<int> Edeck = new List<int>() { 5, 5, 5, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2 };//
 
     public GameDirecter _directer;
     void Awake()
