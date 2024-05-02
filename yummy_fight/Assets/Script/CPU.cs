@@ -125,9 +125,9 @@ public class CPU : MonoBehaviour
 
         if (_directer.EnemyFieldCardList.Length <= 2)       //フィールドに出せるカードの制限
         {
-            Harf();
-            //HandCheck();
-            //Debug.Log("チェック１_directer.EnemyKitchenCardList.Length　" + _directer.EnemyKitchenCardList.Length);
+            //Harf();
+            HandCheck();
+            Debug.Log("チェック１_directer.EnemyKitchenCardList.Length　" + _directer.EnemyKitchenCardList.Length);
         }
         StartCoroutine(Change_main(7));                            //メインターン終了    
         
@@ -231,7 +231,7 @@ public class CPU : MonoBehaviour
         for(int a = 0; a < _directer.enemyHandCardList.Length; a++)
         {
             Debug.Log("_directer.EnemyKitchenCardList.Length" + _directer.EnemyKitchenCardList.Length);
-            if(_directer.EnemyKitchenCardList.Length < 1)
+            if(_directer.EnemyKitchenCardList.Length < 5)
             {
                 //StartCoroutine(wait(a, 1));
                 switch (_directer.enemyHandCardList[a].view.cardID)
@@ -443,6 +443,8 @@ public class CPU : MonoBehaviour
     void Create1(int id, Transform place, int wait)
     {
         _manager.CreateCard(id, place);
+        _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
+        Debug.Log("えねみーきっちん:" + _directer.EnemyKitchenCardList.Length);
     }
     IEnumerator Yugou(int id, Transform place, int wait)
     {   
