@@ -96,7 +96,13 @@ public class CPU : MonoBehaviour
     {
         for(int i = 0; i< _directer.EnemyKitchenCardList.Length;i++)
         {
-            _directer.EnemyKitchenCardList[i].gameObject.transform.SetParent(_manager.enemyField);
+            if (_directer.EnemyFieldCardList.Length <= 1)
+            {
+                _directer.EnemyKitchenCardList[i].gameObject.transform.SetParent(_manager.enemyField);
+                _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
+                _directer.EnemyFieldCardList = _manager.enemyField.GetComponentsInChildren<CardController>();
+            }
+            
         }
         for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
         {
@@ -105,6 +111,7 @@ public class CPU : MonoBehaviour
         }
         bans = false;
         mafin = false;
+        patty = false;
     }
 
     public void Main()
@@ -125,8 +132,9 @@ public class CPU : MonoBehaviour
 
         if (_directer.EnemyFieldCardList.Length <= 2)       //フィールドに出せるカードの制限
         {
-            //Harf();
+            
             HandCheck();
+            Tyouri();
             Debug.Log("チェック１_directer.EnemyKitchenCardList.Length　" + _directer.EnemyKitchenCardList.Length);
         }
         StartCoroutine(Change_main(7));                            //メインターン終了    
@@ -164,30 +172,42 @@ public class CPU : MonoBehaviour
         }
     }
 
-    void Harf()
+    void Tyouri()
     {
-        for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
+        StartCoroutine(ChiBaga(0.5f));
+        StartCoroutine(Harf(1.0f));
+    }
+
+    IEnumerator Harf(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
+        for (int a = 0; a < _directer.EnemyKitchenCardList.Length; a++)    //キッチンエリアをみて
         {
 
-            if (_directer.enemyHandCardList[a].view.cardID == 1 || _directer.enemyHandCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
+            if (_directer.EnemyKitchenCardList[a].view.cardID == 1 || _directer.EnemyKitchenCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
             {
 
-                for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
+                for (int b = 0; b < _directer.EnemyKitchenCardList.Length; b++)
                 {
-                    if (_directer.enemyHandCardList[b].view.cardID == 2)  //パティがあるとき
+                    if (_directer.EnemyKitchenCardList[b].view.cardID == 2)  //パティがあるとき
                     {
-                        StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
+                        /*StartCoroutine(Create(array[a], _manager.enemyKitchen, 1));//バンズorマフィン
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Debug.Log(_directer.enemyHandCardList[a].view.cardID);
                         StartCoroutine(Create(array[b], _manager.enemyKitchen, 2));//パティ
                         kouka(_directer.enemyHandCardList[b].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
-                        Destroy(_directer.enemyHandCardList[b].gameObject);
+                        Destroy(_directer.enemyHandCardList[b].gameObject);*/
                         //StartCoroutine(Create(1, _manager.enemyField, 3));
-                        StartCoroutine(Yugou(105, _manager.enemyField, 3));        //半バーガー召喚
-
+                        YugouDestroy(105);
+                        StartCoroutine(Yugou(105, _manager.enemyField, 0.2f));        //半バーガー召喚
+                        Debug.Log("半バーガー");
+                        break;
                     }
+                    
                 }
+                break;
             }
 
         }
@@ -196,24 +216,24 @@ public class CPU : MonoBehaviour
     void Bagamu()
     {
         
-        for (int a = 0; a < _directer.enemyHandCardList.Length; a++)    //手札をみて
+        for (int a = 0; a < _directer.EnemyKitchenCardList.Length; a++)    //キッチンをみて
         {
 
-            if (_directer.enemyHandCardList[a].view.cardID == 8)        //トマトがあるとき
+            if (_directer.EnemyKitchenCardList[a].view.cardID == 8)        //トマトがあるとき
             {
-                for (int b = 0; b < _directer.enemyHandCardList.Length; b++)
+                for (int b = 0; b < _directer.EnemyKitchenCardList.Length; b++)
                 {
-                    if (_directer.enemyHandCardList[b].view.cardID == 6)  //レタスがあるとき
+                    if (_directer.EnemyKitchenCardList[b].view.cardID == 6)  //レタスがあるとき
                     {
-                        for (int c = 0; c < _directer.enemyHandCardList.Length; c++)
+                        for (int c = 0; c < _directer.EnemyKitchenCardList.Length; c++)
                         {
-                            if (_directer.enemyHandCardList[c].view.cardID == 4)     //ピクルスがあるとき
+                            if (_directer.EnemyKitchenCardList[c].view.cardID == 4)     //ピクルスがあるとき
                             {
-                                for (int d = 0; d < _directer.enemyHandCardList.Length; d++)
+                                for (int d = 0; d < _directer.EnemyKitchenCardList.Length; d++)
                                 {
-                                    if (_directer.enemyHandCardList[d].view.cardID == 1 || _directer.enemyHandCardList[d].view.cardID == 3) //バンズかマフィンがあるとき
+                                    if (_directer.EnemyKitchenCardList[d].view.cardID == 1 || _directer.EnemyKitchenCardList[d].view.cardID == 3) //バンズかマフィンがあるとき
                                     {
-
+                                        StartCoroutine(Yugou(101, _manager.enemyField, 3));
                                     }
                                 }
                             }
@@ -222,6 +242,40 @@ public class CPU : MonoBehaviour
                     }
                 }
             }
+
+        }
+    }
+
+    IEnumerator ChiBaga(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
+        for (int a = 0; a < _directer.EnemyKitchenCardList.Length; a++)    //キッチンエリアをみて
+        {
+
+            if (_directer.EnemyKitchenCardList[a].view.cardID == 1 || _directer.EnemyKitchenCardList[a].view.cardID == 3 && !bans && !mafin)        //バンズがあるときかマフィンがあるとき
+            {
+
+                for (int b = 0; b < _directer.EnemyKitchenCardList.Length; b++)
+                {
+                    if (_directer.EnemyKitchenCardList[b].view.cardID == 2)  //パティがあるとき
+                    {
+                        for(int c = 0; c < _directer.EnemyKitchenCardList.Length; c++)
+                        {
+                            if (_directer.EnemyKitchenCardList[c].view.cardID == 5) //チーズがあるとき
+                            {
+                                YugouDestroy(104);
+                                StartCoroutine(Yugou(104, _manager.enemyField, 0.2f));        //チーバガ召喚
+
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            
 
         }
     }
@@ -364,11 +418,12 @@ public class CPU : MonoBehaviour
     public void EnemyAttackJudge()
     {
         Debug.Log("EnemyAttackJudgeの実行");
-        if (AtkCnt == _directer.EnemyFieldCardList.Length)
+        if (AtkCnt >= _directer.EnemyFieldCardList.Length)
         {
             Debug.Log("エンドフェイズ突入" + AtkCnt);
             _directer.Change_End();
             AtkCnt = 0;
+
         }
 
         int P_maxPower = 0;
@@ -388,14 +443,24 @@ public class CPU : MonoBehaviour
         }
         
 
-        int maxPower = 0;
-        for (int i = 1; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
+        int maxPower = 0;       //最もパワーの高いカードの番地を格納する
+
+        
+        for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)   //CPUのフィールドのカードを見ていく
         {
-            if (_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power && _directer.EnemyFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
+            if (_directer.EnemyFieldCardList[maxPower].view.hirou)
+            {
+                maxPower++;
+                continue;
+            }
+            if ((_directer.EnemyFieldCardList[maxPower].view.power < _directer.EnemyFieldCardList[i].view.power) && _directer.EnemyFieldCardList[i].view.hirou == false) //攻撃力が最も高いカードを探す
             {
                 maxPower = i;   //登録                
-            }                   
+            }
+
         }
+
+
 
         if (!_directer.EnemyFieldCardList[maxPower].view.hirou)    //カードが疲労状態じゃないなら攻撃
         {
@@ -412,9 +477,7 @@ public class CPU : MonoBehaviour
                 _directer.EnemyFieldCardList[maxPower].view.hirou = true;
                 AtkCnt++;
                 Debug.Log("AtkCnt" + AtkCnt);
-                maxPower = 0;
-
-                
+                maxPower = 0;   
             }
             else if(_directer.playerFieldCardList[P_maxPower].view.power > _directer.EnemyFieldCardList[maxPower].view.power)
             {
@@ -427,11 +490,14 @@ public class CPU : MonoBehaviour
                 _directer.Change_End();
             }
             
+            
+        }
+        else
+        {
+            Debug.Log("何も... ながっだ...");
+            _directer.Change_End();
         }
         maxPower = 0;
-        
-
-
     }
 
     IEnumerator Create(int id,Transform place, int wait)
@@ -446,13 +512,70 @@ public class CPU : MonoBehaviour
         _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
         Debug.Log("えねみーきっちん:" + _directer.EnemyKitchenCardList.Length);
     }
-    IEnumerator Yugou(int id, Transform place, int wait)
+
+    void YugouDestroy(int id)
+    {
+        switch (id)
+        {
+            case 105:
+                for (int a = 0; a < _directer.EnemyKitchenCardList.Length; a++)
+                {
+                    if (_directer.EnemyKitchenCardList[a].view.cardID == 1 || _directer.EnemyKitchenCardList[a].view.cardID == 3)
+                    {
+                        Destroy(_directer.EnemyKitchenCardList[a].gameObject);
+                        for (int b = 0; b < _directer.EnemyKitchenCardList.Length; b++)
+                        {
+                            if (_directer.EnemyKitchenCardList[b].view.cardID == 2)
+                            {
+                                Destroy(_directer.EnemyKitchenCardList[b].gameObject);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+
+                }
+                break;
+
+            case 104:
+                for (int a = 0; a < _directer.EnemyKitchenCardList.Length; a++)
+                {
+                    if (_directer.EnemyKitchenCardList[a].view.cardID == 1 || _directer.EnemyKitchenCardList[a].view.cardID == 3)
+                    {
+                        Destroy(_directer.EnemyKitchenCardList[a].gameObject);
+                        for (int b = 0; b < _directer.EnemyKitchenCardList.Length; b++)
+                        {
+                            if (_directer.EnemyKitchenCardList[b].view.cardID == 2)
+                            {
+                                Destroy(_directer.EnemyKitchenCardList[b].gameObject);
+                                for (int c = 0; c < _directer.EnemyKitchenCardList.Length; c++)
+                                {
+                                    if (_directer.EnemyKitchenCardList[c].view.cardID == 5)
+                                    {
+                                        Destroy(_directer.EnemyKitchenCardList[c].gameObject);
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+
+                }
+                break;
+
+        }
+        _directer.EnemyKitchenCardList = _manager.enemyKitchen.GetComponentsInChildren<CardController>();
+        _directer.EnemyFieldCardList = _manager.enemyField.GetComponentsInChildren<CardController>();
+    }
+    IEnumerator Yugou(int id, Transform place, float wait)
     {   
         yield return new WaitForSeconds(wait);
-        for (int i = 0; i < _directer.EnemyKitchenCardList.Length; i++)
+        /*for (int i = 0; i < _directer.EnemyKitchenCardList.Length; i++)
         {
             Destroy(_directer.EnemyKitchenCardList[i].gameObject);
-        }
+        }*/
         _manager.CreateCard(id, place);
     }
 
