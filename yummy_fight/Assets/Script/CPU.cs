@@ -24,7 +24,7 @@ public class CPU : MonoBehaviour
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _Controller = GameObject.Find("CardController").GetComponent<CardController>();
-        _AttackButton = GameObject.Find("AttackButton").GetComponent<AttackButton>();
+        
         hand = GameObject.Find("Canvas/enemy_hand");
     }
 
@@ -36,8 +36,10 @@ public class CPU : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_directer.playerattack)
+        
+        if (_directer.playerattack)
         {
+            //_AttackButton = GameObject.Find("Attack").GetComponent<AttackButton>();
             Debug.Log("プレイヤーの攻撃を検知");
             if(!_directer.Koukahatudou && _directer.EnemyFieldCardList.Length > 0)
             {
@@ -48,15 +50,24 @@ public class CPU : MonoBehaviour
                         hirouCnt++;
                     }
                 }
-                if(_directer.EnemyFieldCardList.Length <= hirouCnt)     //enemyFieldがすべて疲労状態なら
+                if((_directer.EnemyFieldCardList.Length <= hirouCnt) && _directer.playerattack)     //enemyFieldがすべて疲労状態なら
                 {
-                    _directer.enemy_life--;
-                    _AttackButton.cardObject.GetComponent<CardController>().attack = false;
-                    _directer.playerattack = false;
-                }
-                
+                    //_AttackButton.cardObject.GetComponent<CardController>().attack = false;
+                    for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
+                    {
 
-                StartCoroutine("Block");
+                        _directer.playerFieldCardList[i].attack = false;
+                    }
+                    _directer.playerattack = false;
+                    _directer.enemy_life--;
+                    Debug.Log("ブロックできないよ");
+                    Debug.Log(_directer.playerattack);
+                    
+                }
+                else
+                {
+                    StartCoroutine("Block");
+                }
             }
         }
 
@@ -291,42 +302,42 @@ public class CPU : MonoBehaviour
                 switch (_directer.enemyHandCardList[a].view.cardID)
                 {
                     case 1:
-                        Create1(array[a], _manager.enemyKitchen, 1);//バンズ
+                        Create1(1, _manager.enemyKitchen, 1);//バンズ
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 2:
-                        Create1(array[a], _manager.enemyKitchen, 1);//パティ
+                        Create1(2, _manager.enemyKitchen, 1);//パティ
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 3:
-                        Create1(array[a], _manager.enemyKitchen, 1);//マフィン
+                        Create1(3, _manager.enemyKitchen, 1);//マフィン
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 4:
-                        Create1(array[a], _manager.enemyKitchen, 1);//ピクルス
+                        Create1(4, _manager.enemyKitchen, 1);//ピクルス
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 5:
-                        Create1(array[a], _manager.enemyKitchen, 1);//チーズ
+                        Create1(5, _manager.enemyKitchen, 1);//チーズ
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 6:
-                        Create1(array[a], _manager.enemyKitchen, 1);//レタス
+                        Create1(6, _manager.enemyKitchen, 1);//レタス
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 7:
-                        Create1(array[a], _manager.enemyKitchen, 1);//エッグ
+                        Create1(7, _manager.enemyKitchen, 1);//エッグ
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
                     case 8:
-                        Create1(array[a], _manager.enemyKitchen, 1);//トマト
+                        Create1(8, _manager.enemyKitchen, 1);//トマト
                         kouka(_directer.enemyHandCardList[a].view.cardID);
                         Destroy(_directer.enemyHandCardList[a].gameObject);
                         break;
