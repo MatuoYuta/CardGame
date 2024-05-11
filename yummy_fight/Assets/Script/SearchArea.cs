@@ -43,20 +43,46 @@ public class SearchArea : MonoBehaviour
         Instantiate(image[cardID -1 ], this.transform);
     }
 
-    public void CreatePrefab_field()
+    public void CreatePrefab_field(int id)
     {
         int cardID;
-        for(int i=0;i<_directer.playerFieldCardList.Length;i++)
+        switch(id)
         {
-            cardID = _directer.playerFieldCardList[i].GetComponent<CardView>().cardID;
-            if(cardID > 100)
-            {
-                Instantiate(image[cardID - 90],this.transform);
-            }
-            else
-            {
-                Instantiate(image[cardID],this.transform);
-            }           
+            case 104:
+                for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
+                {
+                    cardID = _directer.playerFieldCardList[i].GetComponent<CardView>().cardID;
+                    if (cardID > 100)
+                    {
+                        Instantiate(image[cardID - 90], this.transform);
+                    }
+                    else
+                    {
+                        Instantiate(image[cardID], this.transform);
+                    }
+                }
+                break;
+            case 102:
+                for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
+                {
+                    if(_directer.playerFieldCardList[i].GetComponent<CardController>().hirou)
+                    {
+                        cardID = _directer.playerFieldCardList[i].GetComponent<CardView>().cardID;
+                        if (cardID > 100)
+                        {
+                            if (cardID != 102)
+                            {
+                                Instantiate(image[cardID - 90], this.transform);
+                            }
+                        }
+                        else
+                        {
+                            Instantiate(image[cardID], this.transform);
+                        }
+                    }
+                }
+                break;
         }
+
     }
 }

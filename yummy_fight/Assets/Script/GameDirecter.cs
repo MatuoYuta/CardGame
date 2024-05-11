@@ -12,6 +12,7 @@ public class GameDirecter : MonoBehaviour
     public bool Movable;//動けるか(スタンバイフェーズ)
     public bool Summonable;//召喚できるか(メインフェーズ)
     public bool Attackable;//攻撃できるか（バトルフェーズ）
+    public bool Blockable;//防御できるか（バトルフェーズ）
     public bool Zekkouhyoujun;//箸休めが発動できるか
     public GameObject phase_text;//どのフェーズかを表示する
     public GameObject fade_panel;
@@ -77,8 +78,8 @@ public class GameDirecter : MonoBehaviour
         cpu_script = this.gameObject.GetComponent<CPU>();
         main = true;
         battle = true;
-        player_life = 2;
-        enemy_life = 2;
+        player_life = 5;
+        enemy_life = 5;
 
         _button = GetComponent<Button>();
         _cpu = GameObject.Find("GameDirecter").GetComponent<CPU>();
@@ -209,6 +210,10 @@ public class GameDirecter : MonoBehaviour
         manage_script.Foodraw = false;
         manage_script.Plan = false;
         manage_script.Stop = false;
+        manage_script.bagamute = false;
+        manage_script.chibaga = false;
+        manage_script.torabaga = false;
+        manage_script.egumahu = false;
     }
     void StandbyPhase()
     {
@@ -254,7 +259,11 @@ public class GameDirecter : MonoBehaviour
         UpdatePhaseText();
         Movable = false;
         Summonable = false;
-        Attackable = true;
+        if(turn != 0)
+        {
+            Attackable = true;
+        }
+
         phase_text.GetComponent<TextMeshProUGUI>().text = currentPlayer + "\nBattle";
 
         // BATTLEフェーズに入ったのでクリックを許可する
@@ -262,6 +271,7 @@ public class GameDirecter : MonoBehaviour
         {
             objClickExample.EnterBattlePhase();
         }
+
     }
     void EndPhase()
     {
@@ -362,6 +372,7 @@ public class GameDirecter : MonoBehaviour
         {
             phase = Phase.Enemy_END;
         }
+        Blockable = true;
     }
 
     void Enemy_EndPhase()
@@ -373,7 +384,7 @@ public class GameDirecter : MonoBehaviour
         battle = true;
         //Invoke("Invoke_draw", 3.5f);
         phase = Phase.DRAW;
-
+        Blockable = false;
     }
 
     void Invoke_draw()

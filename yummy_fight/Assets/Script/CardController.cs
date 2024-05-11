@@ -7,9 +7,9 @@ public class CardController : MonoBehaviour
 {
     public CardView view; // カードの見た目の処理
     public CardModel model; // カードのデータを処理
-    public bool hirou,attack,block;
+    public bool hirou,attack,block,egumahu_aru;
     GameDirecter _directer;
-    public GameObject attack_button, blockbutton;
+    public GameObject attack_button, blockbutton,kouka_button;
     public GameObject power_text;
     public int default_power;
     SE_Controller SE;
@@ -23,7 +23,9 @@ public class CardController : MonoBehaviour
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         attack_button = transform.Find("Attack").gameObject;
         blockbutton = transform.Find("Block").gameObject;
+        kouka_button = transform.Find("Kouka").gameObject;
         blockbutton.SetActive(false);
+        kouka_button.SetActive(false);
     }
     void Update()
     {
@@ -33,6 +35,30 @@ public class CardController : MonoBehaviour
         }
 
         power_text.GetComponent<TextMeshProUGUI>().text = view.power.ToString();
+
+        for(int i = 0;i<_directer.playerFieldCardList.Length;i++)
+        {
+            if(_directer.playerFieldCardList[i].hirou)
+            {
+                egumahu_aru = true;
+            }
+        }
+
+        if((_directer.Attackable || _directer.Blockable) 
+            && this.gameObject.GetComponent<CardView>().cardID == 102
+            && !this.gameObject.GetComponent<CardController>().hirou
+            && egumahu_aru)
+        {
+            kouka_button.SetActive(true);
+        }
+        else if(hirou)
+        {
+            kouka_button.SetActive(false);
+        }
+        else
+        {
+            kouka_button.SetActive(false);
+        }
     }
 
     public void Init(int cardID) // カードを生成した時に呼ばれる関数
@@ -112,6 +138,17 @@ public class CardController : MonoBehaviour
             this.transform.Rotate(new Vector3(0f, 0f, -90f));
             this.transform.localScale = new Vector3(1.3f, 2f, 1.3f);
             hirou = false;
+        }
+    }
+
+    public void Hirou()
+    {
+        if(!hirou)
+        {
+            // カードを90度回転させる
+            this.transform.Rotate(new Vector3(0f, 0f, 90f));
+            this.transform.localScale = new Vector3(3.5f, 0.8f, 1.3f);
+            hirou = true;
         }
     }
 

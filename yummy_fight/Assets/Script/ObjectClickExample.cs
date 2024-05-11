@@ -8,6 +8,7 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
 
     public CardController _controller;
     public ObjectHighlight _hilight;
+    public GameDirecter _directer;
 
     private bool canClick = false; // クリックを許可するかどうかのフラグ
 
@@ -15,6 +16,7 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
     {
         _controller = this.gameObject.GetComponent<CardController>();
         _hilight = this.gameObject.GetComponent<ObjectHighlight>();
+        _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
     }
 
     // クリックされたときに呼び出されるメソッド
@@ -60,7 +62,10 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
     // BATTLEフェーズに入ったときに呼び出されるメソッド
     public void EnterBattlePhase()
     {
-        canClick = true; // クリックを許可する
+        if(_directer.turn != 0)
+        {
+            canClick = true; // クリックを許可する
+        }
     }
 
     // BATTLEフェーズから出たときに呼び出されるメソッド

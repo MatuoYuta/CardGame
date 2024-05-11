@@ -90,6 +90,7 @@ public class yugouhantei : MonoBehaviour
                                 Destroy(directer.playerkitchenCardList[i].gameObject);
                                 egtu();
                                 harf = false;
+                                break;
                             }
                         }
                         else if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2 && pati == false)
@@ -103,7 +104,7 @@ public class yugouhantei : MonoBehaviour
                                     Destroy(directer.playerkitchenCardList[a].gameObject);
                                     bans = true;
                                     egtu();
-
+                                    break;
                                 }
                             }
                         }
@@ -125,19 +126,7 @@ public class yugouhantei : MonoBehaviour
                                     Destroy(directer.playerkitchenCardList[a].gameObject);
                                     for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                                     {
-                                        if (harf == true)
-                                        {
-                                            if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 105)
-                                            {
-                                                Destroy(directer.playerkitchenCardList[j].gameObject);
-                                                harf = false;
-                                                popup.SetActive(false);
-                                                yugou = 0;
-                                                break;
-                                                
-                                            }
-                                        }
-                                        else if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 && bans == false)
+                                        if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 && bans == false)
                                         {
                                             Destroy(directer.playerkitchenCardList[j].gameObject);
                                             popup.SetActive(false);
@@ -185,10 +174,6 @@ public class yugouhantei : MonoBehaviour
                                             bans = true;
                                             break;
                                         }
-
-
-
-
                                     }
                                 }
                             }

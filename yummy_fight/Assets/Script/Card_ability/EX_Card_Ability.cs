@@ -11,6 +11,8 @@ public class EX_Card_Ability : MonoBehaviour
     public GameObject scroll_view;
     public Animator panel_anim, kouka;
     SE_Controller SE;
+
+    public CardController[] kaihuku_card;//敵のフィールドのカードを格納するリスト
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,6 @@ public class EX_Card_Ability : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     IEnumerator Bagamute()
@@ -87,14 +88,20 @@ public class EX_Card_Ability : MonoBehaviour
         SE.Ability_SE();
         yield return new WaitForSeconds(1);
         kouka.SetTrigger("Kouka");
+        _manage.egumahu = true;
+        SelectCard();
+        this.gameObject.GetComponent<CardController>().Hirou();
     }
 
     public IEnumerator Torebaga()
     {
         SE.Ability_SE();
         yield return new WaitForSeconds(1);
+        _manage.torabaga = true;
+        //ブロック時回復
+        this.gameObject.GetComponent<CardController>().kaihuku();
+        
         kouka.SetTrigger("Kouka");
-
     }
 
     public IEnumerator Chibaga()
@@ -113,7 +120,7 @@ public class EX_Card_Ability : MonoBehaviour
             Destroy(directer_script.SearchImageList[i].gameObject);
         }
 
-        search_script.CreatePrefab_field();
+        search_script.CreatePrefab_field(this.GetComponent<CardView>().cardID);
         panel_anim.SetTrigger("Up");
         scroll_view.SetActive(true);
     }

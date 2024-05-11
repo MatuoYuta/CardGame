@@ -44,6 +44,10 @@ public class Card_Ability : MonoBehaviour
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Buns");
                         }
+                        else
+                        {
+                            this.Use_Avility = true;
+                        }
                         break;
                     case 2:
                         if (!manage.Patty)
@@ -51,6 +55,10 @@ public class Card_Ability : MonoBehaviour
                             SE.Ability_SE();
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Patty");
+                        }
+                        else
+                        {
+                            this.Use_Avility = true;
                         }
                         break;
                     case 3:
@@ -60,6 +68,10 @@ public class Card_Ability : MonoBehaviour
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Muffin");
                         }
+                        else
+                        {
+                            this.Use_Avility = true;
+                        }
                         break;
                     case 4:
                         if(!manage.Pickles)
@@ -68,12 +80,12 @@ public class Card_Ability : MonoBehaviour
                             kouka.SetTrigger("Kouka");
                             StartCoroutine("Pickles");
                         }
+                        else
+                        {
+                            this.Use_Avility = true;
+                        }
                         break;
                 }
-            }
-            else
-            {
-
             }
         }
 

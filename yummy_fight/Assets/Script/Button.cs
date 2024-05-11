@@ -93,6 +93,20 @@ public class Button : MonoBehaviour
         {
             _directer.playerFieldCardList[i].gameObject.GetComponent<CardController>().blockbutton.SetActive(false);
         }
+
+        if(card.GetComponent<CardView>().cardID == 103)
+        {
+            Debug.Log("ƒgƒŒƒoƒKŒø‰Ê”­“®");
+            card.GetComponent<EX_Card_Ability>().StartCoroutine("Torebaga");
+        }
+    }
+
+    public void Kouka()
+    {
+        if(card.GetComponent<CardView>().cardID == 102)
+        {
+            card.GetComponent<EX_Card_Ability>().StartCoroutine("Egumahu");
+        }
     }
 
     public void Select()
@@ -106,6 +120,29 @@ public class Button : MonoBehaviour
                     _directer.playerFieldCardList[i].GetComponent<CardView>().power += 3000;
                     panel_anim.SetTrigger("Down");
                     _manager.chibaga = false;
+                    _directer.Koukahatudou = false;
+                    for (int t = 0; t < _directer.SearchImageList.Length; t++)
+                    {
+                        Destroy(_directer.SearchImageList[t].gameObject);
+                    }
+                }
+            }
+        }
+        else if(_manager.egumahu)
+        {
+            for (int i = 0; i < _directer.SearchImageList.Length; i++)
+            {
+                if (_directer.SearchImageList[i].selected)
+                {
+                    for(int t = 0;t<_directer.playerFieldCardList.Length;t++)
+                    {
+                        if (_directer.SearchImageList[i].GetComponent<Search_id>().id == _directer.playerFieldCardList[t].gameObject.GetComponent<CardView>().cardID)
+                        {
+                            _directer.playerFieldCardList[t].gameObject.GetComponent<CardController>().kaihuku();
+                        }
+                    }
+                    panel_anim.SetTrigger("Down");
+                    _manager.egumahu = false;
                     _directer.Koukahatudou = false;
                     for (int t = 0; t < _directer.SearchImageList.Length; t++)
                     {

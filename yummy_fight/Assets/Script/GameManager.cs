@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] CardController cardPrefab;
     [SerializeField] private HandCardsInfoSync handCardsInfoSync;
-    public Transform playerHand, playerField,playerKitchen, enemyHand,enemyField,enemyKitchen,searchArea;
+    public Transform playerHand, playerField,playerKitchen, enemyHand,enemyHandUra,enemyField,enemyKitchen,searchArea;
     public GameObject select_panel;
     private PhotonView photonView;
     SE_Controller SE;
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Shuffle(deck);
+        Shuffle(Edeck);
         SE = GameObject.Find("SE").GetComponent<SE_Controller>();
         Menu.SetActive(false);
         // シーンの自動同期を有効にする
@@ -37,6 +39,59 @@ public class GameManager : MonoBehaviour
         // シーン同期状態のチェックを開始
         StartCoroutine(CheckSceneSyncStatus());
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+    }
+
+    void Update()
+    {
+        // parentObject のすべての子オブジェクトを削除
+        foreach (Transform child in enemyHandUra)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        for(int i = 0;i<_directer.enemyHandCardList.Length;i++)
+        {
+            CreateHandUra(999, enemyHandUra);
+        }
+    }
+
+     public void Shuffle(List<int> deck) // デッキをシャッフルする
+    {
+        // 整数 n の初期値はデッキの枚数
+        int n = deck.Count;
+
+        // nが1より小さくなるまで繰り返す
+        while (n > 1)
+        {
+            n--;
+
+            // kは 0 ～ n+1 の間のランダムな値
+            int k = UnityEngine.Random.Range(0, n + 1);
+
+            // k番目のカードをtempに代入
+            int temp = deck[k];
+            deck[k] = deck[n];
+            deck[n] = temp;
+        }
+    }
+    public void Shuffle() // デッキをシャッフルする
+    {
+        // 整数 n の初期値はデッキの枚数
+        int n = deck.Count;
+
+        // nが1より小さくなるまで繰り返す
+        while (n > 1)
+        {
+            n--;
+
+            // kは 0 ～ n+1 の間のランダムな値
+            int k = UnityEngine.Random.Range(0, n + 1);
+
+            // k番目のカードをtempに代入
+            int temp = deck[k];
+            deck[k] = deck[n];
+            deck[n] = temp;
+        }
     }
 
     void StartGame() // 初期値の設定 
@@ -60,6 +115,12 @@ public class GameManager : MonoBehaviour
     public void CreateCard(int cardID, Transform place)
     {
         SE.draw_SE();
+        CardController card = Instantiate(cardPrefab, place);
+        card.Init(cardID);
+    }
+
+    public void CreateHandUra(int cardID, Transform place)
+    {
         CardController card = Instantiate(cardPrefab, place);
         card.Init(cardID);
     }
