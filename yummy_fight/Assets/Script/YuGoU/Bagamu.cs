@@ -46,6 +46,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                 {
                     harfbagamu();
                     harf.harf = true;
+                    break;
                 }
                 else if (directer.playerkitchenCardList[n].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[n].gameObject.GetComponent<CardView>().cardID == 3)
                 {
@@ -55,6 +56,7 @@ public class Bagamu : MonoBehaviour, IPointerClickHandler
                         if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 2)
                         {
                             harfbagamu();
+                            break;
                         }
                     }
                 }
