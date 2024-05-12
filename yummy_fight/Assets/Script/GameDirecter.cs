@@ -552,7 +552,7 @@ public class GameDirecter : MonoBehaviour
                 Debug.Log("アタッカーの勝ち");
                 StartCoroutine(Destroy_me_ETurn(block));
             }
-            else if (attack_power > block_power)
+            else if (attack_power < block_power)
             {
                 Debug.Log("ブロッカーの勝ち");
                 _cpu.AtkCnt -= 1;
@@ -573,7 +573,7 @@ public class GameDirecter : MonoBehaviour
                 Debug.Log("アタッカーの勝ち");
                 StartCoroutine(Destroy_me(block));
             }
-            else if (attack_power > block_power)
+            else if (attack_power < block_power)
             {
                 Debug.Log("ブロッカーの勝ち");
                 StartCoroutine(Destroy_me(attack));
