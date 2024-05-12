@@ -55,7 +55,6 @@ public class CPU : MonoBehaviour
                     //_AttackButton.cardObject.GetComponent<CardController>().attack = false;
                     for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
                     {
-
                         _directer.playerFieldCardList[i].attack = false;
                     }
                     _directer.playerattack = false;
@@ -97,8 +96,8 @@ public class CPU : MonoBehaviour
                 {
                     _directer.EnemyFieldCardList[i].enemyblock();   //おったらそいつでブロック
                     _directer.playerattack = false;
-
                 }
+                break;
             }
         }
     }
@@ -429,12 +428,12 @@ public class CPU : MonoBehaviour
     public void EnemyAttackJudge()
     {
         Debug.Log("EnemyAttackJudgeの実行");
-        if (AtkCnt >= _directer.EnemyFieldCardList.Length)
+        
+        if (AtkCnt >= _directer.EnemyFieldCardList.Length || _directer.EnemyFieldCardList.Length <= 0)
         {
             Debug.Log("エンドフェイズ突入" + AtkCnt);
             _directer.Change_End();
             AtkCnt = 0;
-
         }
 
         int P_maxPower = 0;
