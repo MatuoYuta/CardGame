@@ -665,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 8424965664473290611, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 26fcb8ffba6e7c24ca28e0e800dc9da9, type: 3}
+      objectReference: {fileID: 21300000, guid: cc67a6d1eb6df0d4caa06e395b8f03f8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce8a18b8af209b4f9626399ba414fda, type: 3}
 --- !u!1 &300411320
@@ -7477,7 +7477,7 @@ PrefabInstance:
     - target: {fileID: 5115206453822620846, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7c1d2c8bd93122344bb21c8e46895d37, type: 3}
+      objectReference: {fileID: 21300000, guid: 33912edbf16265a4387dfaa2e896461f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f9237930adbf5e49a727f0779275cb0, type: 3}
 --- !u!1 &1705028986429740570
@@ -8640,6 +8640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8081325375864239066, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bb254b5bbf2cb6544892fa06ea97fd39, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b3c107e5dcd975458b530ad9134e6ea, type: 3}
 --- !u!222 &7622048680420566527
@@ -8783,6 +8787,10 @@ PrefabInstance:
       propertyPath: playerField
       value: 
       objectReference: {fileID: 2079498461}
+    - target: {fileID: 6655645767370862331, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a6793cf927158a847a1fc317ac95a496, type: 3}
     - target: {fileID: 7432272492873400593, guid: dd9e8dd79a863914087b8bc828d53792, type: 3}
       propertyPath: m_Name
       value: bagamute

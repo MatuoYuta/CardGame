@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 1
   name: Buns
   power: 3000
-  icon: {fileID: 21300000, guid: 73d8da13a9ef3c34895e1a1956e07a12, type: 3}
+  icon: {fileID: 21300000, guid: 026f0e17cd5cb27468cdfd191e353273, type: 3}

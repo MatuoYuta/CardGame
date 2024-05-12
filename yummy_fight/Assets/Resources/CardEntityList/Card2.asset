@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 2
   name: patty
   power: 4000
-  icon: {fileID: 21300000, guid: f7c024edd5870394fa092babeaffd677, type: 3}
+  icon: {fileID: 21300000, guid: 811bd4208d55c9b498a2f5e66e7ea3d4, type: 3}

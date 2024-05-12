@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 104
   name: chibaga
   power: 7000
-  icon: {fileID: 21300000, guid: 6499ca8890670224aae4cbfeac4af0d0, type: 3}
+  icon: {fileID: 21300000, guid: bb254b5bbf2cb6544892fa06ea97fd39, type: 3}

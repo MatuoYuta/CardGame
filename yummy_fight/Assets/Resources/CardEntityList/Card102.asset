@@ -15,4 +15,4 @@ MonoBehaviour:
   cardID: 102
   name: egumahu
   power: 5500
-  icon: {fileID: 21300000, guid: 7ce76da374b30234fad1c2d9ea9614a6, type: 3}
+  icon: {fileID: 21300000, guid: 33912edbf16265a4387dfaa2e896461f, type: 3}
