@@ -238,6 +238,6 @@ public class Button : MonoBehaviour
                 }
             }
         }
-        
+        _directer.Koukahatudou = false;
     }
 }

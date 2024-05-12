@@ -586,7 +586,6 @@ public class GameDirecter : MonoBehaviour
             }
         }
 
-        
         attack.GetComponent<CardController>().attack = false;
         block.GetComponent<CardController>().block = false;
         playerattack = false;

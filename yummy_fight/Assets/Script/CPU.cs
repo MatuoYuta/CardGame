@@ -14,6 +14,7 @@ public class CPU : MonoBehaviour
     int hirouCnt = 0;
     public AttackButton _AttackButton;
     int[] array;
+    public bool BlockJudge;
     public bool bans;
     public bool mafin;
     public bool patty;
@@ -23,8 +24,7 @@ public class CPU : MonoBehaviour
     {
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
         _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _Controller = GameObject.Find("CardController").GetComponent<CardController>();
-        
+        _Controller = GameObject.Find("CardController").GetComponent<CardController>();        
         hand = GameObject.Find("Canvas/enemy_hand");
     }
 
@@ -37,12 +37,18 @@ public class CPU : MonoBehaviour
     void Update()
     {
         
-        if (_directer.playerattack)
+        if (_directer.playerattack && !_directer.Koukahatudou && _directer.EnemyFieldCardList.Length > 0)
         {
+            BlockJudge = true;
+            if (BlockJudge)
+            {
+
+            }
             //_AttackButton = GameObject.Find("Attack").GetComponent<AttackButton>();
             Debug.Log("プレイヤーの攻撃を検知");
-            if(!_directer.Koukahatudou && _directer.EnemyFieldCardList.Length > 0)
+            if(!_directer.Koukahatudou && _directer.EnemyFieldCardList.Length > 0) //
             {
+                Debug.Log("Koukahatudouとかに引っかかった");
                 for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
                 {
                     if (_directer.EnemyFieldCardList[i].view.hirou)
@@ -50,6 +56,7 @@ public class CPU : MonoBehaviour
                         hirouCnt++;
                     }
                 }
+                Debug.Log("hirouCnt " + hirouCnt);
                 if((_directer.EnemyFieldCardList.Length <= hirouCnt) && _directer.playerattack)     //enemyFieldがすべて疲労状態なら
                 {
                     //_AttackButton.cardObject.GetComponent<CardController>().attack = false;
@@ -66,6 +73,7 @@ public class CPU : MonoBehaviour
                 else
                 {
                     StartCoroutine("Block");
+                    Debug.Log("Blockコルーチン");
                 }
             }
         }
@@ -80,6 +88,7 @@ public class CPU : MonoBehaviour
     public IEnumerator Block()      
     {
         yield return new WaitForSeconds(0);
+        Debug.Log("Blockコルーチン実行");
         if (_directer.EnemyFieldCardList.Length > 0)    //CPUのフィールドに1体以上モンスターがいるとき
         {
             for (int i = 0; i < _directer.EnemyFieldCardList.Length; i++)
@@ -404,6 +413,10 @@ public class CPU : MonoBehaviour
         if(_directer.EnemyFieldCardList.Length > 0) //CPUのフィールドにカードが一枚以上あるとき
         {          
             EnemyAttackJudge();
+        }
+        else
+        {
+            _directer.Change_End();
         }
         
         

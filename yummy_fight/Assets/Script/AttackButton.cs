@@ -25,7 +25,7 @@ public class AttackButton : MonoBehaviour
     public void OnAttackButtonClick()
     {
         Debug.Log("相手に攻撃した");
-
+        _directer.playerattack = true;
         cardObject.GetComponent<CardController>().attack = true;
         _controller.RotateCard(); // カードを横向きにするメソッドを呼び出す
         AttackPlayer(); // プレイヤーに攻撃するメソッドを呼び出す
@@ -35,6 +35,7 @@ public class AttackButton : MonoBehaviour
 
     void AttackPlayer()
     {
+        
         if (cardObject.GetComponent<CardView>().cardID == 104)
         {
             Debug.Log("チーバガ効果発動");
@@ -42,7 +43,7 @@ public class AttackButton : MonoBehaviour
             _directer.Koukahatudou = true;
         }
 
-        _directer.playerattack = true;
+        
         if(_directer.EnemyFieldCardList.Length == 0)
         {
             cardObject.GetComponent<CardController>().attack = false;
