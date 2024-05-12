@@ -166,7 +166,7 @@ public class yugouhantei : MonoBehaviour
                                     Destroy(directer.playerkitchenCardList[a].gameObject);
                                     for (int j = 0; j < directer.playerkitchenCardList.Length; j++)
                                     {
-                                        if (directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3 && bans == false)
+                                        if ((directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[j].gameObject.GetComponent<CardView>().cardID == 3) && bans == false)
                                         {
                                             Destroy(directer.playerkitchenCardList[j].gameObject);
                                             popup.SetActive(false);
@@ -175,6 +175,7 @@ public class yugouhantei : MonoBehaviour
                                             break;
                                         }
                                     }
+                                    break;
                                 }
                             }
                         }

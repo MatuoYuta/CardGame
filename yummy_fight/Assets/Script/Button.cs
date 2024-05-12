@@ -106,6 +106,7 @@ public class Button : MonoBehaviour
         if(card.GetComponent<CardView>().cardID == 102)
         {
             card.GetComponent<EX_Card_Ability>().StartCoroutine("Egumahu");
+            card.GetComponent<CardController>().egumahu_aru = false;
         }
     }
 
