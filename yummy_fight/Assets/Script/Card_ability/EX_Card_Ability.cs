@@ -91,6 +91,7 @@ public class EX_Card_Ability : MonoBehaviour
         _manage.egumahu = true;
         SelectCard();
         this.gameObject.GetComponent<CardController>().Hirou();
+        this.gameObject.GetComponent<CardController>().egumahu_aru = false ;
     }
 
     public IEnumerator Torebaga()

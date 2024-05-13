@@ -77,7 +77,7 @@ public class SearchArea : MonoBehaviour
                         }
                         else
                         {
-                            Instantiate(image[cardID], this.transform);
+                            Instantiate(image[cardID-1], this.transform);
                         }
                     }
                 }

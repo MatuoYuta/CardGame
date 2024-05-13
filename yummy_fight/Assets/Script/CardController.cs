@@ -9,6 +9,7 @@ public class CardController : MonoBehaviour
     public CardModel model; // カードのデータを処理
     public bool hirou,attack,block,egumahu_aru;
     GameDirecter _directer;
+    GameManager _manager;
     public GameObject attack_button, blockbutton,kouka_button;
     public GameObject power_text;
     public int default_power;
@@ -21,6 +22,7 @@ public class CardController : MonoBehaviour
         default_power = view.power;
         hirou = false;
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
+        _manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         attack_button = transform.Find("Attack").gameObject;
         blockbutton = transform.Find("Block").gameObject;
         kouka_button = transform.Find("Kouka").gameObject;
@@ -36,12 +38,31 @@ public class CardController : MonoBehaviour
 
         power_text.GetComponent<TextMeshProUGUI>().text = view.power.ToString();
 
-        for(int i = 0;i<_directer.playerFieldCardList.Length;i++)
+        if(_directer.phase == GameDirecter.Phase.BATTLE || _directer.phase == GameDirecter.Phase.Enemy_BATTLE)
         {
-            if(_directer.playerFieldCardList[i].hirou)
+            int cnt = 0;
+            for (int i = 0; i < _directer.playerFieldCardList.Length; i++)
             {
-                egumahu_aru = true;
+                if (_directer.playerFieldCardList[i].hirou && !_manager.egumahu)
+                {
+                    egumahu_aru = true;
+                    cnt++;
+                }
             }
+
+            if(cnt == 0)
+            {
+                egumahu_aru = false;
+            }
+        }
+
+        if(hirou)
+        {
+            blockbutton.SetActive(false);
+        }
+        else if(!hirou && _directer.phase == GameDirecter.Phase.Enemy_BATTLE)
+        {
+            blockbutton.SetActive(true);
         }
 
         if((_directer.Attackable || _directer.Blockable) 
