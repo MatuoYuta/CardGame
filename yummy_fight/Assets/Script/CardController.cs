@@ -60,7 +60,8 @@ public class CardController : MonoBehaviour
         {
             blockbutton.SetActive(false);
         }
-        else if(!hirou && _directer.phase == GameDirecter.Phase.Enemy_BATTLE)
+        else if(!hirou && _directer.phase == GameDirecter.Phase.Enemy_BATTLE
+            && this.gameObject.GetComponent<CardMovement>().cardParent == GameObject.Find("Player_field").transform)
         {
             blockbutton.SetActive(true);
         }
