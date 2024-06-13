@@ -107,29 +107,5 @@ public class chibagrw : MonoBehaviour, IPointerClickHandler
 
         }
     }
-
-    /*public void OnClick()
-    {
-        Debug.Log("wawawa------");
-        manage_script.CreateCard(105, playerField);
-        for (int i = 0; i < directer.playerkitchenCardList.Length; i++)
-        {
-            if (directer.playerkitchenCardList[i].gameObject.GetComponent<CardView>().cardID == 2)
-            {
-                Destroy(directer.playerkitchenCardList[i].gameObject);
-                Debug.Log("ëfçﬁçÌèú");
-                for (int a = 0; a < directer.playerkitchenCardList.Length; a++)
-                {
-                    if (directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 1 || directer.playerkitchenCardList[a].gameObject.GetComponent<CardView>().cardID == 3)
-                    {
-                        Destroy(directer.playerkitchenCardList[a].gameObject);
-                        Debug.Log("ëfçﬁçÌèú2");
-                        popup.SetActive(false);
-                    }
-                }
-            }
-        }
-
-    }*/
 }
 

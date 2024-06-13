@@ -50,27 +50,5 @@ public class AttackButton : MonoBehaviour
             _directer.playerattack = false;
             _directer.enemy_life--;
         }
-
-
-
-        //// プレイヤーオブジェクトをタグで検索して取得
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        //// プレイヤーオブジェクトが存在する場合
-        //if (player != null)
-        //{
-        //    // プレイヤーオブジェクトにダメージを与えるなどの処理をここに記述
-        //    // 以下はダメージを与える処理の例
-        //    PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-        //    if (playerHealth != null)
-        //    {
-        //        playerHealth.TakeDamage(1); // 例として10のダメージを与える
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("プレイヤーオブジェクトが見つかりませんでした！");
-        //}
-
     }
 }
