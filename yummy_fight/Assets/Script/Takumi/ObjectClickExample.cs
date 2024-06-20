@@ -19,7 +19,7 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
         _directer = GameObject.Find("GameDirecter").GetComponent<GameDirecter>();
     }
 
-    // クリックされたときに呼び出されるメソッド
+    // クリックされたときに呼び出される
     public void OnPointerClick(PointerEventData eventData)
     {
         if (canClick)
@@ -41,7 +41,7 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
                     
                     //if (!_controller.hirou)
                     //{
-                    //    // ボタンの表示状態を反転させる
+                    //    // ボタンの表示状態を反転
                     //    buttonToToggle.SetActive(!buttonToToggle.activeSelf);
                     //}
 
@@ -59,19 +59,19 @@ public class ObjectClickExample : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // BATTLEフェーズに入ったときに呼び出されるメソッド
+    // BATTLEフェーズに入ったときに呼び出される
     public void EnterBattlePhase()
     {
         if(_directer.turn != 0)
         {
-            canClick = true; // クリックを許可する
+            canClick = true; // クリックを許可
         }
     }
 
-    // BATTLEフェーズから出たときに呼び出されるメソッド
+    // BATTLEフェーズから出たときに呼び出される
     public void ExitBattlePhase()
     {
-        canClick = false; // クリックを禁止する
+        canClick = false; // クリックを禁止
 
         // ボタンが表示されている場合は非表示にする
         if (buttonToToggle != null && buttonToToggle.activeSelf)
